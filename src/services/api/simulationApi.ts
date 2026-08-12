@@ -1,4 +1,4 @@
-import { PaginatedSimulationResponse, SimulationRequest, SimulationResponse } from "../../types/simulation/Simulation";
+import { PaginatedSimulationResponse, SimulationRequest, SimulationResponse } from "../../types/simulation/simulation";
 import api from "./api";
 
 export const simulationAPI = {

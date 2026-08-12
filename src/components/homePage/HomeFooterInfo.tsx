@@ -1,10 +1,13 @@
 import { FC } from "react"
+import { Link } from "react-router-dom"
 
 export const HomeFooterInfo: FC = ({ }) => {
     return (
         <div className="home-grid-item-4-grid">
             <div className="home-block item-1">
-
+                <div className="home-block-header">Готовы начать?</div>
+                <div className="home-block-text">Создайте профиль, заполните сведения об учёбе и проходите этапы диагностики в удобном темпе.</div>
+                <Link className="home-primary-action" to="/register">Создать аккаунт</Link>
             </div>
 
             <div className="home-block item-2">

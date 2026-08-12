@@ -1,15 +1,11 @@
 import "./css/authStyle.css"
 
-import { GraduationCap, MailOpen, KeyRound, Repeat, MoveLeft, ArrowLeft } from "lucide-react"
-import { FC, FormEvent, useCallback, useState } from "react"
-import { FieldInput } from "../ui/reusable/fieldInput";
+import { GraduationCap, ArrowLeft } from "lucide-react"
 import { Button } from "../ui/reusable/button"
 import { useNavigate } from "react-router-dom"
-import { authApi } from "../../services/api/authApi"
-import toast, { Toaster } from "react-hot-toast"
-import { User } from "../../types/User";
+import { Toaster } from "react-hot-toast"
 
-type UserType = "Школьник" | "Специалист" | "Соискатель"
+type UserType = "Школьник" | "Специалист"
 
 const USER_TYPE = [
     {
@@ -22,21 +18,11 @@ const USER_TYPE = [
         title: "Специалист",
         description: "Я работаю по профессии",
     },
-    {
-        id: "Соискатель" as UserType,
-        title: "Соискатель",
-        description: "Хочу трудоустроиться",
-        disabled: true
-    },
 ]
-const registrationRoutes: Record<UserType, string> = { "Школьник": "/register/pupil", "Специалист": "/register/specialist", "Соискатель": "/login" }
+const registrationRoutes: Record<UserType, string> = { "Школьник": "/register/pupil", "Специалист": "/register/specialist" }
 export const RegistrationTypePicker = () => {
     const navigate = useNavigate()
-    const [userType, setUserType] = useState<UserType>()
     const handleSelectType = (type: UserType) => {
-        const selected = USER_TYPE.find(item => item.id === type)
-        if (selected?.disabled) return
-
         navigate(registrationRoutes[type])
     }
 
@@ -50,11 +36,11 @@ export const RegistrationTypePicker = () => {
                 </div>
 
                 <div className="registration-type-options">
-                    {USER_TYPE.map(({ id, title, description, disabled }) => (
-                        <div className="type-item" key={id} onClick={() => handleSelectType(id)} style={{ opacity: disabled ? .5 : 1, cursor: disabled ? "not-allowed" : "pointer" }}>
+                    {USER_TYPE.map(({ id, title, description }) => (
+                        <button type="button" className="type-item" key={id} onClick={() => handleSelectType(id)}>
                             <p>{title}</p>
                             <span>{description}</span>
-                        </div>
+                        </button>
                     ))}
                 </div>
 

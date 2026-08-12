@@ -1,8 +1,11 @@
-import { FC, useEffect, useState } from "react"
+import { FC } from "react"
+import { Link } from "react-router-dom"
+import { useAuth } from "../../contexts/AuthContext"
 
 import bannerLogoFasie from "../../res/home-imgs/banner-logo-fasie.webp"
 
 export const HomeHero: FC = ({ }) => {
+    const {getEmail} = useAuth()
     return (
         <div className="home-grid-item-1-grid">
             <div className="home-block item-1">
@@ -11,8 +14,12 @@ export const HomeHero: FC = ({ }) => {
                 </div>
 
                 <div className="home-block-subtitle">
-                    Пройди тесты, примерь VR-шлем и узнай, какая высокооплачиваемая профессия в горнодобывающей индустрии подходит именно тебе!
+                    Пройдите последовательную диагностику и узнайте, какие профессии горнодобывающей отрасли лучше соответствуют вашим интересам, способностям и учебному профилю.
                 </div>
+
+                <Link className="home-primary-action" to={getEmail() ? "/tests" : "/register"}>
+                    {getEmail() ? "Продолжить диагностику" : "Начать профориентацию"}
+                </Link>
 
                 <a className="partner-badge"
                     href="https://fasie.ru/"
@@ -36,7 +43,7 @@ export const HomeHero: FC = ({ }) => {
                     </div>
 
                     <div className="home-block-text">
-                        Топовых профессий
+                        Профессий в исследовательской модели
                     </div>
                 </div>
 
@@ -46,7 +53,7 @@ export const HomeHero: FC = ({ }) => {
                     </div>
 
                     <div className="home-block-text">
-                        Ключевых тестов
+                        Этапов психологической диагностики
                     </div>
                 </div>
 
@@ -57,7 +64,7 @@ export const HomeHero: FC = ({ }) => {
 
 
                     <div className="home-block-text">
-                        VR-аналитика будущего
+                        Практические сценарии и поведенческие данные
                     </div>
                 </div>
             </div>

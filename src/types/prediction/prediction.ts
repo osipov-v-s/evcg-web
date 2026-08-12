@@ -1,14 +1,5 @@
-export interface PredictionResponse {
-    pupilId: number;
-    cluster: number;
-    predictedProfession: string;
-    nearestSpecialistId: number;
-    distance: number;
-    confidenceCategory: string;
-}
-
 export interface Prediction {
-    id: number;
+    id?: number;
     pupilId: number;
     cluster: number;
     predictedProfession: string;
@@ -16,4 +7,10 @@ export interface Prediction {
     distance: number;
     confidenceCategory: string;
     createdAt: string;
+}
+
+export interface PredictionResult {
+    name: string
+    distance: number
+    cluster: number
 }

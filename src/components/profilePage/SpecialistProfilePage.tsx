@@ -1,9 +1,8 @@
-import { FC, useEffect, useMemo, useState } from "react"
+import { ChangeEvent, FC, useEffect, useMemo, useState } from "react"
 import { FieldInput } from "../ui/reusable/fieldInput"
-import { UserPen, MailOpen, UserRound, Phone, Briefcase, School, Hash, CaseUpper, PersonStanding, CheckCheck, SpellCheck } from "lucide-react"
+import { UserPen, MailOpen, UserRound, Phone, CheckCheck } from "lucide-react"
 import { Button } from "../ui/reusable/button"
 import { Radio, RadioGroup } from "../ui/reusable/radio"
-import { Dropdown } from "../ui/reusable/dropdown"
 import { Gender } from "../../types/pupil/gender"
 import { useAuth } from "../../contexts/AuthContext"
 import toast, { Toaster } from "react-hot-toast"
@@ -12,6 +11,9 @@ import { specialistsAPI } from "../../services/api/specialistApi"
 import { companyApi } from "../../services/api/companyApi"
 import { Company } from "../../types/company/Company"
 import { PasswordReset } from "./PasswordReset"
+import { PageHeader } from "../ui/common/PageHeader"
+import { NoResults } from "../ui/noResultComponent/NoResult"
+import { getApiErrorMessage } from "../../services/api/error"
 
 export const SpecialistProfilePage: FC = () => {
     const { getToken } = useAuth()
@@ -31,30 +33,23 @@ export const SpecialistProfilePage: FC = () => {
 
     const [professions, setProfessions] = useState<Array<{ value: string; label: string }>>([])
     const [company, setCompany] = useState<Company>()
+    const [isLoading, setIsLoading] = useState(true)
+    const [isSaving, setIsSaving] = useState(false)
 
 
     useEffect(() => {
-        const loadSpecialistData = async () => {
+        const loadData = async () => {
             try {
-                const specialistData = await specialistsAPI.getSpecialistData(getToken())
-                console.log(specialistData)
+                const [specialistData, professionsTemp] = await Promise.all([
+                    specialistsAPI.getSpecialistData(getToken()),
+                    specialistsAPI.getProfessions()
+                ])
                 setSpecialist(specialistData)
-
-            } catch (err) {
-                console.error(err)
-                toast.error("Ошибка при загрузке данных")
-            }
-        }
-
-        const loadProfessions = async () => {
-            try {
-                const professionsTemp = await specialistsAPI.getProfessions()
-                console.log(professionsTemp.map(profession => profession.name))
                 setProfessions(professionsTemp.map(profession => ({ value: profession.name, label: profession.name })))
-
             } catch (err) {
-                console.error(err)
-                toast.error("Ошибка при загрузке профессий")
+                toast.error(getApiErrorMessage(err, "Ошибка при загрузке профиля"))
+            } finally {
+                setIsLoading(false)
             }
         }
         const loadCompany = async () => {
@@ -66,8 +61,7 @@ export const SpecialistProfilePage: FC = () => {
             }
         }
 
-        loadSpecialistData()
-        loadProfessions()
+        loadData()
         loadCompany()
     }, [])
 
@@ -86,9 +80,8 @@ export const SpecialistProfilePage: FC = () => {
         { value: "Не нравится", label: "Не нравится" }
     ], [])
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target
-        console.log(name, value)
         setSpecialist(prev => ({ ...prev, [name]: value }))
     }
 
@@ -97,26 +90,27 @@ export const SpecialistProfilePage: FC = () => {
     }
 
     const updateData = async () => {
+        if (isSaving) return
         try {
+            setIsSaving(true)
             const updatedSpecialist = await specialistsAPI.updateSpecialist(getToken(), specialist)
             setSpecialist(updatedSpecialist)
             toast.success("Данные успешно обновлены")
 
         } catch (err) {
-            console.error(err)
-            toast.error("Возникла ошибка при обновлении профиля")
+            toast.error(getApiErrorMessage(err, "Возникла ошибка при обновлении профиля"))
+        } finally {
+            setIsSaving(false)
         }
     }
 
+    if (isLoading) return <NoResults variant="loading" message="Загружаем профиль специалиста…" />
+
  return (
     <>
-        <div className="page-header flex flex-col items-start">
-            <h1>Личный кабинет</h1>
-            {company && <span>Ваша организация {company?.name}</span>}
-        </div>
-
         <div className="profile-wrapper">
             <div className="profile-container">
+                <PageHeader title="Профиль специалиста" description={company ? `Место работы: ${company.name}` : "Заполните сведения, используемые в референсной модели профессии."} />
                 <div className="profile-grid flex-layout">
                     
                     {/* Row 1: Gender + Email */}
@@ -259,9 +253,10 @@ export const SpecialistProfilePage: FC = () => {
                     <div className="profile-card">
                         <div className="flex flex-col gap-4">
                             <Button 
-                                label="Сохранить" 
+                                label={isSaving ? "Сохраняем…" : "Сохранить"}
                                 icon={<CheckCheck />} 
                                 onClick={updateData} 
+                                disabled={isSaving}
                                 className="w-full flex justify-center"
                             />
                         </div>

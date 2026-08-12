@@ -1,89 +1,58 @@
-//TODO here need to add fields for filtering via all simulation fields (API available)
-
-import { useEffect, useRef, useState } from "react"
-import { SimulationRequest } from "../../../types/simulation/Simulation"
+import { FormEvent, useEffect, useState } from "react"
+import { SimulationRequest } from "../../../types/simulation/simulation"
 import { simulationAPI } from "../../../services/api/simulationApi"
 import { specialistsAPI } from "../../../services/api/specialistApi"
+import { DataFilterBar } from "../../ui/common/DataFilterBar"
 
 interface SimulationFilterBarProps {
     simulationsRequest: SimulationRequest
-    setSimulationsRequest: React.Dispatch<React.SetStateAction<SimulationRequest>>
+    onApply: (request: SimulationRequest) => void
 }
-interface Data {
-    id?: string
-    name: string
-}
-export const SimulationFilerBar = ({simulationsRequest, setSimulationsRequest}: SimulationFilterBarProps) => {
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null)
-    const [simulationsTypes, setSimulationsTypes] = useState<Data[]>([])
-    const [professions, setProfessions] = useState<Data[]>([])
-    const [scenarious, setScenarious] = useState<Data[]>([])
-    const [simulationDataSource, setSimulationDataSource] = useState<Data[]>([])
-    useEffect(() => {
-        const loadFiltersData = async () => {
-            const simulationsTypesTemp = await simulationAPI.getSimulationsTypes()
-            const professionsTemp = await specialistsAPI.getProfessions()
-            const scenariousTemp = await simulationAPI.getSimulationsScenarios()
-            const simulationDataSourceTemp = await simulationAPI.getSimulationsDataSource()
-            
-            setSimulationsTypes(simulationsTypesTemp)
-            setProfessions(professionsTemp)
-            setScenarious(scenariousTemp)
-            setSimulationDataSource(simulationDataSourceTemp)
-        }
-        loadFiltersData()
-    }, [])
-    const handleChange = (e: any) => {
-        const {name, value} = e.target
-        if (timeoutRef.current) clearTimeout(timeoutRef.current)
-        console.log(name)
-        timeoutRef.current = setTimeout(() => {
-                setSimulationsRequest(prev => ({...prev, [name]: value}))
-        }, 1000);
-    }
-    return (
-        <div className="filter-bar">
-            <input type="text" name="email" placeholder="Логин" onChange={handleChange}/>
-            <select
-                name="profession"
-                value={simulationsRequest.profession || "Все профессии"}
-                onChange={handleChange}>
-                    <option value="">Все профессии</option>
-                    {professions.map(profession => (
-                        <option value={profession.name}>{profession.name}</option>
-                    ))}
-            </select>
-            <select 
-                name="simulationType"
-                value={simulationsRequest.simulationType || "Все симуляции"}
-                onChange={handleChange}>
-                    <option value="">Все симуляции</option>
-                    {simulationsTypes.map(sim => (
-                        <option value={sim.name}>{sim.name}</option>
-                    ))}
-            </select>
-            <select 
-                name="scenario"
-                value={simulationsRequest.scenario || "Все сценарии"}
-                onChange={handleChange}>
-                    <option value={""}>Все сценарии</option>
-                    {scenarious.map(s => (
-                        <option value={s.name}>{s.name}</option>
-                    ))}
-            </select>
-            <select 
-                name="simulationDataSource" 
-                value={simulationsRequest.simulationDataSource || "Все источники"}
-                onChange={handleChange}>
-                    <option value="">Все источники</option>
-                    {simulationDataSource.map(dS => (
-                        <option value={dS.name}>{dS.name}</option>
-                    ))}
-                    
-            </select>
-            <input type="text" name="startSimulation" placeholder="Дата начала" onChange={handleChange}/>
-            <input type="text" name="endSimulation" placeholder="Дата окончания" onChange={handleChange}/>
-            
-        </div>)
+interface Data { id?: string | number; name: string }
 
+const emptyRequest: SimulationRequest = {}
+
+export const SimulationFilerBar = ({simulationsRequest, onApply}: SimulationFilterBarProps) => {
+    const [draft, setDraft] = useState<SimulationRequest>(simulationsRequest)
+    const [simulationTypes, setSimulationTypes] = useState<Data[]>([])
+    const [professions, setProfessions] = useState<Data[]>([])
+    const [scenarios, setScenarios] = useState<Data[]>([])
+    const [sources, setSources] = useState<Data[]>([])
+
+    useEffect(() => {
+        Promise.all([
+            simulationAPI.getSimulationsTypes(),
+            specialistsAPI.getProfessions(),
+            simulationAPI.getSimulationsScenarios(),
+            simulationAPI.getSimulationsDataSource()
+        ]).then(([types, professionList, scenarioList, sourceList]) => {
+            setSimulationTypes(types)
+            setProfessions(professionList)
+            setScenarios(scenarioList)
+            setSources(sourceList)
+        })
+    }, [])
+
+    const submit = (event: FormEvent) => {
+        event.preventDefault()
+        onApply(draft)
+    }
+
+    const reset = () => {
+        setDraft(emptyRequest)
+        onApply(emptyRequest)
+    }
+
+    return <form onSubmit={submit}>
+        <DataFilterBar onReset={reset}>
+            <input type="email" aria-label="Email ученика" placeholder="Email ученика" value={draft.email || ""} onChange={e => setDraft({...draft, email: e.target.value})} />
+            <select aria-label="Профессия" value={draft.profession || ""} onChange={e => setDraft({...draft, profession: e.target.value})}><option value="">Все профессии</option>{professions.map(item => <option key={item.id ?? item.name} value={item.name}>{item.name}</option>)}</select>
+            <select aria-label="Тип симуляции" value={draft.simulationType || ""} onChange={e => setDraft({...draft, simulationType: e.target.value})}><option value="">Все типы</option>{simulationTypes.map(item => <option key={item.id ?? item.name} value={item.name}>{item.name}</option>)}</select>
+            <select aria-label="Сценарий" value={draft.scenario || ""} onChange={e => setDraft({...draft, scenario: e.target.value})}><option value="">Все сценарии</option>{scenarios.map(item => <option key={item.id ?? item.name} value={item.name}>{item.name}</option>)}</select>
+            <select aria-label="Источник данных" value={draft.simulationDataSource || ""} onChange={e => setDraft({...draft, simulationDataSource: e.target.value})}><option value="">Все источники</option>{sources.map(item => <option key={item.id ?? item.name} value={item.name}>{item.name}</option>)}</select>
+            <input type="datetime-local" aria-label="Начало периода" value={draft.startSimulation || ""} onChange={e => setDraft({...draft, startSimulation: e.target.value})} />
+            <input type="datetime-local" aria-label="Конец периода" value={draft.endSimulation || ""} onChange={e => setDraft({...draft, endSimulation: e.target.value})} />
+            <button className="primary-action" type="submit">Применить</button>
+        </DataFilterBar>
+    </form>
 }

@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpFromLine, CloudDownload, Download, UsersRound, Database, UserCheck, Coffee } from "lucide-react"
+import { ArrowLeft, CloudDownload, Download, UsersRound, Database, Coffee, School } from "lucide-react"
 
 export interface AdminMenuItemProps {
     id: string
@@ -18,17 +18,17 @@ export const adminButtons: AdminMenuItemProps[] = [
     },
     {
         id: "companies",
-        label: "Список компаний",
+        label: "Места работы",
         icon: Coffee,
         path: "/admin/companies",
-        group: "Предприятия"
+        group: "Организации"
     },
     {
-        id: "pupils-upload",
-        label: "Загрузить",
-        icon: ArrowUpFromLine,
-        path: "/admin/pupils-upload",
-        group: "Ученики",
+        id: "schools",
+        label: "Школы и кураторы",
+        icon: School,
+        path: "/admin/schools",
+        group: "Образование"
     },
     {
         id: "pupils-list",
@@ -36,13 +36,6 @@ export const adminButtons: AdminMenuItemProps[] = [
         icon: UsersRound,
         path: "/admin/pupils",
         group: "Ученики",
-    },
-    {
-        id: "specialists-upload",
-        label: "Загрузить",
-        icon: ArrowUpFromLine,
-        path: "/admin/specialists-upload",
-        group: "Специалисты",
     },
     {
         id: "specialists-list",
@@ -63,6 +56,13 @@ export const adminButtons: AdminMenuItemProps[] = [
         icon: Download,
         path: "/admin/results",
         group: "Результаты"
+    },
+    {
+        id: "test-types",
+        label: "Активность тестов",
+        icon: Database,
+        path: "/admin/test-types",
+        group: "Тесты"
     },
     {
         id: "forms",

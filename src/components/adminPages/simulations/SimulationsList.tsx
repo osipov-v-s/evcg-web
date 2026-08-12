@@ -1,4 +1,4 @@
-import { SimulationResponse } from "../../../types/simulation/Simulation"
+import { SimulationResponse } from "../../../types/simulation/simulation"
 import { SimulationCard } from "./SimulationCard"
 import "./css/simulation.css"
 interface SimulationsListProps {

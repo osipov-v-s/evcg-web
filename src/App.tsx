@@ -1,13 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 // Хуки
-import { useAuth } from "./contexts/AuthContext";
-import { PupilDataLoading } from "./components/adminPages/pupils/data-loading/PupilDataLoading";
 import { PupilsList } from "./components/adminPages/pupils/PupilsList";
-
-import { ROLES } from "./types/account/role";
-
-import { PupilGradeLoading } from "./components/adminPages/pupils/grade-loading/PupilGradeLoading";
 
 // Новые импорты
 // Роутинг
@@ -34,7 +28,6 @@ import { ProfileCommonPage } from "./components/profilePage/ProfileCommonPage"
 // Админские страницы
 import { AdminPage } from "./components/adminPages/AdminPage"
 import { SimulationPage } from "./components/adminPages/simulations/SimulationsPage"
-import { UploadSpecialists } from "./components/adminPages/specialists/UploadSpecialists"
 import { RegistrationTypePicker } from "./components/authorizationPages/RegistrationTypePage"
 import { Specialists } from "./components/adminPages/specialists/Specialists"
 
@@ -66,8 +59,6 @@ import { IqPotentialResults } from "./components/testsPage/iqPotential/IqPotenti
 import { HollandTest } from "./components/testsPage/holland/HollandTest"
 import { HollandResults } from "./components/testsPage/holland/HollandResults"
 import { DownloadTestsResults } from "./components/adminPages/results/DownloadTestsResults";
-import { ProfessionsForm } from "./components/adminPages/crud/crudForms/ProfessionsForm";
-import { ProfessionSphereForm } from "./components/adminPages/crud/crudForms/ProfessionSphereForm";
 import { crudRoutes } from "./components/adminPages/crud/routes.config";
 import { FormsListPage } from "./components/adminPages/crud/FormsListPage";
 import { Predictions } from "./components/predictions/Predictions";
@@ -75,9 +66,11 @@ import { VRTestsPage } from "./components/VRTestsPage/VRTestsPage";
 import { VRTestIntro } from "./components/VRTestsPage/VRTestIntro";
 import { VRTest } from "./components/VRTestsPage/VRTest";
 import { VRTestResults } from "./components/VRTestsPage/results/VRTestResults";
-import { HRList } from "./components/adminPages/hr-managers/HRList";
-import { CompanyEmployees } from "./components/hrPage/CompanyEmployees";
 import { CompanyManagement } from "./components/adminPages/companies/CompanyManagement";
+import { SchoolManagement } from "./components/adminPages/schools/SchoolManagement";
+import { CuratorDashboard } from "./components/curatorPages/CuratorDashboard";
+import { TestTypeManagement } from "./components/adminPages/results/TestTypeManagement";
+import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from "./routing/roleAccess";
 
 export default function App() {
 	return (
@@ -101,31 +94,36 @@ export default function App() {
 			{/* Protected routes */}
 			<Route element={<ProtectedRoute />}>
 				<Route element={<Layout />}>
-					<Route element={<RolesProtectedRoute approvedRoles={[ROLES.ADMIN]} />}>
+					<Route element={<RolesProtectedRoute approvedRoles={ADMIN_ROLES} />}>
 						<Route path="/admin" element={<AdminPage />}>
 							<Route index element={<Navigate to="/admin/pupils" replace />} />
 
-							<Route path="pupils-upload" element={<PupilDataLoading />} />
+							<Route path="pupils-upload" element={<Navigate to="/admin/pupils" replace />} />
 							<Route path="pupils" element={<PupilsList />} />
 
 							<Route path="simulations" element={<SimulationPage />} />
 
 							<Route path="specialists" element={<Specialists />} />
-							<Route path="specialists-upload" element={<UploadSpecialists />} />
+							<Route path="specialists-upload" element={<Navigate to="/admin/specialists" replace />} />
 
 							<Route path="results" element={<DownloadTestsResults/>} />
-							/**Admin cruds routes from template  */
+							{/* Admin CRUD routes from the existing templates */}
 							<Route path="forms" element={<FormsListPage/>}/>
 							{crudRoutes.map(route => (
 								<Route key={route.path} path={route.path} element={<route.element />} />
 							))}
 							<Route path="companies" element= {<CompanyManagement />} />
+							<Route path="schools" element={<SchoolManagement />} />
+							<Route path="test-types" element={<TestTypeManagement />} />
 
 						</Route>
 					</Route>
+					<Route element={<RolesProtectedRoute approvedRoles={CURATOR_ROLES} />}>
+						<Route path="/curator" element={<CuratorDashboard />} />
+					</Route>
 
-					{/* Tests routes */}
-					
+					{/* Psychological tests */}
+					<Route element={<RolesProtectedRoute approvedRoles={CAREER_TEST_ROLES} />}>
 					<Route path="/tests">
 						<Route index element={<TestsPage />} />
 						<Route element={<TestViewer />}>
@@ -155,26 +153,28 @@ export default function App() {
 
 						</Route>
 					</Route>
+					<Route path="/my-results" element={<ResultsPage />} />
+					<Route path="/my-results/:testType" element={<ResultsPage />} />
+					</Route>
 
 					{/* VR tests routes*/}
+					<Route element={<RolesProtectedRoute approvedRoles={CAREER_TEST_ROLES} />}>
 					<Route path="/vr-tests">
 						<Route index element={<VRTestsPage />} />
 						<Route path=":profession/:professionId/intro" element={<VRTestIntro />} />
 						<Route path=":profession/:professionId/questionnaire" element={<VRTest />} />
 						<Route path=":profession/:professionId/results" element={<VRTestResults />} />
 					</Route>
+					</Route>
 
 					{/* Results routes */}
-					<Route path="/predictions" element={<Predictions/>} />
-					<Route path="/my-results" element={<ResultsPage />} />
-					<Route path="/my-results/:testType" element={<ResultsPage />} />
+					<Route element={<RolesProtectedRoute approvedRoles={PUPIL_ONLY_ROLES} />}>
+						<Route path="/predictions" element={<Predictions/>} />
+						<Route path="/my-grades" element={<StudyPage />} />
+					</Route>
 
 					{/* Rest routes */}
 					<Route path="/profile" element={<ProfileCommonPage />} />
-					<Route path="/my-grades" element={<StudyPage />} />
-					{/* HR routes */}
-					<Route path="hr/employees" element={<CompanyEmployees/>} />
-
 				</Route>
 			</Route>
 

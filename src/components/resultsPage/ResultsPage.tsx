@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, ComponentType } from "react";
+import { FC, useEffect, useState } from "react";
 import { TestItem, testsList } from "../testsPage/TestsData";
 import { useAuth } from "../../contexts/AuthContext";
 import "./css/resultsPageStyles.css";
@@ -6,6 +6,8 @@ import { TestResultResponse, TestTypeName } from "../../types/testTypes";
 import { testApi } from "../../services/api/testApi";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { NoResults } from "../ui/noResultComponent/NoResult";
+import { PageHeader } from "../ui/common/PageHeader";
 
 export const ResultsPage: FC = () => {
 	//const [psychTest, setPsychTest] = useState<TestResultResponse | null>(null)
@@ -13,10 +15,7 @@ export const ResultsPage: FC = () => {
 	const navigate = useNavigate()
 	const [completedTests, setCompletedTests] = useState<TestItem[]>([])
 	const [recentTests, setRecentTests] = useState<Record<string, TestResultResponse>>({})
-
-	useEffect(() => {
-		console.log(completedTests)
-	}, [completedTests])
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
 		const getAvailableTests = async () => {
@@ -27,6 +26,8 @@ export const ResultsPage: FC = () => {
 				setCompletedTests(testsList.filter((testItem => testItem.name in recentTestsTemp)))
 			} catch (err) {
 				toast.error("Не удалось загрузить пройденные тесты")
+			} finally {
+				setIsLoading(false)
 			}
 		}
 		getAvailableTests()
@@ -51,23 +52,23 @@ export const ResultsPage: FC = () => {
 		}
 	}
 
-	if (!completedTests) return (
-		<p>Загрузка...</p>
-	)
+	if (isLoading) return <NoResults variant="loading" message="Загружаем результаты…" />
+	if (completedTests.length === 0) return <NoResults variant="empty" title="Результатов пока нет" message="Сначала пройдите один из доступных психологических тестов." />
 
 	return (
 		<div className="results-wrapper">
+			<PageHeader title="Результаты тестов" description="Выберите тест, чтобы открыть его специализированную расшифровку." />
 			<div className="tests-container">
 
 				{completedTests.map((test) => (
-					<div className="test-result-card" onClick={() => handleSelectTest(test)}>
+					<button type="button" className="test-result-card" key={test.id} onClick={() => handleSelectTest(test)}>
 
 						<div className="test-result-title">
 							<h3>{test.label}</h3>
 						</div>
 
 						<p>{test.description}</p>
-					</div>
+					</button>
 				))}
 			</div>
 

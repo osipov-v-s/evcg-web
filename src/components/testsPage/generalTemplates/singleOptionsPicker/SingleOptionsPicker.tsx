@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, CheckCheck, Option, X } from "lucide-react"
 export interface Task {
     id: number
     taskNumber: number
-    text?: string
+    text?: string | null
     options: Option[]
     imageUrl?: string
     answer?: number

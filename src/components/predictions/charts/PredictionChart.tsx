@@ -1,4 +1,3 @@
-import { Interface } from "node:readline"
 import { PredictionResult } from "../../../types/prediction/prediction"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 interface PredictionChartProps {

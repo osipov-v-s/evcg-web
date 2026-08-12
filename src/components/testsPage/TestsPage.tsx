@@ -19,13 +19,7 @@ export const TestsPage: FC = ({ }) => {
     const [displayProgress, setDisplayProgress] = useState(0)
     const [visibleIds, setVisibleIds] = useState<number[]>([])
     const [recentTests, setRecentTests] = useState<Record<string, TestResultResponse>>({})
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 768)
-        window.addEventListener("resize", handleResize)
-        return () => window.removeEventListener("resize", handleResize)
-    }, [])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const loadRecentTests = async () => {
@@ -35,6 +29,9 @@ export const TestsPage: FC = ({ }) => {
 
             } catch (error) {
                 console.error("Failed to load recent tests:", error)
+                toast.error("Не удалось загрузить прогресс тестирования")
+            } finally {
+                setIsLoading(false)
             }
         }
 
@@ -46,11 +43,11 @@ export const TestsPage: FC = ({ }) => {
 
         const completedCount = Object.keys(recentTests).length
         const rawPercent = (completedCount / testsList.length) * 100
-        const finalPercent = isMobile ? Math.min(rawPercent, 100) : Math.min(Math.max(rawPercent, 0), 95)
+        const finalPercent = Math.min(Math.max(rawPercent, 0), 100)
 
         const timer = setTimeout(() => setDisplayProgress(finalPercent), 100)
         return () => clearTimeout(timer)
-    }, [recentTests, isMobile])
+    }, [recentTests])
 
     useEffect(() => {
         const container = testContainerRef.current
@@ -131,6 +128,7 @@ export const TestsPage: FC = ({ }) => {
                 <div className="progress-count">
                     <CheckCheck />
                     <span>{Object.keys(recentTests).length} / {testsList.length}</span>
+                    {isLoading && <span className="sr-only">Загрузка прогресса</span>}
                 </div>
             </div>
 

@@ -5,10 +5,12 @@ import { profession } from "../../types/specialist/specialist"
 import "./css/vr-tests-page.css"
 import { VRTestCard } from "./VRTestCard"
 import { Search } from "lucide-react"
-import { useNavigate, useNavigation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { vrTestApi } from "../../services/api/vrTestsApi"
 import { useAuth } from "../../contexts/AuthContext"
 import { ProfessionWithStatus, VRTestStatus } from "../../types/vrTests/VRTest"
+import { NoResults } from "../ui/noResultComponent/NoResult"
+import { PageHeader } from "../ui/common/PageHeader"
 
 export type Status = "not started" | "first stage" | "second stage"
 
@@ -31,13 +33,11 @@ export const VRTestsPage = () => {
                     specialistsAPI.getProfessions(),
                     vrTestApi.getMyTests(getToken())
                 ]);
-                console.log(testsTemp)
 
                 // Map professions with status
-                const professionsWithStatus = professionsTemp.map((prof: any) => {
+                const professionsWithStatus = professionsTemp.map((prof: profession) => {
                     // Count tests for this profession
                     const tests = testsTemp.filter(test => test.professionId === prof.id);
-                    console.log(tests)
                     const testsCount = tests.length;
                     
                     let status: VRTestStatus = 'not_started';
@@ -58,7 +58,6 @@ export const VRTestsPage = () => {
                         canTakeTest: testsCount < 2
                     };
                 });
-                console.log(professionsWithStatus)
                 setProfessionsOriginal(professionsWithStatus);
                 setProfessions(professionsWithStatus);
                 
@@ -117,11 +116,10 @@ export const VRTestsPage = () => {
         }
     };
 
-    if (!professions) return (<>
-        <p>Загрузка тестов</p>
-    </>)
+    if (isLoading) return <NoResults variant="loading" message="Загружаем VR-тесты…" />
     return (
         <div className="vr-page">
+            <PageHeader title="VR-тесты" description="Оценка когнитивной и мотивационно-деятельностной составляющей по выбранной профессии." />
             <div className="search-container">
                 <Search size={25} />
                 <input
@@ -142,6 +140,7 @@ export const VRTestsPage = () => {
                     />
                 ))}
             </div>
+            {professions.length === 0 && <NoResults variant="empty" title="Ничего не найдено" message="Измените поисковый запрос." />}
         </div>
     );
 }

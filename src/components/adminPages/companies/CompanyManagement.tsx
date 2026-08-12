@@ -1,134 +1,54 @@
 import { useEffect, useState } from "react"
+import toast, { Toaster } from "react-hot-toast"
+import { Plus } from "lucide-react"
 import { companyApi } from "../../../services/api/companyApi"
 import { useAuth } from "../../../contexts/AuthContext"
-import { CompanyWithEmployees } from "../../../types/company/Company"
-import toast, { Toaster } from "react-hot-toast"
+import { Company } from "../../../types/company/Company"
 import { NoResults } from "../../ui/noResultComponent/NoResult"
-import { Plus } from "lucide-react"
 import { CompanyCard } from "./CompanyCard"
 import { CompanyDialog } from "./CompanyDialog"
-import { EmployeeDialog } from "./EmployeeDialog"
 
 export const CompanyManagement = () => {
     const { getToken } = useAuth()
-    const [companies, setCompanies] = useState<CompanyWithEmployees[]>([])
+    const [companies, setCompanies] = useState<Company[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [showCompanyForm, setShowCompanyForm] = useState(false)
-    const [showEmployeeForm, setShowEmployeeForm] = useState(false)
-    const [selectedCompany, setSelectedCompany] = useState<CompanyWithEmployees | null>(null)
 
     const loadCompanies = async () => {
         try {
             setIsLoading(true)
-            const data = await companyApi.getCompaniesWithEmployees(getToken())
-            setCompanies(data)
+            setCompanies(await companyApi.getCompanies(getToken()))
         } catch (error) {
-            console.error("Failed to load companies:", error)
+            console.error(error)
             toast.error("Ошибка при загрузке компаний")
         } finally {
             setIsLoading(false)
         }
     }
 
-    useEffect(() => {
-        loadCompanies()
-    }, [])
+    useEffect(() => { loadCompanies() }, [])
 
-    const handleCompanyCreated = () => {
-        setShowCompanyForm(false)
-        loadCompanies()
-        toast.success("Компания успешно создана!")
-    }
-
-    const handleEmployeeCreated = () => {
-        setShowEmployeeForm(false)
-        setSelectedCompany(null)
-        loadCompanies()
-        toast.success("Сотрудник успешно добавлен!")
-    }
-
-    // Loading state
-    if (isLoading) {
-        return (
-            <div className="admin-list-wrapper center">
-                <NoResults variant="loading" />
-            </div>
-        )
-    }
-
-    // Empty state
-    if (companies.length === 0) {
-        return (
-            <div className="admin-list-wrapper" style={{ padding: '20px' }}>
-                <div className="list-header">
-                    <h2>Управление компаниями</h2>
-                    <button className="add-btn" onClick={() => setShowCompanyForm(true)}>
-                        <Plus size={20} />
-                        Добавить компанию
-                    </button>
-                </div>
-                <NoResults 
-                    variant="empty"
-                    title="Нет компаний"
-                    message="Создайте первую компанию, чтобы начать управление сотрудниками."
-                    actionText="Создать компанию"
-                    onAction={() => setShowCompanyForm(true)}
-                />
-                {showCompanyForm && (
-                    <CompanyDialog
-                        onClose={() => setShowCompanyForm(false)}
-                        onSuccess={handleCompanyCreated}
-                    />
-                )}
-                <Toaster />
-            </div>
-        )
-    }
+    if (isLoading)
+        return <div className="admin-list-wrapper center"><NoResults variant="loading" /></div>
 
     return (
-        <div className="admin-list-wrapper scroll-y" style={{ padding: '20px' }}>
-            {/* Header */}
+        <div className="admin-list-wrapper scroll-y" style={{ padding: 20 }}>
             <div className="list-header">
-                <h2>Управление компаниями</h2>
+                <div>
+                    <h2>Организации специалистов</h2>
+                    <p>Справочник мест работы для референсных профилей профессий.</p>
+                </div>
                 <button className="add-btn" onClick={() => setShowCompanyForm(true)}>
-                    <Plus size={20} />
-                    Добавить компанию
+                    <Plus size={20} /> Добавить организацию
                 </button>
             </div>
-
-            {/* Companies List */}
-            <div className="flex flex-col gap-4">
-                {companies.map((company) => (
-                    <CompanyCard
-                        key={company.id}
-                        company={company}
-                        onAddEmployee={(c) => {
-                            setSelectedCompany(c)
-                            setShowEmployeeForm(true)
-                        }}
-                    />
-                ))}
-            </div>
-
-            {/* Modals */}
-            {showCompanyForm && (
-                <CompanyDialog
-                    onClose={() => setShowCompanyForm(false)}
-                    onSuccess={handleCompanyCreated}
-                />
-            )}
-
-            {showEmployeeForm && selectedCompany && (
-                <EmployeeDialog
-                    company={selectedCompany}
-                    onClose={() => {
-                        setShowEmployeeForm(false)
-                        setSelectedCompany(null)
-                    }}
-                    onSuccess={handleEmployeeCreated}
-                />
-            )}
-
+            {companies.length === 0
+                ? <NoResults variant="empty" title="Нет организаций" message="Добавьте информационную карточку организации." />
+                : <div className="cards-container">{companies.map(company => <CompanyCard key={company.id ?? company.name} company={company} />)}</div>}
+            {showCompanyForm && <CompanyDialog onClose={() => setShowCompanyForm(false)} onSuccess={() => {
+                setShowCompanyForm(false)
+                loadCompanies()
+            }} />}
             <Toaster />
         </div>
     )

@@ -1,7 +1,15 @@
-import { count } from "console"
 import { useMemo } from "react"
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, Cell, CartesianAxis, CartesianGrid} from 'recharts';
-const UserMarker = (props) => {
+import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, Cell, CartesianGrid} from 'recharts';
+
+interface SpecialistDistance {
+    spec_id: number | string
+    profession: string
+    distance: number
+}
+
+type Categories = Record<string, SpecialistDistance[]>
+
+const UserMarker = (props: {cx?: number; cy?: number}) => {
     const { cx, cy } = props;
     
     return (
@@ -24,13 +32,13 @@ const UserMarker = (props) => {
     );
 };
 interface BubbleDistanceChartProps {
-    categories: any
+    categories: Categories
 }
 export const BubbleDistanceChart = ({categories} : BubbleDistanceChartProps) => {
     
 const data = useMemo(() => {
     const specialistsTotal = Object.values(categories || {})
-        .flatMap((specialists) => Array.isArray(specialists) ? specialists : []);
+        .flatMap((specialists): SpecialistDistance[] => Array.isArray(specialists) ? specialists : []);
     
     if (specialistsTotal.length === 0) return [];
     
@@ -46,7 +54,7 @@ const data = useMemo(() => {
     return specialistsTotal.map((spec) => {
         // Find which category this specialist belongs to
         const categoryIndex = categoryKeys.findIndex(key => 
-            categories[key].some(s => s.spec_id === spec.spec_id)
+            categories[key].some((s: SpecialistDistance) => s.spec_id === spec.spec_id)
         );
         
         // Calculate angle based on category (spread evenly around circle)
@@ -88,8 +96,8 @@ const data = useMemo(() => {
 }, [categories]);
     
     // Color mapping by category
-    const getCategoryColor = (category) => {
-        const colors = {
+    const getCategoryColor = (category: string) => {
+        const colors: Record<string, string> = {
             'Идеальное': '#4CAF50',
             'Очень маленькое': '#8BC34A',
             'Маленькое': '#CDDC39',

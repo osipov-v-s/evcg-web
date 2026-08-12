@@ -14,10 +14,16 @@ export const UploadSpecialists = () => {
     const { rawData, headers, setHeaders, processExcelFile, resetData } = useExcelMapper()
     const [specialistKeys, setSpecialistKeys] = useState(SpecialistKeys)
     const [headerMapping, setHeaderMapping] = useState<Record<string, string>>({})
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const fileRef = useRef<HTMLInputElement>(null)
     const uploadSpecialists = async () => {
+        if (isSubmitting || rawData.length === 0) {
+            if (rawData.length === 0) toast.error("Сначала выберите Excel-файл")
+            return
+        }
         try {
+            setIsSubmitting(true)
             const specialists = applyMapping(rawData)
             const responseData = await specialistsAPI.specialistAutoRegister(specialists, getToken())
             toast.success(responseData)
@@ -28,6 +34,8 @@ export const UploadSpecialists = () => {
         } catch (err) {
             console.error(err)
             toast.error("Ошибка при выгрузке специалистов, проверьте логи F12")
+        } finally {
+            setIsSubmitting(false)
         }
     }
     useEffect(() => {
@@ -48,7 +56,6 @@ export const UploadSpecialists = () => {
                 else if (mappedKey && row[header] !== undefined)
                     specialist[mappedKey] = row[header]
             })
-            console.log(specialist, account)
             return { "specialist": specialist as Specialist, "account": account as AccountRequest }
         })
         return specialists
@@ -58,7 +65,6 @@ export const UploadSpecialists = () => {
         processExcelFile(file as File)
     }
     const handleSpecialistKeys = (headerName: string, selectedKey: string) => {
-        console.log(headerName, selectedKey)
         setHeaderMapping(prev => ({ ...prev, [headerName]: selectedKey }))
     }
 
@@ -72,7 +78,7 @@ export const UploadSpecialists = () => {
                             {"Excel файл"}
                         </label>
                     </div>
-                    <Button label="Загрузить" icon={<ArrowUpFromLine />} onClick={() => uploadSpecialists()} />
+                    <Button disabled={isSubmitting} label={isSubmitting ? "Загружаем…" : "Загрузить"} icon={<ArrowUpFromLine />} onClick={() => uploadSpecialists()} />
                     <a download href={`${BASE_URL}/public/admin/specialists.xlsx`}>Скачать шаблон specialist.xlsx</a>
                 </div>
             </div>

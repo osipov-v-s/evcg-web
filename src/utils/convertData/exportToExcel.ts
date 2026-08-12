@@ -1,6 +1,5 @@
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import { TestResultResponse } from '../../types/testTypes';
 import { AccountsTests } from '../../types/account/account';
 export const exportToExcel = (accountsData: AccountsTests[], filename: string = "psych_test_results") => {
     if (!accountsData.length) {
@@ -21,20 +20,26 @@ export const exportToExcel = (accountsData: AccountsTests[], filename: string = 
 }
 
 const transformAccountsData = (accountsData: AccountsTests[]) => {
-    const transformedData: any[] = []
+    const transformedData: Array<Record<string, string | number>> = []
     
     accountsData.forEach(account => {
         if (!account.psychTests || !account.psychTests.length) return
         
         // Add a row for each test
         account.psychTests.forEach(test => {
-            const row: any = {
+            const row: Record<string, string | number> = {
                 'ФИО': account.fullName,
                 'Email': account.email,
                 'Роль': account.roles?.join(', ') || '',
+                'Школа': account.school || '',
+                'Класс': account.classNumber ? `${account.classNumber}${account.classLabel || ''}` : '',
+                'Пол': account.gender || '',
+                'Дата рождения': account.birthday || '',
+                'Профессия': account.profession || '',
+                'Организация': account.company || '',
                 'Тип теста': test.testTypeName,
                 'Время выполнения (сек)': test.completionTimeSeconds,
-                'Дата прохождения': test.createdAt
+                'Дата прохождения': test.createdAt || ''
             }
             
             // Add psych params as columns

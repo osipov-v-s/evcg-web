@@ -2,7 +2,7 @@ import "./css/cardBase.css"
 import "./css/cardContent.css"
 import "./css/cardResult.css"
 
-import { FC, memo, useRef, MouseEvent, useEffect } from "react"
+import { FC, memo } from "react"
 import { TestItem } from "./TestsData"
 import { Timer, FileQuestion, ArrowRight, CheckCheck } from "lucide-react"
 
@@ -32,40 +32,6 @@ export const TestCard: FC<TestItemProps> = memo(({
     onClick,
     resultOnClick,
 }) => {
-    const cardRef = useRef<HTMLDivElement>(null)
-    const targetPos = useRef({ x: 0, y: 0 })
-    const currentPos = useRef({ x: 0, y: 0 })
-
-    {/* 
-    useEffect(() => {
-        let frameId: number
-
-        const animate = () => {
-            const lerpFactor = 0.1
-            currentPos.current.x += (targetPos.current.x - currentPos.current.x) * lerpFactor
-            currentPos.current.y += (targetPos.current.y - currentPos.current.y) * lerpFactor
-
-            if (cardRef.current) {
-                cardRef.current.style.setProperty("--mouse-x", `${currentPos.current.x}px`)
-                cardRef.current.style.setProperty("--mouse-y", `${currentPos.current.y}px`)
-            }
-            frameId = requestAnimationFrame(animate)
-        }
-
-        frameId = requestAnimationFrame(animate)
-        return () => cancelAnimationFrame(frameId)
-    }, [])
-
-    const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-        if (!cardRef.current) return
-        const rect = cardRef.current.getBoundingClientRect()
-
-        targetPos.current = {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-        }
-    }*/}
-
     const handleClick = () => {
         if (!isAvailable) return
         if (item.path) onClick(item.path)
@@ -73,10 +39,10 @@ export const TestCard: FC<TestItemProps> = memo(({
 
     return (
         <div className="test-card-wrapper">
-            <div
-                ref={cardRef}
+            <button
+                type="button"
                 className={`test-selection-item ${!isAvailable ? "locked" : ""} ${isComplete ? "complete" : ""}`}
-                /*onMouseMove={handleMouseMove}*/
+                disabled={!isAvailable}
                 onClick={handleClick}
                 data-test-id={dataId}>
 
@@ -110,15 +76,15 @@ export const TestCard: FC<TestItemProps> = memo(({
                 <div className="test-selection-decal">
                     {isComplete ? <CheckCheck /> : <ArrowRight />}
                 </div>
-            </div>
+            </button>
 
             {isComplete && (
-                <div className="test-selection-result" onClick={() => resultOnClick(item)}>
+                <button type="button" className="test-selection-result" onClick={() => resultOnClick(item)}>
                     <h4>Результаты</h4>
                     <div className="test-selection-decal">
                         <ArrowRight />
                     </div>
-                </div>
+                </button>
             )}
         </div>
     )

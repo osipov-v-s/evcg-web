@@ -1,8 +1,7 @@
 // src/contexts/AuthContext.tsx
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { authApi } from '../services/api/authApi'
+import { createContext, useContext, useState, ReactNode } from 'react'
 import Cookies from "js-cookie"
-import { Role, ROLES } from '../types/account/role';
+import { Role } from '../types/account/role';
 import {jwtDecode} from "jwt-decode"
 interface AuthContextType {
   token: string | null;
@@ -31,6 +30,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const logout = () => {
     Cookies.remove("token");
+    Cookies.remove("roles");
     setToken(null);
   };
 
@@ -58,7 +58,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       return jwtDecode(getToken().replace("Bearer ", "")) as TokenClaims
     } catch(err) {
-      console.error(err)
       return null
     }
   }
@@ -73,12 +72,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const getRoles = (): Role[] | undefined => {
     const rolesCookie = Cookies.get("roles");
-    if (!rolesCookie) return [{name: ROLES.PUPIL}];
+    if (!rolesCookie) return undefined;
     try {
       return JSON.parse(rolesCookie)
     } catch (err) {
-      console.log(err);
-      return [{name: ROLES.PUPIL}];
+      return undefined;
     }
   }
   const checkRole = (role:Role) : boolean => {
@@ -92,12 +90,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!token) return true
     try {
       const expireDate = getTokenClaims()?.exp
-      console.log(expireDate, Date.now() / 1000)
       if (!expireDate) return true
       const currentTime = Date.now() / 1000
       return expireDate < currentTime
     } catch(err) {
-      console.error("Invalid token", err)
       return true
     }
   }

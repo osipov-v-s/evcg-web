@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { Prediction } from "../../types/prediction/prediction"
-import api from "../../services/api/api"
 import { useAuth } from "../../contexts/AuthContext"
 import toast, { Toaster } from "react-hot-toast"
 import { NoResults } from "../ui/noResultComponent/NoResult"
 import "./css/prediction.css"
-import { getCategoryLabel, getCompatibilityColor, getCompatibilityFromDistance, getDistanceCategory } 
+import { getCategoryLabel, getCompatibilityColor, getCompatibilityFromDistance }
     from "../../utils/distanceCategory"
 import { formatDateTime } from "../../services/dates/formatDate"
 import { Button } from "../ui/reusable/button"
 import { predictionAPI } from "../../services/api/predictionApi"
+import { getApiErrorMessage } from "../../services/api/error"
+import axios from "axios"
 
 export const Predictions = () => {
     const [prediction, setPrediction] = useState<Prediction | null>(null)
@@ -26,7 +27,9 @@ export const Predictions = () => {
             } catch (err) {
                 console.error(err)
                 setPrediction(null)
-                toast.error("Не удалось загрузить результат")
+                if (!(axios.isAxiosError(err) && err.response?.status === 404)) {
+                    toast.error(getApiErrorMessage(err, "Не удалось загрузить результат"))
+                }
             } finally {
                 setLoading(false)
             }
@@ -42,7 +45,7 @@ export const Predictions = () => {
             setPrediction(predictionTemp)
             toast.success("Результаты успешно получены!")
         } catch(err) {
-            toast.error("Возникла ошибка при подсчете результатов")
+            toast.error(getApiErrorMessage(err, "Возникла ошибка при подсчете результатов"))
         } finally {
             setIsPredicting(false)
         }
@@ -66,7 +69,6 @@ export const Predictions = () => {
 
     const distance = prediction.distance
     const compatibility = getCompatibilityFromDistance(distance)
-    const category = getDistanceCategory(distance)
     const categoryLabel = getCategoryLabel(distance)
     const color = getCompatibilityColor(distance)
 
@@ -75,19 +77,19 @@ export const Predictions = () => {
             <div className="results-header">
                 <h1 className="results-title">Результаты подбора для {getEmail()}</h1>
                 <p className="results-subtitle">
-                    На основе анализа ваших данных подготовлены следующие рекомендации
+                    Результат рассчитывается по доступным данным профиля и пройденных этапов диагностики.
                 </p>
             </div>
 
             {/* Prediction Card */}
             <div className="prediction-card">
                 <div className="card-header">
-                    <Button label="Обновить результат" onClick={() => predict()} />
+                    <Button disabled={isPredicting} label={isPredicting ? "Вычисляем…" : "Обновить результат"} onClick={() => predict()} />
                 </div>
 
                 <div className="card-body">
                     <div className="profession-section">
-                        <label className="label">Рекомендуемая профессия</label>
+                        <div className="label">Профессия с наилучшим текущим соответствием</div>
                         <h2 className="profession-name">{prediction.predictedProfession}</h2>
                     </div>
 

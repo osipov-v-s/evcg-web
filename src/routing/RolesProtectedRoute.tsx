@@ -1,7 +1,8 @@
 import { Navigate, Outlet, useNavigate } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
 import { useEffect, useState } from "react"
-import { Role, ROLES } from "../types/account/role"
+import { Role } from "../types/account/role"
+import { NoResults } from "../components/ui/noResultComponent/NoResult"
 import { authApi } from "../services/api/authApi"
 
 interface ApprovedRolesProps {
@@ -22,18 +23,18 @@ export const RolesProtectedRoute: React.FC<ApprovedRolesProps> = ({approvedRoles
             }
             try {
                 const rolesData = await authApi.getRoles(token)
-                console.log(rolesData)
                 setUserRoles(rolesData)
                 //api for get routes by token
                 //after get roles map via them for checking matches
             } catch (err) {
-                setUserRoles([{name: ROLES.PUPIL}]) // by default or logout if need
+                logout()
+                navigate('/login')
             }
         }
         getRoles(getToken())
-    }, [])
+    }, [getToken, logout, navigate])
     if (!userRoles) {
-        return <p>Загрузка...</p>
+        return <NoResults variant="loading" message="Проверяем права доступа…" />
     }
     if (!getToken())
         return <Navigate to={'/login'} />

@@ -66,7 +66,7 @@ export const VRTestResults = () => {
                 toast.success('Тест успешно сохранен!');
 
                 // Load updated tests
-                const completedTestsTemp = await vrTestApi.getMyTestsByProfessionId(getToken(), professionId);
+                const completedTestsTemp = await vrTestApi.getMyTestsByProfessionId(getToken(), professionId!);
                 setCompletedTests(completedTestsTemp);
                 
                 // Navigate to clear state
@@ -75,7 +75,7 @@ export const VRTestResults = () => {
             } catch (err) {
                 console.error('Error saving test:', err);
                 toast.error('Возникла ошибка при сохранении теста');
-                const completedTestsTemp = await vrTestApi.getMyTestsByProfessionId(getToken(), professionId);
+                const completedTestsTemp = await vrTestApi.getMyTestsByProfessionId(getToken(), professionId!);
                 setCompletedTests(completedTestsTemp);
             } finally {
                 setIsLoading(false);
@@ -90,7 +90,7 @@ export const VRTestResults = () => {
         const loadTests = async () => {
             try {
                 console.log('Loading existing tests...');
-                const completedTestsTemp = await vrTestApi.getMyTestsByProfessionId(getToken(), professionId);
+                const completedTestsTemp = await vrTestApi.getMyTestsByProfessionId(getToken(), professionId!);
                 setCompletedTests(completedTestsTemp);
             } catch (err) {
                 console.error('Error loading tests:', err);

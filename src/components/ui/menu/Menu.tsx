@@ -14,10 +14,10 @@ interface ItemProps {
 const MenuItem: FC<ItemProps> = ({ item, isActive, onClick }) => {
     const Icon = item.icon
     return (
-        <div className={`menu-nav-item-container ${item.className || ""} ${isActive ? "active" : ""}`} onClick={() => onClick(item)}>
+        <button type="button" className={`menu-nav-item-container ${item.className || ""} ${isActive ? "active" : ""}`} onClick={() => onClick(item)}>
             <div className="menu-nav-item-icon"><Icon /></div>
             <div className="menu-nav-item-label">{item.label}</div>
-        </div>
+        </button>
     )
 }
 

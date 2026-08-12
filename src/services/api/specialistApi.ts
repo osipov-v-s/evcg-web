@@ -2,11 +2,14 @@ import { profession, Specialist, SpecialistRegisterRequest, SpecialistsFilter, S
 import api from "./api";
 
 export const specialistsAPI = {
-    getSpecialistsPage: async(page: number, size: number, token: string, signal?: AbortSignal) => {
+    getSpecialistsPage: async(page: number, size: number, token: string, filters?: SpecialistsFilter, signal?: AbortSignal) => {
         try {
             const params = new URLSearchParams()
             if (page) params.append('page', page.toString())
             if (size) params.append("size", size.toString())
+            if (filters?.name) params.append("name", filters.name)
+            if (filters?.profession) params.append("profession", filters.profession)
+            if (filters?.company) params.append("company", filters.company)
             const requestUrl = `api/specialists${params.toString() ? `?${params.toString()}` : ""}`
             const response = await api.get<SpecialistsPage>(requestUrl, {signal, headers: {Authorization: token}})
             return response.data
@@ -18,7 +21,7 @@ export const specialistsAPI = {
     },
     getProfessions: async () => {
         try {
-            const response = await api.get<profession[]>("api/specialists/professions")
+            const response = await api.get<profession[]>("api/specialists/public/professions")
             return response.data
         } catch(err) {
             console.error(err)

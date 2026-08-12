@@ -1,6 +1,6 @@
 import "./css/fieldInputStyles.css"
 
-import { ChangeEvent, FC, KeyboardEvent, ReactNode, useState } from "react"
+import { ChangeEvent, FC, KeyboardEvent, ReactNode, useId, useState } from "react"
 import { Eye, EyeClosed } from "lucide-react"
 
 interface FieldInputProps {
@@ -16,10 +16,13 @@ interface FieldInputProps {
     isDisabled?: boolean
     onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void
     name?: string
+    autoComplete?: string
 }
 
-export const FieldInput: FC<FieldInputProps> = ({ inputLabel, inputIcon, inputPlaceholder, inputType = "text", inputValue, inputOnChange, onChange, isPassword, isRequired = true, isDisabled = false, onKeyDown, name }) => {
+export const FieldInput: FC<FieldInputProps> = ({ inputLabel, inputIcon, inputPlaceholder, inputType = "text", inputValue, inputOnChange, onChange, isPassword, isRequired = true, isDisabled = false, onKeyDown, name, autoComplete }) => {
     const [isVisible, setIsVisible] = useState(false)
+    const generatedId = useId()
+    const inputId = name || generatedId
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (isDisabled) return
@@ -41,7 +44,7 @@ export const FieldInput: FC<FieldInputProps> = ({ inputLabel, inputIcon, inputPl
 
             {inputLabel && (
 
-                <label htmlFor={name}>
+                <label htmlFor={inputId}>
 
                     {inputLabel}
 
@@ -52,13 +55,14 @@ export const FieldInput: FC<FieldInputProps> = ({ inputLabel, inputIcon, inputPl
             <div className="custom-input-container field-input">
 
                 <input
-                    id={name}
+                    id={inputId}
                     name={name}
                     type={finalType}
                     placeholder={inputPlaceholder}
                     value={inputValue}
                     required={isRequired}
                     disabled={isDisabled}
+                    autoComplete={autoComplete}
                     //Легаси, пришлось добавить еще одну функцию потому что inputChange принимает только valye, но не name
                     onChange={handleChange}
                     onKeyDown={onKeyDown}
@@ -76,15 +80,15 @@ export const FieldInput: FC<FieldInputProps> = ({ inputLabel, inputIcon, inputPl
 
                 {isPassword && (
 
-                    <div
+                    <button
+                        type="button"
                         className="custom-input-password-visibility"
                         onClick={toggleVisibility}
-                        role="button"
-                        aria-label="Toggle password visibility">
+                        aria-label={isVisible ? "Скрыть пароль" : "Показать пароль"}>
 
                         {isVisible ? <EyeClosed size={20} /> : <Eye size={20} />}
 
-                    </div>
+                    </button>
 
                 )}
 

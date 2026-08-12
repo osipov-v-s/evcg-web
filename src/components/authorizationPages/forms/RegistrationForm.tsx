@@ -1,5 +1,5 @@
 import { GraduationCap, MailOpen, KeyRound, Repeat, MoveLeft, CheckCheck, ArrowLeft } from "lucide-react"
-import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useCallback, useState } from "react"
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from "react"
 import { FieldInput } from "../../ui/reusable/fieldInput";
 import { Button } from "../../ui/reusable/button"
 import toast, { Toaster } from "react-hot-toast"
@@ -13,8 +13,9 @@ interface RegistrationFormProps {
     setAccount: Dispatch<SetStateAction<AccountForm>>
     handleRegistration: () => void
     handleBack: () => void
+    isSubmitting?: boolean
 }
-export const RegistrationForm = ({ userType, account, setAccount, handleRegistration, handleBack }: RegistrationFormProps) => {
+export const RegistrationForm = ({ userType, account, setAccount, handleRegistration, handleBack, isSubmitting = false }: RegistrationFormProps) => {
     const [privacyPoliceChecked, setPrivacyPoliceChecked] = useState(false)
     const [userAgreementChecked, setUserAgreementChecked] = useState(false)
 
@@ -22,7 +23,9 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
         const { name, value } = e.target
         setAccount(prev => ({ ...prev, [name]: value }))
     }
-    const startRegistration = () => {
+    const startRegistration = (event: FormEvent) => {
+        event.preventDefault()
+        if (isSubmitting) return
         if (account.email === "" || account.password === "" || account.repeatPassword == "") {
             toast.error("Заполните все поля")
             return
@@ -38,7 +41,7 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
         handleRegistration()
     }
     return (<>
-        <div className="auth-container">
+        <form className="auth-container" onSubmit={startRegistration}>
             <div className="registration-container">
                 <div className="registration-header">
                     <div className="registration-icon"><GraduationCap size={34} /></div>
@@ -53,6 +56,7 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
                             inputPlaceholder={"example@gmail.com"}
                             inputValue={account.email}
                             name="email"
+                            autoComplete="email"
                             onChange={(e) => updateField(e)} />
                     </div>
 
@@ -63,6 +67,7 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
                             isPassword={true}
                             inputValue={account.password}
                             name="password"
+                            autoComplete="new-password"
                             onChange={(e) => updateField(e)} />
 
                         <FieldInput inputLabel={"Повторите пароль"}
@@ -71,8 +76,8 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
                             isPassword={true}
                             inputValue={account.repeatPassword}
                             name="repeatPassword"
-                            onChange={(e) => updateField(e)}
-                            onKeyDown={(e) => { if (e.key === "Enter") handleRegistration() }} />
+                            autoComplete="new-password"
+                            onChange={(e) => updateField(e)} />
                     </div>
 
                     <div className="registration-form-row">
@@ -106,12 +111,12 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
                     </div>
 
                     <div className="registration-form-row">
-                        <Button label="Зарегистрироваться" onClick={startRegistration} icon={<CheckCheck />} />
-                        <Button label="Назад" variant="tertiary" onClick={handleBack} icon={<ArrowLeft />} />
+                        <Button type="submit" disabled={isSubmitting} label={isSubmitting ? "Регистрируем…" : "Зарегистрироваться"} icon={<CheckCheck />} />
+                        <Button type="button" disabled={isSubmitting} label="Назад" variant="tertiary" onClick={handleBack} icon={<ArrowLeft />} />
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         <Toaster />
     </>)
 }

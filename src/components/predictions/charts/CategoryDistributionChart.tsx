@@ -1,5 +1,3 @@
-import { count } from 'console';
-import React from 'react';
 import {
   BarChart,
   Bar,
@@ -35,7 +33,7 @@ export const CategoryDistributionChart = ({categories} : CategoryDistributionCha
     
          // Color mapping for categories
     const getCategoryColor = (category: string) => {
-        const colors = {
+        const colors: Record<string, string> = {
             'Идеальное': '#4CAF50',
             'Очень маленькое': '#8BC34A',
             'Маленькое': '#CDDC39',

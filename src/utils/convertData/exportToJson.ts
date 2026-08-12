@@ -1,5 +1,4 @@
 import { saveAs } from "file-saver";
-import { TestResultResponse } from "../../types/testTypes";
 import { AccountsTests } from "../../types/account/account";
 
 export const exportToJson = (data: AccountsTests[], filename: string = "result") => {
@@ -10,7 +9,7 @@ export const exportToJson = (data: AccountsTests[], filename: string = "result")
     try {
         const jsonStr = JSON.stringify(data, null, 2)
         const blob = new Blob([jsonStr], {type: 'application/json'})
-        saveAs(blob, filename)
+        saveAs(blob, filename.endsWith('.json') ? filename : `${filename}.json`)
 
     } catch(err) {
         console.error(err)

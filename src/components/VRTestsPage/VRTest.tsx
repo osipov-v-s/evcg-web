@@ -6,8 +6,13 @@ import api, { getBaseUrl } from "../../services/api/api"
 import { SingleOptionsPicker, Task } from "../testsPage/generalTemplates/singleOptionsPicker/SingleOptionsPicker"
 import { NoResults } from "../ui/noResultComponent/NoResult"
 
+interface VRQuestionnaireData {
+    tasks: Task[]
+    description?: string
+}
+
 export const VRTest = () => {
-    const [testData, setTestData] = useState()
+    const [testData, setTestData] = useState<VRQuestionnaireData>()
     const {profession, professionId} = useParams<{profession: string, professionId: string}>()
 
     // Load data on mount

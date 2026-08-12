@@ -4,12 +4,14 @@ export const routeTitles: Record<string, string> = {
     "/admin/simulations": "Управление симуляциями",
     "/admin/specialists": "Список специалистов",
     "/admin/specialists-upload": "Загрузка специалистов",
+    "/admin/schools": "Школы и кураторы",
+    "/admin/test-types": "Активность тестов",
 
     "/": "Добро пожаловать!",
     "/tests": "Тестирование",
     "/vr-tests": "VR Тестирование",
     "/my-results": "Результаты тестов",
-    "/recomendations": "Рекомендации",
+    "/predictions": "Подбор профессии",
     "/profile": "Профиль",
     "/my-grades": "Учеба",
 
@@ -43,8 +45,5 @@ export const routeTitles: Record<string, string> = {
     "/tests/prof-holland": "Тип личности",
     "/tests/prof-holland-results": "Тип личности",
 
-    //Результаты
-    "/predictions" : "Результаты",
-
-    "/hr/employees" : "Сотрудники"
+    "/curator" : "Моя школа"
 }

@@ -11,7 +11,7 @@
     box-sizing: border-box;
     width: 100%;
     border-radius: 15px;
-    height: 40px;
+    min-height: 44px;
     color: var(--text-primary-color);
     font-weight: var(--font-weight-medium);
     transition: all .2s ease;
@@ -68,7 +68,10 @@
 }
 
 .custom-input-password-visibility {
-    right: 14px;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
     cursor: pointer;
 }
 

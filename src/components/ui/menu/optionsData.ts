@@ -1,5 +1,6 @@
-import { Home, FileCheck, Book, UserRound, ShieldUser, DoorOpen, Brain, ThumbsUp, Glasses, UserSquare2, FolderHeart, Users } from "lucide-react"
+import { Home, FileCheck, Book, UserRound, ShieldUser, DoorOpen, Brain, Glasses, School } from "lucide-react"
 import { ROLES } from "../../../types/account/role"
+import { CAREER_TEST_ROLES, PROFILE_ROLES } from "../../../routing/roleAccess"
 
 export interface MenuItemProps {
     id: string
@@ -27,13 +28,15 @@ export const menuButtons: MenuItemProps[] = [
         icon: FileCheck,
         path: "/tests",
         order: 2,
+        allowedRoles: CAREER_TEST_ROLES
     },
         {
         id: "VR",
         label: "VR тесты",
         icon: Glasses,
         path: "/vr-tests",
-        order: 3
+        order: 3,
+        allowedRoles: CAREER_TEST_ROLES
     },
     {
         id: "grades",
@@ -45,11 +48,19 @@ export const menuButtons: MenuItemProps[] = [
     },
     {
         id: "predictions",
-        label: "Результаты",
+        label: "Подбор профессии",
         icon: Brain,
         path: "/predictions",
         order: 5,
         allowedRoles: [ROLES.PUPIL]
+    },
+    {
+        id: "test-results",
+        label: "Результаты тестов",
+        icon: FileCheck,
+        path: "/my-results",
+        order: 5,
+        allowedRoles: CAREER_TEST_ROLES
     },
     {
         id: "profile",
@@ -57,6 +68,7 @@ export const menuButtons: MenuItemProps[] = [
         icon: UserRound,
         path: "/profile",
         order: 6,
+        allowedRoles: PROFILE_ROLES
     },
 
     {
@@ -69,12 +81,12 @@ export const menuButtons: MenuItemProps[] = [
         allowedRoles: [ROLES.ADMIN],
     },
     {
-        id: "hr-panel",
-        label: "Сотрудники",
-        icon: Users,
-        path: "/hr/employees",
+        id: "curator-panel",
+        label: "Моя школа",
+        icon: School,
+        path: "/curator",
         order: 7,
-        allowedRoles: [ROLES.HR]
+        allowedRoles: [ROLES.CURATOR]
     }
 ]
 

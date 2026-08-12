@@ -1,4 +1,3 @@
-import cluster from "cluster"
 import { PredictionResult } from "../../types/prediction/prediction"
 
 

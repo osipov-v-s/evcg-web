@@ -26,14 +26,6 @@ export const CompanyDialog = ({ onClose, onSuccess }: { onClose: () => void; onS
             toast.error('Название компании обязательно')
             return false
         }
-        if (!formData.inn.trim()) {
-            toast.error('ИНН обязателен')
-            return false
-        }
-        if (!formData.ogrn.trim()) {
-            toast.error('ОГРН обязателен')
-            return false
-        }
         return true
     }
 
@@ -67,12 +59,12 @@ export const CompanyDialog = ({ onClose, onSuccess }: { onClose: () => void; onS
                             <input name="name" value={formData.name} onChange={handleChange} placeholder="ООО Горная Компания" required />
                         </div>
                         <div className="form-group">
-                            <label>ИНН *</label>
-                            <input name="inn" value={formData.inn} onChange={handleChange} placeholder="1234567890" required />
+                            <label>ИНН</label>
+                            <input name="inn" value={formData.inn} onChange={handleChange} placeholder="1234567890" />
                         </div>
                         <div className="form-group">
-                            <label>ОГРН *</label>
-                            <input name="ogrn" value={formData.ogrn} onChange={handleChange} placeholder="1123456789012" required />
+                            <label>ОГРН</label>
+                            <input name="ogrn" value={formData.ogrn} onChange={handleChange} placeholder="1123456789012" />
                         </div>
                         <div className="form-group">
                             <label>Адрес</label>

@@ -7,6 +7,7 @@ export interface PupilDTO {
   patronymic: string;
   birthday: string;
   school: string;
+  schoolId?: number;
   healthCondition: string;
   nationality: string;
   extraActivities: string;
@@ -57,6 +58,27 @@ export interface PupilListResponse {
     number: number; //number of the current page u in
     totalElements: number;
     totalPages: number;
+}
+
+export interface PupilFilters {
+  name?: string;
+  email?: string;
+  school?: string;
+  classNumber?: number;
+  gender?: Gender;
+}
+
+export interface CompletedPsychTest {
+  completionTimeSeconds: number;
+  testTypeName: string;
+  createdAt: string;
+}
+
+export interface PupilCompletedTests {
+  accountId: number;
+  pupil: PupilDTO;
+  roles: string[];
+  psychTests: CompletedPsychTest[];
 }
 
 export const PupilDataKeys = ["email", "password", "name", "surname", "patronymic", 

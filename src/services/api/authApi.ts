@@ -16,9 +16,11 @@ export const authApi = {
       }
     },
   
-  autoRegisterAll: async (data: AccountApiRegisterDTO[]): Promise<any> => {
+  autoRegisterAll: async (data: AccountApiRegisterDTO[], token: string): Promise<string> => {
     try {
-      const response = await api.post('/api/auth/auto-register-all', data);
+      const response = await api.post<string>('/api/auth/auto-register-all', data, {
+        headers: {Authorization: token}
+      });
       return response.data;
     } catch (err) {
       console.error('Error registering pupils batch:', err);

@@ -103,7 +103,7 @@
 /* Grades Grid */
 .grades-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 0.75rem;
 }
 
@@ -139,11 +139,12 @@
 /* Select Dropdowns */
 .select-option {
     width: 100%;
-    padding: 0.5rem;
+    min-height: 44px;
+    padding: 0.65rem;
     border: 1px solid var(--grey-color-300);
     border-radius: 8px;
     background: white;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     cursor: pointer;
 }
 

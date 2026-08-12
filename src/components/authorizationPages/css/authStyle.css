@@ -69,6 +69,7 @@
     border-radius: 15px;
     cursor: pointer;
     transition: all .3s ease;
+    text-align: left;
 }
 
 .type-item p {

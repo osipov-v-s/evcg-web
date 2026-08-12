@@ -12,6 +12,8 @@ export interface Specialist {
     jobSatisfaction: string
     profession: string
     gender: string
+    companyId?: number
+    companyName?: string
 }
 export interface SpecialistRegisterRequest {
     specialist: Specialist
@@ -29,9 +31,9 @@ export interface SpecialistsPage {
     totalPages: number
 }
 export interface SpecialistsFilter {
-    page: number
-    size: number
-    
+    name?: string
+    profession?: string
+    company?: string
 }
 export interface profession {
     id: number

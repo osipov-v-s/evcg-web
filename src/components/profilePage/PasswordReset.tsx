@@ -9,6 +9,7 @@ export const PasswordReset = () => {
     const {getToken} = useAuth()
     const [password, setPassword] = useState('')
     const [repeatPassword, setRepeatPassword] = useState('')
+    const [isSubmitting, setIsSubmitting] = useState(false)
     
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault() // Prevent page reload
@@ -27,12 +28,17 @@ export const PasswordReset = () => {
             return
         }
         
+        if (isSubmitting) return
         try {
+            setIsSubmitting(true)
             await authApi.updatePassword(getToken(), password)
-            console.log("Password reset successful")
             toast.success("Пароль успешно изменен")
+            setPassword("")
+            setRepeatPassword("")
         } catch(err) {
             toast.error("Возникла ошибка при смене пароля")
+        } finally {
+            setIsSubmitting(false)
         }
 
     }
@@ -57,7 +63,7 @@ export const PasswordReset = () => {
                         onChange={(e) => setRepeatPassword(e.target.value)} 
                     />
                 </div>
-                <Button label="Изменить пароль" type="submit" />
+                <Button disabled={isSubmitting} label={isSubmitting ? "Изменяем…" : "Изменить пароль"} type="submit" />
             </form>
         </div>
     )

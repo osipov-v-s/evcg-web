@@ -254,7 +254,7 @@
 
     .home-grid-item-1-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: 300px auto;
+        grid-template-rows: minmax(460px, auto) auto;
     }
 }
 

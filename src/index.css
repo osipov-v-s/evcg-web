@@ -75,6 +75,10 @@
     --font-weight-extrabold: 800;
     --font-weight-black: 900;
     --font-weight-extrablack: 1000;
+
+    --page-max-width: 1280px;
+    --touch-target: 44px;
+    --surface-shadow: 0 8px 28px rgba(10, 39, 71, .08);
 }
 
 [data-theme="dark"] {
@@ -145,6 +149,30 @@ select {
 
 button {
     cursor: pointer;
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent-color-300);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+button:disabled,
+input:disabled,
+select:disabled {
+    cursor: not-allowed;
+    opacity: .6;
 }
 
 /* Отключение анимаций для пользователей с чувствительностью */

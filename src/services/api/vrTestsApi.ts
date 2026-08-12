@@ -10,19 +10,19 @@ export const vrTestApi = {
         })
         return response.data
     }, 
-    getMyTests: async (token: string) => {
-        const response = await api.get(`api/vr-tests/my-tests`, {
+    getMyTests: async (token: string): Promise<VRTest[]> => {
+        const response = await api.get<VRTest[]>(`api/vr-tests/my-tests`, {
             headers: {Authorization: token}
         })
         return response.data
     },
-    getMyTestsByProfessionId: async (token: string, professionId: string) => {
-        const response = await api.get(`api/vr-tests/my-tests/profession/${professionId}`, {
+    getMyTestsByProfessionId: async (token: string, professionId: string | number): Promise<VRTest[]> => {
+        const response = await api.get<VRTest[]>(`api/vr-tests/my-tests/profession/${professionId}`, {
             headers: {Authorization: token}
         })
         return response.data
     },
-    resetTests: async (token: string, professionId: string) => {
+    resetTests: async (token: string, professionId: string | number) => {
         const response = await api.delete(`api/vr-tests/my-tests/profession/${professionId}`, {
             headers: {Authorization: token}
         })

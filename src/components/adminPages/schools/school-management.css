@@ -1,0 +1,60 @@
+.school-management {
+    padding: 1.25rem;
+    overflow-y: auto;
+}
+
+.school-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.school-card,
+.school-curators .base-card {
+    display: grid;
+    align-content: start;
+    gap: .75rem;
+}
+
+.school-card__title,
+.school-dialog__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: .75rem;
+}
+
+.school-card p,
+.school-curators p,
+.school-empty {
+    color: var(--text-secondary-color);
+}
+
+.school-curators {
+    margin-top: 2rem;
+    border-top: 1px solid var(--grey-color-300);
+    padding-top: 1.25rem;
+}
+
+.school-dialog {
+    width: min(100%, 560px);
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 16px;
+}
+
+.school-dialog__header {
+    margin-bottom: 1rem;
+}
+
+.school-dialog__header button {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+@media (max-width: 600px) {
+    .school-management { padding: .85rem; }
+    .school-grid { grid-template-columns: 1fr; }
+}

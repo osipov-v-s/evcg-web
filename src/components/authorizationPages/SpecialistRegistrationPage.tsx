@@ -10,10 +10,13 @@ import { Gender } from "../../types/pupil/gender"
 export const SpecialistRegistrationPage = () => {
     const navigate = useNavigate()
     const [accountData, setAccountData] = useState<AccountForm>({email : "", password : "", repeatPassword : ""})
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [specialistData, setSpecialistData] = useState<Specialist>({email: "", contactEmail: "", name: "", surname: "", patronymic: "", 
         contactPhone: "", experience: "", jobSatisfaction: "", profession: "", gender: Gender.MALE})
     const registration = async () => {
+        if (isSubmitting) return
         try {
+            setIsSubmitting(true)
             await specialistsAPI.specialistRegister({
                 account: {email: accountData.email, password: accountData.password}, 
                 specialist: specialistData})
@@ -22,11 +25,13 @@ export const SpecialistRegistrationPage = () => {
         } catch(err) {
             console.error(err)
             toast.error("Возникла ошибка при регистрации")
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
     return (<>
         <RegistrationForm account={accountData} setAccount={setAccountData} 
-        handleBack={() => navigate(-1)} userType={"Специалист"} handleRegistration={registration}/>
+        handleBack={() => navigate(-1)} userType={"Специалист"} handleRegistration={registration} isSubmitting={isSubmitting}/>
     </>)
 }

@@ -65,10 +65,12 @@
 }
 
 .sidebar-button {
-    width: 22px;
-    height: 22px;
+    width: 44px;
+    height: 44px;
     stroke-width: 2;
     color: var(--text-primary-color);
+    align-items: center;
+    justify-content: center;
 }
 
 .outlet {
@@ -123,6 +125,6 @@
     }
 
     .sidebar-button {
-        display: block;
+        display: inline-flex;
     }
 }

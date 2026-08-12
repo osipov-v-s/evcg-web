@@ -1,4 +1,4 @@
-import { ChangeEvent, Component, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useExcelMapper } from "../../../../hooks/useExcelMapper";
 import { PupilDataKeys, PupilDTO} from '../../../../types/pupil/pupil'
 import {type AccountApiRegisterDTO} from '../../../../types/pupil/account'
@@ -6,10 +6,13 @@ import { authApi } from "../../../../services/api/authApi";
 import style from "./pupil-data-loading.module.css"
 import classNames from "classnames"
 import toast, {Toaster} from 'react-hot-toast'
+import { useAuth } from "../../../../contexts/AuthContext";
 export const PupilDataLoading = () => {
+    const {getToken} = useAuth()
     const {rawData, headers, setHeaders, processExcelFile, resetData} = useExcelMapper()
     const [pupilKeys, setPupilKeys] = useState(PupilDataKeys)
     const [headerMappings, setHeaderMappings] = useState<Record<string, string>>({})
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const fileRef = useRef<HTMLInputElement>(null)
     useEffect(() => {
@@ -47,7 +50,6 @@ export const PupilDataLoading = () => {
       })
       return {"pupilDTO": pupil, "accountRegisterRequestDTO": account} as AccountApiRegisterDTO
     })
-    console.log(mappedData)
     sendPupils(mappedData)
   }
 
@@ -57,16 +59,17 @@ export const PupilDataLoading = () => {
       return
     }
     try {
-      const response = await authApi.autoRegisterAll(data)
-      console.log(data)
+      setIsSubmitting(true)
+      await authApi.autoRegisterAll(data, getToken())
       toast.success("Данные успешно загружены")
       resetData()
       if (fileRef.current) {
         fileRef.current.value = ""
       }
     } catch(err) {
-      console.log(err)
       toast.error("Ошибка, не удалось загрузить данные", {style : {backgroundColor: "#FF7F7F"}})
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -93,7 +96,9 @@ export const PupilDataLoading = () => {
           </div>}
           <div className = {style["options"]}>
               <input ref={fileRef} className={classNames(style["default"], style["primary"])} type="file" onChange={pickupFileHander} />
-              <button className={classNames(style["default"], style["success"])} onClick={applyMappings}>Отправить</button>
+              <button disabled={isSubmitting} className={classNames(style["default"], style["success"])} onClick={applyMappings}>
+                {isSubmitting ? "Загружаем…" : "Отправить"}
+              </button>
           </div>
           
       </div>

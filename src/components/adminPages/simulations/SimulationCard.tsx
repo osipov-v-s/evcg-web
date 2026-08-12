@@ -1,7 +1,7 @@
 import path from "path"
 import api from "../../../services/api/api"
 import { BASE_URL } from "../../../services/api/baseUrl"
-import { SimulationResponse } from "../../../types/simulation/Simulation"
+import { SimulationResponse } from "../../../types/simulation/simulation"
 import "./css/simulation.css"
 import { FieldInput } from "../../ui/reusable/fieldInput"
 import { useEffect, useRef, useState } from "react"

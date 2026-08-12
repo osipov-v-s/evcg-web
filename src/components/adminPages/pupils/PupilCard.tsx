@@ -1,10 +1,12 @@
 import { PupilResponse } from "../../../types/pupil/pupil"
 import style from "./pupils-list.module.css"
+import { ReactNode } from "react"
 interface PupilCardProps {
     pupil: PupilResponse
+    actions?: ReactNode
 }
 
-export const PupilCard = ({pupil} : PupilCardProps) => {
+export const PupilCard = ({pupil, actions} : PupilCardProps) => {
     const fullName = [pupil.pupilDTO?.surname, pupil.pupilDTO?.name, pupil.pupilDTO?.patronymic]
                     .filter(Boolean)
                     .join(" ") || "ФИО не заполнено"
@@ -19,11 +21,20 @@ export const PupilCard = ({pupil} : PupilCardProps) => {
                 <span>{pupil.email || '--'}</span>
             </div>
             <div className="info-row">
+                <span className="info-label">Организация:</span>
+                <span>{pupil.pupilDTO?.school || '--'}</span>
+            </div>
+            <div className="info-row">
                 <span className="info-label">
                     Дата регистрации:
                 </span>
                 <span>{pupil.pupilDTO?.createdAt || '--'}</span>
             </div>
+            <div className="info-row">
+                <span className="info-label">Пол:</span>
+                <span>{pupil.pupilDTO?.gender === "MALE" ? "Мужской" : pupil.pupilDTO?.gender === "FEMALE" ? "Женский" : "—"}</span>
+            </div>
+            {actions && <div className="card-actions">{actions}</div>}
         </div>
     )
 }

@@ -2,7 +2,7 @@ import "./css/profilePageStyles.css"
 
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { FieldInput } from "../ui/reusable/fieldInput"
-import { UserPen, UserRound, School, Hash, CaseUpper, PersonStanding, CheckCheck } from "lucide-react"
+import { UserPen, UserRound, Hash, CaseUpper, PersonStanding, CheckCheck } from "lucide-react"
 import { Button } from "../ui/reusable/button"
 import { Radio, RadioGroup } from "../ui/reusable/radio"
 import { Dropdown } from "../ui/reusable/dropdown"
@@ -14,11 +14,18 @@ import { useAuth } from "../../contexts/AuthContext"
 import { pupilApi } from "../../services/api/pupilApi"
 import toast, { Toaster } from "react-hot-toast"
 import { PasswordReset } from "./PasswordReset"
+import { educationApi } from "../../services/api/educationApi"
+import { School } from "../../types/education/education"
+import { NoResults } from "../ui/noResultComponent/NoResult"
+import { getApiErrorMessage } from "../../services/api/error"
 
 export const PupilProfilePage: FC = () => {
     const { getToken } = useAuth()
 
     const [email, setEmail] = useState<string>("")
+    const [schools, setSchools] = useState<School[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [isSaving, setIsSaving] = useState(false)
     const [formData, setFormData] = useState<PupilDTO>(
         {
             name: "",
@@ -35,14 +42,18 @@ export const PupilProfilePage: FC = () => {
         })
 
     useEffect(() => {
-        const getPupilData = async () => {
+        const loadProfile = async () => {
             try {
                 const token = getToken()
                 if (!token) {
                     return
                 }
 
-                const pupilData = await pupilApi.getPupilData(token)
+                const [pupilData, schoolList] = await Promise.all([
+                    pupilApi.getPupilData(token),
+                    educationApi.getSchools(token)
+                ])
+                setSchools(schoolList)
 
                 if (!pupilData.pupilDTO.id) {
                     setEmail(pupilData.email)
@@ -54,10 +65,12 @@ export const PupilProfilePage: FC = () => {
 
             } catch (err) {
                 console.error(err)
-                return
+                toast.error(getApiErrorMessage(err, "Не удалось загрузить профиль"))
+            } finally {
+                setIsLoading(false)
             }
         }
-        getPupilData()
+        loadProfile()
     }, [])
 
     const classNumberOptions = useMemo(() => [
@@ -83,12 +96,6 @@ export const PupilProfilePage: FC = () => {
         { value: "other", label: "Другая" },
     ], []);
 
-    const schoolNames = useMemo(() => [
-        { value: "sosh 33", label: "МБОУ СОШ №33 города Абакана" },
-        { value: "top", label: "Академия 'Топ'" },
-        { value: "test", label: "Тест" },
-    ], []);
-
     const updateField = useCallback((field: keyof PupilDTO) => (value: any) => {
         const extractedValue = (value && typeof value === 'object' && 'value' in value)
             ? value.value
@@ -102,9 +109,10 @@ export const PupilProfilePage: FC = () => {
     }, [])
 
     const handleSaveClick = async () => {
-        console.log("Saving data: ", formData)
+        if (isSaving) return
 
         try {
+            setIsSaving(true)
             const token = getToken()
             if (!token) throw new Error("Empty token")
             await pupilApi.updatePupilData(formData, token)
@@ -112,11 +120,13 @@ export const PupilProfilePage: FC = () => {
 
         } catch (err) {
             console.error(err)
-            toast.error("Не получилось обновить данные")
+            toast.error(getApiErrorMessage(err, "Не получилось обновить данные"))
+        } finally {
+            setIsSaving(false)
         }
     }
 
-    // Replace all className with these:
+    if (isLoading) return <NoResults variant="loading" message="Загружаем профиль…" />
 
     return (
         <div className="profile-wrapper">
@@ -200,13 +210,23 @@ export const PupilProfilePage: FC = () => {
                     {/* Row 4: School Info */}
                     <div className="profile-row row-3">
                         <div className="profile-card">
-                            <h4>Школа</h4>
-                            <Dropdown
-                                dropdownIcon={<School size={20} />}
-                                dropdownOptions={schoolNames}
-                                dropdownSelected={formData.school}
-                                optionOnSelect={(opt) => updateField("school")(opt.value)}
-                                dropdownDirection="up" />
+                            <label htmlFor="pupil-school"><h4>Школа</h4></label>
+                            <select
+                                id="pupil-school"
+                                value={formData.schoolId ?? ""}
+                                onChange={event => {
+                                    const schoolId = event.target.value ? Number(event.target.value) : undefined
+                                    const selected = schools.find(item => item.id === schoolId)
+                                    setFormData(previous => ({
+                                        ...previous,
+                                        schoolId,
+                                        school: selected?.name ?? ""
+                                    }))
+                                }}>
+                                <option value="">Выберите образовательную организацию</option>
+                                {schools.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
+                            </select>
+                            {schools.length === 0 && <small>Список школ пока пуст. Обратитесь к куратору.</small>}
                         </div>
 
                         <div className="profile-card">
@@ -233,9 +253,10 @@ export const PupilProfilePage: FC = () => {
                     <div className="profile-card">
                         <div className="flex flex-col gap-4">
                             <Button 
-                                label="Сохранить" 
                                 icon={<CheckCheck />} 
                                 onClick={handleSaveClick} 
+                                disabled={isSaving}
+                                label={isSaving ? "Сохраняем…" : "Сохранить"}
                                 className="w-full flex justify-center"
                             />
                         </div>

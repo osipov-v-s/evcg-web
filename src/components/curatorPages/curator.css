@@ -1,0 +1,28 @@
+.curator-page {
+    width: min(100%, var(--page-max-width));
+    margin: 0 auto;
+    padding: 1.25rem;
+    overflow-y: auto;
+}
+
+.curator-export {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background: white;
+    border: 1px solid var(--grey-color-300);
+    border-radius: 16px;
+}
+
+.curator-export__form {
+    grid-template-columns: repeat(3, minmax(160px, 1fr)) auto;
+    align-items: end;
+}
+
+@media (max-width: 850px) {
+    .curator-export__form { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 560px) {
+    .curator-page { padding: .75rem; }
+    .curator-export__form { grid-template-columns: 1fr; }
+}

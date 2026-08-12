@@ -1,6 +1,6 @@
 import "./css/authStyle.css"
 
-import { FC, FormEvent, useCallback, useState, KeyboardEvent } from "react";
+import { FC, FormEvent, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GraduationCap, KeyRound, MailOpen, DoorOpen, UserRoundPlus } from "lucide-react"
 
@@ -17,6 +17,7 @@ export const LoginPage: FC = () => {
         email: "",
         password: "",
     })
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const updateField = useCallback((field: keyof typeof formData) => (value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }))
@@ -24,8 +25,10 @@ export const LoginPage: FC = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
+        if (isSubmitting) return
 
         try {
+            setIsSubmitting(true)
             const token = await authApi.login(formData.email, formData.password)
             const roles = await authApi.getRoles(token)
 
@@ -37,6 +40,8 @@ export const LoginPage: FC = () => {
         } catch (error) {
             console.error("Login failed:", error)
             toast.error("Возникла ошибка при входе")
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -59,6 +64,8 @@ export const LoginPage: FC = () => {
                         <FieldInput inputLabel={"Электронная почта"}
                             inputIcon={<MailOpen size={20} />}
                             inputPlaceholder={"example@gmail.com"}
+                            name="email"
+                            autoComplete="email"
                             inputValue={formData.email}
                             inputOnChange={updateField("email")} />
                     </div>
@@ -67,14 +74,15 @@ export const LoginPage: FC = () => {
                         <FieldInput inputLabel={"Пароль"}
                             inputIcon={<KeyRound size={20} />}
                             inputType={"password"}
+                            name="password"
+                            autoComplete="current-password"
                             isPassword={true}
                             inputValue={formData.password}
-                            inputOnChange={updateField("password")}
-                            onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(e) }} />
+                            inputOnChange={updateField("password")} />
                     </div>
 
                     <div className="login-form-row">
-                        <Button type="submit" label="Войти" icon={<DoorOpen />} />
+                        <Button type="submit" disabled={isSubmitting} label={isSubmitting ? "Входим…" : "Войти"} icon={<DoorOpen />} />
                         <Button type="button" variant="tertiary" label="Создать аккаунт" onClick={handleBackToRegistration} icon={<UserRoundPlus />} />
                     </div>
                 </form>

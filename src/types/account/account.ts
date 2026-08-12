@@ -16,6 +16,13 @@ export interface AccountsTests {
     name: string,
     surname: string,
     patronymic: string,
+    school?: string,
+    classNumber?: number,
+    classLabel?: string,
+    gender?: string,
+    birthday?: string,
+    profession?: string,
+    company?: string,
     roles: string[],
     psychTests: TestResultResponse[]
 }

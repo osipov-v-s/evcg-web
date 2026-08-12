@@ -37,9 +37,9 @@ export const Layout: FC = () => {
                     }
 
                     {hasToken && (
-                        <div className="sidebar-button" onClick={() => setIsSidebarOpen(true)}>
+                        <button className="sidebar-button" type="button" aria-label="Открыть меню" onClick={() => setIsSidebarOpen(true)}>
                             <MenuIcon />
-                        </div>
+                        </button>
                     )}
                 </header>
             )}
