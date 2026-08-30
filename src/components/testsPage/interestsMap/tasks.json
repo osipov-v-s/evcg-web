@@ -1,0 +1,1904 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "text": "Узнавать об открытиях в области физики и математики",
+            "direction": 1,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 2,
+            "text": "Смотреть передачи о жизни растений и животных",
+            "direction": 2,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 3,
+            "text": "Выяснять устройство электроприборов",
+            "direction": 3,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 4,
+            "text": "Читать научно-популярные технические журналы",
+            "direction": 4,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 5,
+            "text": "Смотреть передачи о жизни людей в разных странах",
+            "direction": 5,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 6,
+            "text": "Бывать на выставках, концертах, спектаклях",
+            "direction": 6,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 7,
+            "text": "Обсуждать и анализировать события в стране и за рубежом",
+            "direction": 7,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 8,
+            "text": "Наблюдать за работой медсестры, врача",
+            "direction": 8,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 9,
+            "text": "Создавать уют и порядок в доме, классе, школе",
+            "direction": 9,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 10,
+            "text": "Читать книги и смотреть фильмы о войнах и сражениях",
+            "direction": 10,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 11,
+            "text": "Заниматься математическими расчетами и вычислениями",
+            "direction": 1,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 12,
+            "text": "Узнавать об открытиях в области химии и биологии",
+            "direction": 2,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 13,
+            "text": "Ремонтировать бытовые электроприборы",
+            "direction": 3,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 14,
+            "text": "Посещать технические выставки, знакомиться с достижениями науки и техники",
+            "direction": 4,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 15,
+            "text": "Ходить в походы, бывать в новых неизведанных местах",
+            "direction": 5,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 16,
+            "text": "Читать отзывы и статьи о книгах, фильмах, концертах",
+            "direction": 6,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 17,
+            "text": "Участвовать в общественной жизни школы, города",
+            "direction": 7,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 18,
+            "text": "Объяснять одноклассникам учебный материал",
+            "direction": 8,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 19,
+            "text": "Самостоятельно выполнять работу по хозяйству",
+            "direction": 9,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 20,
+            "text": "Соблюдать режим, вести здоровый образ жизни",
+            "direction": 10,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 21,
+            "text": "Проводить опыты по физике",
+            "direction": 1,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 22,
+            "text": "Ухаживать за животными растениями",
+            "direction": 2,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 23,
+            "text": "Читать статьи об электронике и радиотехнике",
+            "direction": 3,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 24,
+            "text": "Собирать и ремонтировать часы, замки, велосипеды",
+            "direction": 4,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 25,
+            "text": "Коллекционировать камни, минералы",
+            "direction": 5,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 26,
+            "text": "Вести дневник, сочинять стихи и рассказы",
+            "direction": 6,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 27,
+            "text": "Читать биографии известных политиков, книги по истории",
+            "direction": 7,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 28,
+            "text": "Играть с детьми, помогать делать уроки младшим",
+            "direction": 8,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 29,
+            "text": "Закупать продукты для дома, вести учет расходов",
+            "direction": 9,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 30,
+            "text": "Участвовать в военных играх, походах",
+            "direction": 10,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 31,
+            "text": "Заниматься физикой и математикой сверх школьной программы",
+            "direction": 1,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 32,
+            "text": "Замечать и объяснять природные явления",
+            "direction": 2,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 33,
+            "text": "Собирать и ремонтировать компьютеры",
+            "direction": 3,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 34,
+            "text": "Строить чертежи, схемы, графики, в том числе на компьютере",
+            "direction": 4,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 35,
+            "text": "Участвовать в географических, геологических экспедициях",
+            "direction": 5,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 36,
+            "text": "Рассказывать друзьям о прочитанных книгах, увиденных фильмах и спектаклях",
+            "direction": 6,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 37,
+            "text": "Следить за политической жизнью в стране и за рубежом",
+            "direction": 7,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 38,
+            "text": "Ухаживать за маленькими детьми или близкими, если они заболели",
+            "direction": 8,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 39,
+            "text": "Искать и находить способы зарабатывания денег",
+            "direction": 9,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 40,
+            "text": "Заниматься физической культурой и спортом",
+            "direction": 10,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 41,
+            "text": "Участвовать в физико-математических олимпиадах",
+            "direction": 1,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 42,
+            "text": "Выполнять лабораторные опыты по химии и биологии",
+            "direction": 2,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 43,
+            "text": "Разбираться в принципах работы электроприборов",
+            "direction": 3,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 44,
+            "text": "Разбираться в принципах работы различных механизмов",
+            "direction": 4,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 45,
+            "text": "«Читать» географические и геологические карты",
+            "direction": 5,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 46,
+            "text": "Участвовать в спектаклях, концертах",
+            "direction": 6,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 47,
+            "text": "Изучать политику и экономику других стран",
+            "direction": 7,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 48,
+            "text": "Изучать причины поведения людей, строение человеческого организма",
+            "direction": 8,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 49,
+            "text": "Вкладывать заработанные деньги в домашний бюджет",
+            "direction": 9,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 50,
+            "text": "Участвовать в спортивных соревнованиях",
+            "direction": 10,
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "isPicked": false,
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "isPicked": false,
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "isPicked": false,
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "isPicked": false,
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "isPicked": false,
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        }
+    ]
+}

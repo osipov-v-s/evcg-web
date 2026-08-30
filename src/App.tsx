@@ -71,6 +71,12 @@ import { SchoolManagement } from "./components/adminPages/schools/SchoolManageme
 import { CuratorDashboard } from "./components/curatorPages/CuratorDashboard";
 import { TestTypeManagement } from "./components/adminPages/results/TestTypeManagement";
 import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from "./routing/roleAccess";
+import { InterestsMapTest } from "./components/testsPage/interestsMap/InterestsMapTest";
+import { InterestsMapResults } from "./components/testsPage/interestsMap/InterestsMapResults";
+import { ProfessionalPreferencesTest } from "./components/testsPage/professionalPreferences/ProfessionalPreferencesTest";
+import { ProfessionalPreferencesResults } from "./components/testsPage/professionalPreferences/ProfessionalPreferecesResults";
+import { CareerAnchorsTest } from "./components/testsPage/careerAnchors/careerAnchorsTest";
+import { CareerAnchorsResults } from "./components/testsPage/careerAnchors/careerAnchorsResults";
 
 export default function App() {
 	return (
@@ -106,13 +112,13 @@ export default function App() {
 							<Route path="specialists" element={<Specialists />} />
 							<Route path="specialists-upload" element={<Navigate to="/admin/specialists" replace />} />
 
-							<Route path="results" element={<DownloadTestsResults/>} />
+							<Route path="results" element={<DownloadTestsResults />} />
 							{/* Admin CRUD routes from the existing templates */}
-							<Route path="forms" element={<FormsListPage/>}/>
+							<Route path="forms" element={<FormsListPage />} />
 							{crudRoutes.map(route => (
 								<Route key={route.path} path={route.path} element={<route.element />} />
 							))}
-							<Route path="companies" element= {<CompanyManagement />} />
+							<Route path="companies" element={<CompanyManagement />} />
 							<Route path="schools" element={<SchoolManagement />} />
 							<Route path="test-types" element={<TestTypeManagement />} />
 
@@ -124,52 +130,64 @@ export default function App() {
 
 					{/* Psychological tests */}
 					<Route element={<RolesProtectedRoute approvedRoles={CAREER_TEST_ROLES} />}>
-					<Route path="/tests">
-						<Route index element={<TestsPage />} />
-						<Route element={<TestViewer />}>
-							<Route path="temperament" element={<TemperamentTest />} />
-							<Route path="temperament-results" element={<TemperamentResults />} />
-							<Route path="temperament-intro" element={<TestIntro testDescriptionPath="public/temperament/data/description.json" testNavigation="/tests/temperament" />} />
+						<Route path="/tests">
+							<Route index element={<TestsPage />} />
+							<Route element={<TestViewer />}>
+								<Route path="temperament" element={<TemperamentTest />} />
+								<Route path="temperament-results" element={<TemperamentResults />} />
+								<Route path="temperament-intro" element={<TestIntro testDescriptionPath="public/temperament/data/description.json" testNavigation="/tests/temperament" />} />
 
-							<Route path="group-roles" element={<GroupRolesTest />} />
-							<Route path="group-roles-results" element={<GroupRolesResults />} />
-							<Route path="group-roles-intro" element={<TestIntro testDescriptionPath="public/group_roles/data/description.json" testNavigation="/tests/group-roles" />} />
+								<Route path="group-roles" element={<GroupRolesTest />} />
+								<Route path="group-roles-results" element={<GroupRolesResults />} />
+								<Route path="group-roles-intro" element={<TestIntro testDescriptionPath="public/group_roles/data/description.json" testNavigation="/tests/group-roles" />} />
 
-							<Route path="engineering-thinking" element={<EngineeringThinkingTest />} />
-							<Route path="engineering-thinking-results" element={<EngineeringThinkingResults />} />
-							<Route path="engineering-thinking-intro" element={<TestIntro testDescriptionPath="public/engineering_thinking/data/description.json" testNavigation="/tests/engineering-thinking" />} />
+								<Route path="engineering-thinking" element={<EngineeringThinkingTest />} />
+								<Route path="engineering-thinking-results" element={<EngineeringThinkingResults />} />
+								<Route path="engineering-thinking-intro" element={<TestIntro testDescriptionPath="public/engineering_thinking/data/description.json" testNavigation="/tests/engineering-thinking" />} />
 
-							<Route path="professional-orientation-klimov" element={<KlimovTest />} />
-							<Route path="professional-orientation-klimov-results" element={<KlimovResults />} />
-							<Route path="professional-orientation-klimov-intro" element={<TestIntro testDescriptionPath="public/prof_klimov/data/description.json" testNavigation="/tests/professional-orientation-klimov" />} />
+								<Route path="professional-orientation-klimov" element={<KlimovTest />} />
+								<Route path="professional-orientation-klimov-results" element={<KlimovResults />} />
+								<Route path="professional-orientation-klimov-intro" element={<TestIntro testDescriptionPath="public/prof_klimov/data/description.json" testNavigation="/tests/professional-orientation-klimov" />} />
 
-							<Route path="iq-potential" element={<IqPotentialTest />} />
-							<Route path="iq-potential-results" element={<IqPotentialResults />} />
-							<Route path="iq-potential-intro" element={<TestIntro testDescriptionPath="public/iq_potential/data/description.json" testNavigation="/tests/iq-potential" />} />
+								<Route path="iq-potential" element={<IqPotentialTest />} />
+								<Route path="iq-potential-results" element={<IqPotentialResults />} />
+								<Route path="iq-potential-intro" element={<TestIntro testDescriptionPath="public/iq_potential/data/description.json" testNavigation="/tests/iq-potential" />} />
 
-							<Route path="prof-holland" element={<HollandTest />} />
-							<Route path="prof-holland-results" element={<HollandResults />} />
-							<Route path="prof-holland-intro" element={<TestIntro testDescriptionPath="public/prof_holland/data/description.json" testNavigation="/tests/prof-holland" />} />
+								<Route path="prof-holland" element={<HollandTest />} />
+								<Route path="prof-holland-results" element={<HollandResults />} />
+								<Route path="prof-holland-intro" element={<TestIntro testDescriptionPath="public/prof_holland/data/description.json" testNavigation="/tests/prof-holland" />} />
 
+								<Route path="interests-map" element={<InterestsMapTest />} />
+								<Route path="interests-map-results" element={<InterestsMapResults />} />
+								<Route path="interests-map-intro" element={<TestIntro testDescriptionPath="public/prof_holland/data/description.json" testNavigation="/tests/interests-map" />} />
+
+								<Route path="professional-preferences" element={<ProfessionalPreferencesTest />} />
+								<Route path="professional-preferences-results" element={<ProfessionalPreferencesResults />} />
+								<Route path="professional-preferences-intro" element={<TestIntro testDescriptionPath="public/prof_holland/data/description.json" testNavigation="/tests/professional-preferences" />} />
+
+								<Route path="career-anchors" element={<CareerAnchorsTest />} />
+								<Route path="career-anchors-results" element={<CareerAnchorsResults />} />
+								<Route path="career-anchors-intro" element={<TestIntro testDescriptionPath="public/prof_holland/data/description.json" testNavigation="/tests/career-anchors" />} />
+
+							</Route>
 						</Route>
-					</Route>
-					<Route path="/my-results" element={<ResultsPage />} />
-					<Route path="/my-results/:testType" element={<ResultsPage />} />
+						<Route path="/my-results" element={<ResultsPage />} />
+						<Route path="/my-results/:testType" element={<ResultsPage />} />
 					</Route>
 
 					{/* VR tests routes*/}
 					<Route element={<RolesProtectedRoute approvedRoles={CAREER_TEST_ROLES} />}>
-					<Route path="/vr-tests">
-						<Route index element={<VRTestsPage />} />
-						<Route path=":profession/:professionId/intro" element={<VRTestIntro />} />
-						<Route path=":profession/:professionId/questionnaire" element={<VRTest />} />
-						<Route path=":profession/:professionId/results" element={<VRTestResults />} />
-					</Route>
+						<Route path="/vr-tests">
+							<Route index element={<VRTestsPage />} />
+							<Route path=":profession/:professionId/intro" element={<VRTestIntro />} />
+							<Route path=":profession/:professionId/questionnaire" element={<VRTest />} />
+							<Route path=":profession/:professionId/results" element={<VRTestResults />} />
+						</Route>
 					</Route>
 
 					{/* Results routes */}
 					<Route element={<RolesProtectedRoute approvedRoles={PUPIL_ONLY_ROLES} />}>
-						<Route path="/predictions" element={<Predictions/>} />
+						<Route path="/predictions" element={<Predictions />} />
 						<Route path="/my-grades" element={<StudyPage />} />
 					</Route>
 

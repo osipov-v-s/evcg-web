@@ -123,6 +123,19 @@
     color: var(--accent-color-500);
 }
 
+
+.test-card-variants {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: clamp(var(--font-size-xs), 0.638rem + 0.77vw, var(--font-size-base));
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary-color);
+    z-index: 3;
+}
+
+
+
 /* КОНТЕЙНЕР ДЛЯ КНОПОК КАРТОЧЕК */
 .test-card-options {
     display: flex;
@@ -341,7 +354,7 @@
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .test-card-img {
         max-height: 150px;
     }
@@ -356,6 +369,7 @@
     .test-card {
         gap: 10px;
     }
+
     .test-card::after {
         display: none;
     }

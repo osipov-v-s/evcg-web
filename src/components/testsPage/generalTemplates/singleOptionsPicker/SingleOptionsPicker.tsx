@@ -13,7 +13,6 @@ export interface Task {
     answer?: number
     userAnswer: number
 }
-
 export interface Option {
     id: number
     text: string

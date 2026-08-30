@@ -45,5 +45,20 @@ export const routeTitles: Record<string, string> = {
     "/tests/prof-holland": "Тип личности",
     "/tests/prof-holland-results": "Тип личности",
 
+    // Карта интересов
+    "/tests/interests-map-intro": "Карта интересов",
+    "/tests/interests-map": "Карта интересов",
+    "/tests/interests-map-results": "Карта интересов",
+
+    // Профессиональные предпочтения
+    "/tests/professional-preferences-intro": "Профессиональные предпочтения",
+    "/tests/professional-preferences": "Профессиональные предпочтения",
+    "/tests/professional-preferences-results": "Профессиональные предпочтения",
+
+    // Якоря карьеры
+    "/tests/career-anchors-intro": "Якоря карьеры",
+    "/tests/career-anchors": "Якоря карьеры",
+    "/tests/career-anchors-results": "Якоря карьеры",
+
     "/curator" : "Моя школа"
 }
