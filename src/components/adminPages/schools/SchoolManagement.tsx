@@ -83,6 +83,7 @@ export const SchoolManagement = () => {
     }
 
     const saveCurator = async (event: FormEvent) => {
+        console.log(selectedSchool, curatorDraft, isSaving)
         event.preventDefault()
         if (!selectedSchool?.id || !curatorDraft || isSaving) return
         try {
@@ -121,31 +122,37 @@ export const SchoolManagement = () => {
 
         {schools.length === 0
             ? <NoResults variant="empty" title="Школ пока нет" message="Создайте первую образовательную организацию." />
-            : <div className="school-grid">{schools.map(school => <article className="base-card school-card" key={school.id}>
+            : <div className="school-grid">{schools.map(school => 
+            <article className="base-card school-card" key={school.id}>
                 <div className="school-card__title"><h2>{school.name}</h2><button type="button" onClick={() => setSchoolDraft({...school})} aria-label={`Редактировать ${school.name}`}><Pencil size={18} /></button></div>
                 <p>{school.address || "Адрес не указан"}</p>
                 <p>{[school.email, school.phone].filter(Boolean).join(" · ") || "Контакты не указаны"}</p>
-                <button className="secondary-action" type="button" onClick={() => openSchool(school)}>
-                    <Users size={18} /> Кураторы
-                </button>
-            </article>)}</div>}
-
-        {selectedSchool && <section className="school-curators">
-            <PageHeader
-                title={`Кураторы: ${selectedSchool.name}`}
-                actions={<button className="primary-action" type="button" onClick={() => setCuratorDraft({...emptyCurator, account: {...emptyCurator.account}})}>
-                    <Plus size={18} /> Добавить куратора
-                </button>} />
-            {curators.length === 0
-                ? <p className="school-empty">У этой школы пока нет кураторов.</p>
-                : <div className="school-grid">{curators.map(curator => <article className="base-card" key={curator.id}>
-                    <h3>{curator.surname} {curator.name} {curator.patronymic}</h3>
-                    <p>{curator.email}</p>
-                    <button className="secondary-action" type="button" onClick={() => setCuratorDraft({...curator})}>
-                        <Pencil size={17} /> Редактировать
+                <div className="flex flex-row gap-1">
+                    <button className="secondary-action" type="button" onClick={() => openSchool(school)}>
+                        <Users size={18} /> Кураторы
                     </button>
-                </article>)}</div>}
-        </section>}
+                    <button className="secondary-action" type="button" onClick={() => {setCuratorDraft({...emptyCurator, account: {...emptyCurator.account}}); setSelectedSchool(school)}}>
+                        Добавить Куратора
+                    </button>
+                </div>
+            </article>)}</div>}
+        {selectedSchool && <EntityModal title={`Кураторы ${selectedSchool.name}`} onClose={() => setSelectedSchool(undefined)}>
+                <form className="entity-form">
+                    {curators.length === 0 && <p className="school-empty">У школы пока нет кураторов</p>}
+                    {curators.length > 0 && 
+                        <div className="school-grid">
+                            {curators.map(curator => 
+                            <article className="base-card flex gap-1 justify-between items-center" key={curator.id}>
+                                <h3>{curator.surname} {curator.name} {curator.patronymic}</h3>
+                                <p>{curator.email}</p>
+                                <button className="secondary-action" type="button" onClick={() => setCuratorDraft({...curator})}>
+                                    <Pencil size={17} />
+                                </button>
+                            </article>)}
+                        </div>}
+                </form>
+            </EntityModal>}
+
 
         {schoolDraft && <EntityModal title={schoolDraft.id ? "Редактировать школу" : "Новая школа"} onClose={() => !isSaving && setSchoolDraft(undefined)}>
             <form className="entity-form" onSubmit={saveSchool}>
