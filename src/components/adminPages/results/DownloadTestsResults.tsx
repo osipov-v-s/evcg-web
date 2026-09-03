@@ -8,6 +8,7 @@ import { exportToExcel } from "../../../utils/convertData/exportToExcel"
 import { exportToJson } from "../../../utils/convertData/exportToJson"
 import { PageHeader } from "../../ui/common/PageHeader"
 import "../css/form.css"
+import { getShortDate } from "../../../services/dates/formatDate"
 
 type ExportFormat = "xlsx" | "json"
 type UserType = "Pupil" | "Specialist" | "all"
@@ -34,11 +35,13 @@ export const DownloadTestsResults = () => {
                 toast.error("За выбранный период результатов нет")
                 return
             }
-            const filename = `test_results_${settings.type.toLowerCase()}_${settings.startDate}_${settings.endDate}`
+            const filename = `tests_${settings.type.toLowerCase()}_${getShortDate(settings.startDate)}_${getShortDate(settings.endDate)}`
+            console.log(filename)
             if (settings.format === "xlsx") exportToExcel(tests, filename)
             else exportToJson(tests, filename)
             toast.success("Файл подготовлен")
         } catch (error) {
+            console.log(error)
             toast.error(getApiErrorMessage(error, "Не удалось подготовить выгрузку"))
         } finally {
             setIsSubmitting(false)

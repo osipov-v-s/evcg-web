@@ -43,3 +43,7 @@ export const formatDateTime = (dateTimeString: string) => {
         return 'Неизвестная дата';
     }
 };
+export const getShortDate = (dateStr: string) => {
+    const date = new Date(dateStr)
+    return `${date.getMonth().toString().padStart(2, '0')}_${date.getDate().toString().padStart(2, '0')}`
+}
