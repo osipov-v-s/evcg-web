@@ -27,7 +27,7 @@ export const IqPotentialTest = FormSelectionTest<Task>({
             options: generateOptions(6)
         }))
     },
-    resultPath: "/tests/iq-potential-results",
+    resultPath: "/tests/iq-potential/results",
     stateKey: "tasks",
     stateKeyForm: "iqTestForm",
     description: "Решай быстро, пропуская сложные задачи и возвращайся к ним позже. Выбери 1 из 6 фигур которая подходит в свободный квадрат.",

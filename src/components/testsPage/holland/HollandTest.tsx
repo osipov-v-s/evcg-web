@@ -8,7 +8,7 @@ export const HollandTest = StandartTest<Task>({
         const response = await api.get(`${getBaseUrl()}/public/prof_holland/data/profHollandFormA.json`)
         return response.data.data as Task[]
     },
-    resultPath: "/tests/prof-holland-results",
+    resultPath: "/tests/prof-holland/results",
     stateKey: "hollandTasks",
     description: "Выбирай занятия, которые приносят тебе удовольствие, и будь предельно искренним.",
     autoStartTimer: true,

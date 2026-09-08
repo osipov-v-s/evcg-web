@@ -40,7 +40,7 @@ export const GroupRolesTest = () => {
         }
 
         if (currentGroupNumber === groupQuestionsResult.current.length - 1) {
-            navigate("/tests/group-roles-results", {
+            navigate("/tests/group-roles/results", {
                 state: {
                     groupQuestionsResult: groupQuestionsResult.current,
                     completionTimeSeconds: seconds

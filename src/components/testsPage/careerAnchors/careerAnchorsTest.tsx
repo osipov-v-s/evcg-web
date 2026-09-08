@@ -19,7 +19,7 @@ export const CareerAnchorsTest = StandartTest<Task>({
             options: generateOptions(10),
             userAnswer: item.userAnswer,
         })) as Task[],
-    resultPath: "/tests/career-anchors-results",
+    resultPath: "/tests/career-anchors/results",
     stateKey: "careerAnchorsTask",
     description: "Оцени, насколько каждое утверждение относится к тебе, по шкале от 1 до 10.",
     autoStartTimer: true,

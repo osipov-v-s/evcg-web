@@ -27,8 +27,8 @@ export const testsList: TestItem[] = [
         time: 10,
         questionscount: 57,
         icon: Palette,
-        path: "/tests/temperament-intro",
-        pathResults: "/tests/temperament-results",
+        path: "/tests/temperament/intro",           // ✅
+        pathResults: "/tests/temperament/results",   // ✅
         dataItem: "test-item-1",
         name: "Temperament",
         isAvailable: true
@@ -41,8 +41,8 @@ export const testsList: TestItem[] = [
         time: 10,
         questionscount: 7,
         icon: UsersRound,
-        path: "/tests/group-roles-intro",
-        pathResults: "/tests/group-roles-results",
+        path: "/tests/group-roles/intro",           // ✅
+        pathResults: "/tests/group-roles/results",   // ✅
         dataItem: "test-item-2",
         name: "Group-Roles",
         isAvailable: true
@@ -55,8 +55,8 @@ export const testsList: TestItem[] = [
         time: 25,
         questionscount: 70,
         icon: Settings,
-        path: "/tests/engineering-thinking-intro",
-        pathResults: "/tests/engineering-thinking-results",
+        path: "/tests/engineering-thinking/intro",           // ✅
+        pathResults: "/tests/engineering-thinking/results",   // ✅
         dataItem: "test-item-3",
         name: "Engineering-Thinking",
         isAvailable: true
@@ -69,8 +69,8 @@ export const testsList: TestItem[] = [
         time: 20,
         questionscount: 20,
         icon: BriefcaseBusiness,
-        path: "/tests/professional-orientation-klimov-intro",
-        pathResults: "/tests/professional-orientation-klimov-results",
+        path: "/tests/professional-orientation-klimov/intro",           // ✅
+        pathResults: "/tests/professional-orientation-klimov/results",   // ✅
         dataItem: "test-item-5",
         name: "Professional-Orientation-Klimov",
         isAvailable: true
@@ -82,8 +82,8 @@ export const testsList: TestItem[] = [
         time: 12,
         questionscount: 29,
         icon: Brain,
-        path: "/tests/iq-potential-intro",
-        pathResults: "/tests/iq-potential-results",
+        path: "/tests/iq-potential/intro",           // ✅
+        pathResults: "/tests/iq-potential/results",   // ✅
         dataItem: "test-item-4",
         name: "Intellectual-Potential",
         isAvailable: true
@@ -96,8 +96,8 @@ export const testsList: TestItem[] = [
         time: 15,
         questionscount: 42,
         icon: Compass,
-        path: "/tests/prof-holland-intro",
-        pathResults: "/tests/prof-holland-results",
+        path: "/tests/prof-holland/intro",           // ✅
+        pathResults: "/tests/prof-holland/results",   // ✅
         dataItem: "test-item-6",
         name: "Professional-Orientation-Holland",
         isAvailable: true
@@ -110,8 +110,8 @@ export const testsList: TestItem[] = [
         time: 15,
         questionscount: 50,
         icon: Map,
-        path: "/tests/interests-map-intro",
-        pathResults: "/tests/interests-map-results",
+        path: "/tests/interests-map/intro",           // ✅
+        pathResults: "/tests/interests-map/results",   // ✅
         dataItem: "test-item-7",
         name: "Interests-Map",
         isAvailable: true
@@ -124,8 +124,8 @@ export const testsList: TestItem[] = [
         time: 15,
         questionscount: 24,
         icon: Target,
-        path: "/tests/professional-preferences-intro",
-        pathResults: "/tests/professional-preferences-results",
+        path: "/tests/professional-preferences/intro",           // ✅
+        pathResults: "/tests/professional-preferences/results",   // ✅
         dataItem: "test-item-8",
         name: "Professional-Preferences",
         isAvailable: true
@@ -138,10 +138,10 @@ export const testsList: TestItem[] = [
         time: 5,
         questionscount: 41,
         icon: Anchor,
-        path: "/tests/career-anchors-intro",
-        pathResults: "/tests/career-anchors-results",
+        path: "/tests/career-anchors/intro",           // ✅
+        pathResults: "/tests/career-anchors/results",   // ✅
         dataItem: "test-item-9",
         name: "Career-Anchors",
         isAvailable: true
     },
-]
+];

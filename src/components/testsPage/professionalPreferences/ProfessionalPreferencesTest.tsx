@@ -15,7 +15,7 @@ export const ProfessionalPreferencesTest = StandartTest<Task>({
             })),
             userAnswer: 0,
         })) as Task[],
-    resultPath: "/tests/professional-preferences-results",
+    resultPath: "/tests/professional-preferences/results",
     stateKey: "professionalPreferencesTask",
     description: "Выбери то, что нравится или ближе именно тебе.",
     autoStartTimer: true,

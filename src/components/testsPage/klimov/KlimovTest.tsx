@@ -5,7 +5,7 @@ import { StandartTest } from "../generalTests/StandartTest"
 export const KlimovTest = StandartTest<Task>({
     Component: SingleOptionsPicker,
     fetchData: async () => tasksData as Task[],
-    resultPath: "/tests/professional-orientation-klimov-results",
+    resultPath: "/tests/professional-orientation-klimov/results",
     stateKey: "klimovTasks",
     description: "Выбери то, что нравится или ближе именно тебе.",
     autoStartTimer: true,

@@ -5,7 +5,7 @@ import { StandartTest } from "../generalTests/StandartTest"
 export const EngineeringThinkingTest = StandartTest<Task>({
     Component: SingleOptionsPicker,
     fetchData: async () => tasksData as Task[],
-    resultPath: "/tests/engineering-thinking-results",
+    resultPath: "/tests/engineering-thinking/results",
     stateKey: "tasks",
     description: "Представляй механизмы в движении и опирайся на законы физики. Выбери 1 из 3 вариантов который кажется тебе верным.",
     initialSeconds: 1500,

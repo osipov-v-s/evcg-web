@@ -14,7 +14,7 @@ const TEMPERAMENT_FORMS = [
 export const TemperamentTest = FormSelectionTest<TemperamentOption>({
     forms: TEMPERAMENT_FORMS,
     Component: PositiveNegative,
-    resultPath: "/tests/temperament-results",
+    resultPath: "/tests/temperament/results",
     stateKey: "options",
     stateKeyForm: "temperamentForm",
     description: 'Честно отвечай "Да" или "Нет", не думая долго над вопросами.',

@@ -16,7 +16,7 @@ export const InterestsMapTest = StandartTest<Task>({
             })),
             userAnswer: 0,
         })) as Task[],
-    resultPath: "/tests/interests-map-results",
+    resultPath: "/tests/interests-map/results",
     stateKey: "interestsMapTask",
     description: "Выбери то, что нравится или ближе именно тебе.",
     autoStartTimer: true,
