@@ -1,119 +1,87 @@
-import { useEffect, useState } from "react"
-import { Task } from "../generalTemplates/singleOptionsPicker/SingleOptionsPicker"
-import { useLocation, useNavigate } from "react-router-dom"
-import { TestItem } from "../TestsData"
-import { calculateResults } from "./engineeringThinkingResultsCalc"
-import { TestResultResponse } from "../../../types/testTypes"
-import toast, { Toaster } from "react-hot-toast"
-import { testApi } from "../../../services/api/testApi"
 import { useAuth } from "../../../contexts/AuthContext"
-import engineerLevelsData from "./engineerLevels.json"
-import { EngineerLevels, Level } from "./engineerThinkingTypes"
-import { PupilResponse } from "../../../types/pupil/pupil"
 import { pupilApi } from "../../../services/api/pupilApi"
-import { Button } from "../../ui/reusable/button"
-import { formatTime } from "../utils/formatTime"
-import { formatDateRU } from "../../../services/dates/formatDate"
-import { ArrowLeft } from "lucide-react"
+import { useTestResult } from "../../resultsPage/hooks/useTestResult"
+import { ResultCard } from "../../resultsPage/ResultCard"
+import { NoResults } from "../../ui/noResultComponent/NoResult"
+import { EngineerLevels, Level } from "./engineerThinkingTypes"
+import engineerLevelsData from "./engineerLevels.json"
+import { useEffect, useState } from "react"
+import { ResultMetadata } from "../../resultsPage/ResultMetadata"
+import { TestResultLayout } from "../../resultsPage/TestResultLayout"
+
 export const EngineeringThinkingResults = () => {
-    const location = useLocation()
-    const navigate = useNavigate()
-    const { getToken } = useAuth()
-    const [result, setResult] = useState<TestResultResponse>()
-    const [pupilLevel, setPupilLevel] = useState<Level>()
+    const {getToken} = useAuth()
     const engineerLevels = engineerLevelsData as EngineerLevels[]
-
-    const [pupilData, setPupilData] = useState<PupilResponse>()
-
-    const isViewMode = location.state?.isViewMode ? location.state?.isViewMode : false
-
+    const [level, setLevel] = useState<Level>()
+    const {result, loading} = useTestResult({
+        testType: "Engineering-Thinking",
+        extractInputData: (state) => state?.tasks,
+        calculateResult: (tasks, time) => ({
+            completionTimeSeconds: time || 0,
+            testTypeName: "Engineering-Thinking",
+            psychParams: [{
+                name: "engineering_thinking_level",
+                param: tasks.reduce((score, t) => t.answer === t.userAnswer ? score + 1 : score, 0)
+            }]
+        })
+    })
+    // Fetch pupil data and calculate level when result is ready
     useEffect(() => {
-        //Если все подгружено найти описание результатов пользователя
-        if (!pupilData || !result) return
-        const resultParam = result?.psychParams[0].param
-        const levelTemp = engineerLevels.find(engineer => engineer.gender === pupilData?.pupilDTO.gender)
-            ?.levels.find(level => resultParam >= level.min && resultParam <= level.max)
-        setPupilLevel(levelTemp)
-    }, [pupilData, result])
-    useEffect(() => {
-        if (!isViewMode)
-            return
-        const loadResult = async () => {
-            const pupilDataTemp = await pupilApi.getPupilData(getToken())
-            const testTemp = location.state?.psychTest
-            if (!testTemp)
-                return
-            setResult(testTemp)
-            setPupilData(pupilDataTemp)
-        }
-        loadResult()
-    }, [])
-
-    useEffect(() => {
-        if (isViewMode)
-            return
-
-        const createTest = async () => {
-
-            const engineerThinkingTestResult = { ...calculateResults(location.state?.tasks), completionTimeSeconds: location.state?.completionTimeSeconds }
-            console.log(engineerThinkingTestResult)
+        const getEngineerLevel = async () => {
+            if (!result) return
+            
+            const score = result.psychParams[0].param
             try {
-                const createdTest = await testApi.createTest(getToken(), engineerThinkingTestResult)
-                const pupilDataTemp = await pupilApi.getPupilData(getToken())
-                setResult(createdTest)
-                setPupilData(pupilDataTemp)
-
-            } catch (err) {
-                console.error(err)
-                toast.error("Возникла ошибка при сохранении результатов, вы заполнили профиль ?")
+                const pupil = await pupilApi.getPupilData(getToken())
+                if (!pupil) return
+                
+                const foundLevel = engineerLevels
+                    .find(engineer => engineer.gender === pupil.pupilDTO.gender)
+                    ?.levels.find(level => score >= level.min && score <= level.max)
+                    
+                setLevel(foundLevel)
+            } catch (error) {
+                console.error("Failed to fetch pupil data:", error)
             }
         }
-        createTest()
-    }, [])
+        
+        getEngineerLevel()
+    }, [result, getToken, engineerLevels])
+    if (loading || !result) return <NoResults />
+    const score = result.psychParams[0].param
 
-    if (!result || !pupilData) return (<>
-        <p>Загрузка ваших результатов...</p>
-        <Toaster />
-    </>)
-
-    return (<div className="result-wrapper">
-        <h3>Ваш уровень инженерного мышления:  {result.psychParams[0].param} из 70 баллов</h3>
-        <div className="result-wrapper" >
-            <div className="result-card">
-                <h4>Ваш результат: </h4>
-                {pupilLevel &&
+     return (
+        <TestResultLayout title="Результаты теста инженерного мышления">
+            <ResultCard title="Ваш результат" highlight={true}>
+                <p><strong>Уровень инженерного мышления:</strong> {score} из 70 баллов</p>
+                {level && (
                     <>
-                        <p>{pupilLevel.description}</p>
-                        <p>{pupilLevel.techCapabilities}</p>
+                        <p><strong>Описание:</strong> {level.description}</p>
+                        <p><strong>Технические способности:</strong> {level.techCapabilities}</p>
                     </>
-                }
-            </div>
-            <div className="result-card-wrapper">
-                <div className="result-card">
-                    <h4>Юноши (старше 18 лет)</h4>
-                    <div className="gender-card">Меньше 26 Очень низкий</div>
-                    <div className="gender-card">27 - 32 Низкий</div>
-                    <div className="gender-card">33 - 38 Средний</div>
-                    <div className="gender-card">39 - 47 Высокий</div>
-                    <div className="gender-card">Больше 48 Очень высокий</div>
-                </div>
-                <div className="result-card">
-                    <h4>Девушки (старше 18 лет)</h4>
-                    <div className="gender-card">Меньше 17 Очень низкий</div>
-                    <div className="gender-card">18 - 22 Низкий</div>
-                    <div className="gender-card">23 - 27 Средний</div>
-                    <div className="gender-card">28 - 34 Высокий</div>
-                    <div className="gender-card">Больше 35 Очень высокий</div>
-                </div>
-            </div>
-            <p>Дата прохождения: {formatDateRU(result?.createdAt)}</p>
-            {result.completionTimeSeconds !== null && result.completionTimeSeconds !== 0 &&
-                <span>Пройдено за: {formatTime(Math.floor(result.completionTimeSeconds / 60))} : {formatTime(result.completionTimeSeconds % 60)} из 25:00</span>}
-            <div>
-                <Button label="Назад" icon={<ArrowLeft />} onClick={() => navigate("/tests")} />
-            </div>
-
-        </div>
-
-    </div>)
+                )}
+            </ResultCard>
+            
+            <ResultCard title="Справочная информация">
+                <h4>Юноши (старше 18 лет)</h4>
+                <div className="gender-card">Меньше 26 - Очень низкий</div>
+                <div className="gender-card">27 - 32 - Низкий</div>
+                <div className="gender-card">33 - 38 - Средний</div>
+                <div className="gender-card">39 - 47 - Высокий</div>
+                <div className="gender-card">Больше 48 - Очень высокий</div>
+                
+                <h4>Девушки (старше 18 лет)</h4>
+                <div className="gender-card">Меньше 17 - Очень низкий</div>
+                <div className="gender-card">18 - 22 - Низкий</div>
+                <div className="gender-card">23 - 27 - Средний</div>
+                <div className="gender-card">28 - 34 - Высокий</div>
+                <div className="gender-card">Больше 35 - Очень высокий</div>
+            </ResultCard>
+            
+            <ResultMetadata 
+                createdAt={result.createdAt}
+                completionTimeSeconds={result.completionTimeSeconds}
+            />
+        </TestResultLayout>
+    )
 }
