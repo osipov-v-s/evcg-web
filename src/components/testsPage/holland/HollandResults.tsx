@@ -10,15 +10,29 @@ import { testApi } from "../../../services/api/testApi"
 import { sortByParam } from "../utils/sortByParams"
 import { Button } from "../../ui/reusable/button"
 import { ArrowLeft } from "lucide-react"
+import { useTestResult } from "../../resultsPage/hooks/useTestResult"
+import { time } from "console"
+import { ResultCard } from "../../resultsPage/ResultCard"
+import { TestResultLayout } from "../../resultsPage/TestResultLayout"
 
 export const HollandResults = () => {
     const location = useLocation()
-    const navigate = useNavigate()
     const { getToken } = useAuth()
 
-    const [result, setResult] = useState<TestResultResponse>()
     const [hollandProfessions, setHollandProfessions] = useState<HollandProfession[]>()
-    const isViewMode = location.state?.isViewMode ? location.state?.isViewMode : false
+
+    const {result, loading} = useTestResult({
+        testType: "Professional-Orientation-Holland",
+        extractInputData: (state) => state?.hollandTasks,
+        calculateResult: (hollandTasks, time) => ({
+            ...calculateResults(hollandTasks),
+            completionTimeSeconds: time || 0
+        }),
+        transformResponse: (response) => ({
+            ...response, 
+            psychParams: sortByParam(response.psychParams)
+        })
+    })
 
     useEffect(() => {
         const loadProfessions = async () => {
@@ -32,34 +46,7 @@ export const HollandResults = () => {
         }
         loadProfessions()
     }, [])
-    useEffect(() => {
-        if (!isViewMode) return
-        const psychTestData = location.state?.psychTest
-        if (!psychTestData) return
-        setResult({ ...psychTestData, psychParams: sortByParam(psychTestData.psychParams) })
-    }, [])
-    useEffect(() => {
-        if (isViewMode) return
-        const saveResults = async () => {
-            try {
-                const resultsTemp = {
-                    ...calculateResults(location.state.hollandTasks as HollandTask[]),
-                    completionTimeSeconds: location.state?.completionTimeSeconds
-                }
-                const token = getToken()
-                const createdTest = await testApi.createTest(token, resultsTemp)
-                console.log(createdTest)
-                setResult({
-                    ...createdTest,
-                    psychParams: sortByParam(createdTest.psychParams)
-                })
-            } catch (err) {
-                console.error(err)
-                toast.error("Возникла ошибка при сохранении результатов")
-            }
-        }
-        saveResults()
-    }, [])
+
 
     const calculateResults = (answers: HollandTask[]) => {
         const stats = answers.reduce<Record<string, number>>((acc, question) => {
@@ -75,38 +62,35 @@ export const HollandResults = () => {
             psychParams: resultsArray
         }
     }
-    if (!result || !hollandProfessions) return (<>
+    if (!result || !hollandProfessions || loading) return (<>
         <p>Загрузка теста...</p>
     </>)
     const renderProfessionCard = (param: { name: string; param: number }, profession: HollandProfession) => {
         const isHigh = param.param >= 10
 
         return (
-            <div key={param.name} className="result-card">
-                {isHigh ? (
-                    <b><p>{profession.title}: {param.param}</p></b>
-                ) : (
-                    <p>{profession.title}: {param.param}</p>
-                )}
-
+            <ResultCard key={param.name} highlight={isHigh}>
+                <p>
+                    {isHigh && <b>{profession.title} : {param.param} </b> }
+                    {!isHigh && <>{profession.title} : {param.param}</>}
+                </p>
                 <p>{profession.short}</p>
                 <p>{profession.description}</p>
                 <p><strong>Подходящие профессии:</strong> {profession.suitable_professions}</p>
                 <p><strong>Ключевые качества:</strong> {profession.traits}</p>
-            </div>
+            </ResultCard>
         )
     }
     return (<>
-        <div className="result-wrapper" style={{ overflowX: "scroll", height: "100%" }}>
-            {result.psychParams.map((param) => {
-                const profession = hollandProfessions.find(prof => prof.name === param.name)
-                if (!profession) return
-                return renderProfessionCard(param, profession)
-            })}
-            <div>
-                <Button label="Назад" icon={<ArrowLeft />} onClick={() => navigate("/tests")} />
+        <TestResultLayout title="Результаты профориентации по методике Холланда">
+            <div className="w-full scroll-y flex flex-col gap-3">
+                {result.psychParams.map(param => {
+                    const profession = hollandProfessions.find(prof => prof.name === param.name)
+                    if (!profession) return null
+                    return renderProfessionCard(param, profession)
+                })}
             </div>
-        </div>
+        </TestResultLayout>
         <Toaster />
     </>)
 
