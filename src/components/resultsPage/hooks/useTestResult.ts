@@ -29,7 +29,7 @@ export const useTestResult = <TInput, TResult> ({
         const processResult = async () => {
             try {
                 if (isViewMode && location.state?.psychTest){
-                    setResult(location.state?.psychTest)
+                    setResult(transformResponse(location.state?.psychTest))
                     return
                 }
                 const token = getToken()
