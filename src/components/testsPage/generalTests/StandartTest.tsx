@@ -27,14 +27,14 @@ export const StandartTest = <T,>(config: StandartTestConfig<T>) => {
         const isTimerStarted = useRef(false)
 
         const handleComplete = useCallback(() => {
-            const complitionTime = config.initialSeconds
+            const completionTime = config.initialSeconds
                 ? config.initialSeconds - timer.seconds
                 : timer.seconds
 
             navigate(config.resultPath, {
                 state: {
                     [config.stateKey]: tasks,
-                    complitionTimeSeconds: complitionTime,
+                    completionTimeSeconds: completionTime,
                 }
             })
         }, [navigate, tasks, timer.seconds, config.initialSeconds, config.stateKey, config.resultPath])

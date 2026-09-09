@@ -31,13 +31,13 @@ export const FormSelectionTest = <T,>(config: FormSelectionTestConfig<T>) => {
         const isTimerStarted = useRef(false)
 
         const handleComplete = useCallback(() => {
-            const complitionTime = config.initialSeconds
+            const completionTime = config.initialSeconds
                 ? config.initialSeconds - timer.seconds
                 : timer.seconds
-
+            console.log(completionTime, timer.seconds)
             const state: Record<string, any> = {
                 [config.stateKey]: tasks,
-                complitionTimeSeconds: complitionTime,
+                completionTimeSeconds: completionTime,
             }
 
             if (config.stateKeyForm && selectedForm)
