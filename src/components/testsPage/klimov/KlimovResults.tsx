@@ -13,44 +13,26 @@ import { Button } from "../../ui/reusable/button"
 import { formatTime } from "../utils/formatTime"
 import { formatDateRU } from "../../../services/dates/formatDate"
 import { ArrowLeft } from "lucide-react"
+import { useTestResult } from "../../resultsPage/hooks/useTestResult"
 export const KlimovResults = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const { getToken } = useAuth()
-    const [result, setResult] = useState<TestResultResponse>()
+    const {result, loading} = useTestResult({
+        testType: "Professional-Orientation-Klimov", 
+        extractInputData: (state) => state?.klimovTasks,
+        calculateResult: (tasks, time) => ({
+            ...calculateResults(tasks)
+        }),
+        transformResponse: (response) => ({
+            ...response, 
+            psychParams: sortByParam(response.psychParams)
+        })
+    })
     //Описание профессий
     const klimovProfessions = klimovProfessionsData as KlimovProfession[]
 
-    const isViewMode = location.state?.isViewMode ? location.state?.isViewMode : false
-    useEffect(() => {
-        if (!isViewMode) return
-        const testDataTemp = location.state?.psychTest
-        if (!testDataTemp) return
-        setResult({
-            ...testDataTemp,
-            psychParams: sortByParam(testDataTemp.psychParams)
-        })
-    }, [])
 
-    useEffect(() => {
-        if (isViewMode) return
-        const createTest = async () => {
-            const klimovResult = { ...calculateResults(location.state?.klimovTasks), completionTimeSeconds: location.state?.completionTimeSeconds }
-            try {
-                const createdTest = await testApi.createTest(getToken(), klimovResult)
-                setResult({
-                    ...createdTest,
-                    psychParams: sortByParam(createdTest.psychParams)
-                })
-            } catch (err) {
-                console.error(err)
-                toast.error("Возникла ошибка при сохранении результатов, вы заполнили профиль ?", {
-                    duration: 5000
-                })
-            }
-        }
-        createTest()
-    }, [])
     if (!result) return <>
         <p>Загрузка...</p>
         <Toaster />
