@@ -8,7 +8,9 @@ export interface Prediction {
     confidenceCategory: string;
     createdAt: string;
 }
-
+export interface MathPrediction {
+    
+}
 export interface PredictionResult {
     name: string
     distance: number

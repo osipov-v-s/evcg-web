@@ -13,6 +13,14 @@ export const predictionAPI = {
             headers: {Authorization: `Bearer ${token}`}
         })
         return response.data
+    },
+    mathPredict: async (token: string) => {
+        const response = await api.post("/api/predictions/math", null, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        return response.data
     }
 
 }

@@ -41,7 +41,10 @@ export const Predictions = () => {
         if (isPredicting || loading) return // Prevent double clicks
         try {
             setIsPredicting(true) // Use the new state here
-            const predictionTemp = await predictionAPI.predict(getToken())
+            const token = getToken()
+            const predictionTemp = await predictionAPI.predict(token)
+            const mathPredicitonTemp = await predictionAPI.mathPredict(token)
+            console.log(mathPredicitonTemp)
             setPrediction(predictionTemp)
             toast.success("Результаты успешно получены!")
         } catch(err) {
