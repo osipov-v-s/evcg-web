@@ -1,0 +1,18 @@
+.home-organizations-section { overflow: hidden; background: #fff; }
+.home-organizations-section::after { position: absolute; top: -120px; right: -90px; width: 310px; height: 310px; border: 1px solid rgba(32,146,233,.12); border-radius: 50%; content: ""; }
+.home-organizations-section .home-section-inner { position: relative; z-index: 1; padding-top: 36px; padding-bottom: 36px; }
+.home-organizations-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.home-organizations-intro .home-section-heading { margin-bottom: 18px; }
+.home-organizations-count { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 17px; color: var(--home-blue-dark); }
+.home-organizations-count strong { font-size: 3.1rem; line-height: .76; letter-spacing: -.09em; }
+.home-organizations-count span { font-size: .57rem; font-weight: var(--font-weight-semibold); line-height: 1.15; text-transform: uppercase; }
+.home-organizations-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.home-organization-card { display: grid; grid-template-columns: 126px 1fr; min-height: 126px; align-items: center; gap: 16px; overflow: hidden; border: 1px solid var(--home-border); border-radius: 10px; background: #fff; box-shadow: 0 4px 14px rgba(10,39,71,.045); }
+.home-organization-placeholder { position: relative; display: flex; height: 100%; min-height: 124px; flex-direction: column; align-items: center; justify-content: center; gap: 7px; overflow: hidden; color: var(--home-blue-dark); background: linear-gradient(145deg,#dff1fd,#f7fbfe); font-size: .7rem; font-weight: var(--font-weight-bold); }
+.home-organization-placeholder::before { position: absolute; inset: 18px 15px 0; border: 1px solid rgba(32,146,233,.18); border-bottom: 0; background-image: repeating-linear-gradient(90deg,transparent 0 13px,rgba(32,146,233,.12) 13px 15px); content: ""; clip-path: polygon(50% 0,100% 26%,100% 100%,0 100%,0 26%); }
+.home-organization-placeholder svg,.home-organization-placeholder span { position: relative; z-index: 1; }
+.home-organization-card > div:last-child { padding: 12px 18px 12px 0; }
+.home-organization-card h3 { margin-bottom: 5px; font-size: .8rem; line-height: 1.25; }
+.home-organization-card p { color: var(--text-secondary-color); font-size: .68rem; line-height: 1.4; }
+@media (max-width: 800px) { .home-organizations-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .home-organizations-count { display: none; } .home-organization-card { grid-template-columns: 105px 1fr; } }

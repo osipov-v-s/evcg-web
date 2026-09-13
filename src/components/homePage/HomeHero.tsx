@@ -1,73 +1,39 @@
-import { FC } from "react"
-import { Link } from "react-router-dom"
-import { useAuth } from "../../contexts/AuthContext"
+import { ArrowRight, ClipboardCheck, Glasses, GraduationCap, School, Target } from "lucide-react"
+import { useNavigate } from "react-router-dom"
+import { Button } from "../ui/reusable/button"
+import { HomeHeroScene } from "./HomeHeroScene"
 
-import bannerLogoFasie from "../../res/home-imgs/banner-logo-fasie.webp"
+export const HomeHero = () => {
+    const navigate = useNavigate()
 
-export const HomeHero: FC = ({ }) => {
-    const {getEmail} = useAuth()
     return (
-        <div className="home-grid-item-1-grid">
-            <div className="home-block item-1">
-                <div className="home-block-header">
-                    ПрофиВектор
-                </div>
+        <section id="about" className="home-section home-hero-section" aria-labelledby="home-hero-title">
+            <div className="home-section-inner home-hero-inner">
+                <div className="home-hero-content">
+                    <span className="home-hero-eyebrow">ПрофиВектор · инженерная профориентация</span>
+                    <h1 id="home-hero-title">Пойми, какая <strong>инженерная профессия</strong> тебе подходит</h1>
+                    <p className="home-hero-lead">Пройдите диагностику, а ПрофиВектор с помощью математического расчёта покажет, какие инженерные профессии подходят вам больше всего.</p>
+                    <p className="home-hero-note">Не просто тест. Расчёт степени соответствия инженерным профессиям.</p>
 
-                <div className="home-block-subtitle">
-                    Пройдите последовательную диагностику и узнайте, какие профессии горнодобывающей отрасли лучше соответствуют вашим интересам, способностям и учебному профилю.
-                </div>
-
-                <Link className="home-primary-action" to={getEmail() ? "/tests" : "/register"}>
-                    {getEmail() ? "Продолжить диагностику" : "Начать профориентацию"}
-                </Link>
-
-                <a className="partner-badge"
-                    href="https://fasie.ru/"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    <div className="partner-badge-text">
-                        Проект реализован при поддержке:
+                    <div className="home-hero-formats">
+                        <div><ClipboardCheck size={18} /><span><strong>Бесплатная диагностика</strong><small>Узнайте свои сильные стороны</small></span></div>
+                        <div><Glasses size={18} /><span><strong>Углублённая диагностика</strong><small>Более точный результат с современными технологиями</small></span></div>
                     </div>
 
-                    <div className="partner-logo-wrapper">
-                        <img src={bannerLogoFasie} alt="Логотип Фонда содействия инновациям" />
+                    <div className="home-hero-actions">
+                        <Button label="Пройти бесплатно" icon={<ArrowRight size={18} />} onClick={() => navigate("/register")} />
+                        <a className="home-secondary-action" href="#diagnostics"><Glasses size={19} />Узнать про углублённую диагностику</a>
                     </div>
-                </a>
+                </div>
+                <HomeHeroScene />
             </div>
 
-            <div className="item-2-grid item-2">
-                <div className="home-block stat-item">
-                    <div className="home-block-header">
-                        5
-                    </div>
-
-                    <div className="home-block-text">
-                        Профессий в исследовательской модели
-                    </div>
-                </div>
-
-                <div className="home-block stat-item">
-                    <div className="home-block-header">
-                        9
-                    </div>
-
-                    <div className="home-block-text">
-                        Этапов психологической диагностики
-                    </div>
-                </div>
-
-                <div className="home-block stat-item">
-                    <div className="home-block-header">
-                        VR
-                    </div>
-
-
-                    <div className="home-block-text">
-                        Практические сценарии и поведенческие данные
-                    </div>
-                </div>
+            <div className="home-hero-benefits">
+                <div><GraduationCap size={21} /><span>Реальные инженерные профессии</span></div>
+                <div><ClipboardCheck size={21} /><span>Современные технологии диагностики</span></div>
+                <div><Target size={21} /><span>Помогаем сделать осознанный выбор</span></div>
+                <div><School size={21} /><span>Используется в школах и учебных центрах</span></div>
             </div>
-        </div>
+        </section>
     )
 }

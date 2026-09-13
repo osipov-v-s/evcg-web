@@ -1,4 +1,7 @@
-import { FC, useEffect, useState } from "react"
+import { useState } from "react"
+import { ArrowRight } from "lucide-react"
+import { Button } from "../ui/reusable/button"
+import { HomeModal } from "./HomeModal"
 
 import masterImage from "../../res/home-imgs/master-image.webp"
 import engineerImage from "../../res/home-imgs/engineer-image.webp"
@@ -6,66 +9,93 @@ import explosivesImage from "../../res/home-imgs/explosives-image.webp"
 import rescuerImage from "../../res/home-imgs/rescuer-image.webp"
 import driverImage from "../../res/home-imgs/driver-image.webp"
 
-export const HomeProfessions: FC = ({ }) => {
-    const professionsList = [
-        {
-            title: "Горный мастер",
-            description:
-                "Руководит сменой в шахте или карьере. Распределяет задачи между бригадами, контролирует работу техники и полностью отвечает за безопасность сотрудников.",
-            className: "item-1",
-            image: masterImage,
-        },
-        {
-            title: "Горный инженер-технолог",
-            description:
-                "Проектирует масштабные карьеры и подземные сооружения. Разрабатывает безопасные способы добычи и управляет сложными цифровыми системами.",
-            className: "item-2",
-            image: engineerImage,
-        },
-        {
-            title: "Специалист буровзрывных работ",
-            description:
-                "Управляет стихией. Рассчитывает и проводит точные направленные взрывы, чтобы разрушить крепчайшую скалу и открыть доступ к ценной руде.",
-            className: "item-3",
-            image: explosivesImage,
-        },
-        {
-            title: "Горноспасатель",
-            description:
-                "Первым приходит на помощь при авариях. Ликвидирует подземные пожары, проверяет системы жизнеобеспечения шахт и спасает людей с помощью передового снаряжения.",
-            className: "item-4",
-            image: rescuerImage,
-        },
-        {
-            title: "Водитель карьерного самосвала",
-            description:
-                "Управляет машинами-гигантами весом до 450 тонн. Контролирует десятки цифровых датчиков, следит за распределением веса и координирует движение по уклонам карьера.",
-            className: "item-5",
-            image: driverImage,
-        },
-    ]
+interface Profession {
+    title: string
+    description: string
+    details: string
+    image: string
+}
+
+const professions: Profession[] = [
+    {
+        title: "Горный мастер",
+        description: "Организует работу смены и отвечает за безопасность команды.",
+        details: "Руководит сменой в шахте или карьере, распределяет задачи между бригадами, контролирует работу техники и соблюдение требований безопасности.",
+        image: masterImage,
+    },
+    {
+        title: "Горный инженер-технолог",
+        description: "Проектирует процессы добычи и управляет технологиями производства.",
+        details: "Проектирует карьеры и подземные сооружения, разрабатывает безопасные способы добычи и управляет сложными производственными системами.",
+        image: engineerImage,
+    },
+    {
+        title: "Специалист буровзрывных работ",
+        description: "Рассчитывает и организует безопасное проведение взрывных работ.",
+        details: "Планирует буровзрывные работы, рассчитывает параметры зарядов и контролирует точность и безопасность выполнения производственных операций.",
+        image: explosivesImage,
+    },
+    {
+        title: "Горноспасатель",
+        description: "Предотвращает последствия аварий и помогает людям в сложных условиях.",
+        details: "Участвует в ликвидации аварий, проверяет системы жизнеобеспечения шахт и проводит спасательные работы с использованием специального оборудования.",
+        image: rescuerImage,
+    },
+    {
+        title: "Водитель карьерного самосвала",
+        description: "Управляет крупной техникой в условиях горного производства.",
+        details: "Управляет карьерным самосвалом, контролирует показания систем машины и безопасно перевозит горную массу по технологическим маршрутам.",
+        image: driverImage,
+    },
+]
+
+export const HomeProfessions = () => {
+    const [selectedProfession, setSelectedProfession] = useState<Profession | null>(null)
 
     return (
-        <div className="home-grid-item-3-grid">
-            {professionsList.map((prof) => (
-                <div className={`home-block prof-item ${prof.className}`} key={prof.title}>
-                    <div className="prof-image-wrapper">
-                        <img src={prof.image} alt={prof.title} />
-                        <div className="image-darkening-overlay" />
-                        <div className="image-gradient-overlay" />
+        <section id="professions" className="home-section home-professions-section" aria-labelledby="professions-title">
+            <div className="home-section-inner">
+                <div className="home-section-heading-row">
+                    <div className="home-section-heading">
+                        <span className="home-section-kicker">Пять направлений</span>
+                        <h2 id="professions-title">Инженерные профессии</h2>
+                        <p>Сейчас ПрофиВектор рассчитывает соответствие пяти профессиям горнодобывающей отрасли.</p>
                     </div>
-
-                    <div className="prof-content">
-                        <div className="prof-content-header">
-                            {prof.title}
-                        </div>
-
-                        <div className="home-block-text">
-                            {prof.description}
-                        </div>
-                    </div>
+                    <a className="home-section-more" href="#professions">Все профессии <ArrowRight size={16} /></a>
                 </div>
-            ))}
-        </div>
+
+                <div className="home-professions-grid">
+                    {professions.map((profession, index) => (
+                        <article className={`home-profession-card ${index === 0 ? "home-profession-card--featured" : ""}`} key={profession.title}>
+                            <div className="home-profession-image">
+                                <img src={profession.image} alt="" />
+                                <span>0{index + 1}</span>
+                            </div>
+                            <div className="home-profession-content">
+                                <h3>{profession.title}</h3>
+                                <p>{profession.description}</p>
+                                <button type="button" onClick={() => setSelectedProfession(profession)}>
+                                    Подробнее <ArrowRight size={17} />
+                                </button>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+
+            <HomeModal
+                open={Boolean(selectedProfession)}
+                title={selectedProfession?.title ?? "Профессия"}
+                onClose={() => setSelectedProfession(null)}>
+                {selectedProfession && (
+                    <>
+                        <img className="home-profession-modal-image" src={selectedProfession.image} alt="" />
+                        <p>{selectedProfession.details}</p>
+                        <p>ПрофиВектор сравнивает профиль пользователя с профилем этой профессии и показывает степень соответствия.</p>
+                        <Button label="Закрыть" onClick={() => setSelectedProfession(null)} />
+                    </>
+                )}
+            </HomeModal>
+        </section>
     )
 }

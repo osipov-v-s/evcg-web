@@ -1,70 +1,61 @@
-import { FC } from "react"
+import { BarChart3, ClipboardList, ScanSearch, UserRound } from "lucide-react"
 
-export const HomeHowItsWorking: FC = ({ }) => {
-    return (
-        <div className="home-grid-item-2-grid">
+const steps = [
+    {
+        title: "Заполните данные",
+        description: "Заполните профиль и пройдите тесты.",
+        Icon: UserRound,
+    },
+    {
+        title: "Пройдите диагностику",
+        description: "Система соберёт информацию об интересах, способностях и результатах заданий.",
+        Icon: ClipboardList,
+    },
+    {
+        title: "Система рассчитает результат",
+        description: "Математическая модель сравнит ваши показатели с профилями специалистов.",
+        Icon: ScanSearch,
+    },
+    {
+        title: "Получите список подходящих профессий",
+        description: "Вы увидите, какие профессии подходят вам больше всего.",
+        Icon: BarChart3,
+    },
+]
 
-            <div className="item-1-grid">
-                <div className="home-block">
-                    <div className="home-block-header">
-                        Ключевые тесты
-                    </div>
-
-                    <div className="home-block-text">
-                        Формируют профиль мышления, темперамента, интересов и командных ролей.
-                    </div>
-
-                    <div className="widget-tags-container">
-                        <div className="widget-tag">Темперамент</div>
-                        <div className="widget-tag">Групповые роли</div>
-                        <div className="widget-tag">Инженерное мышление</div>
-                        <div className="widget-tag">Профориентационное тестирование</div>
-                    </div>
-                </div>
-
-                <div className="home-block">
-                    <div className="home-block-header">
-                        Практические VR-сценарии
-                    </div>
-
-                    <div className="home-block-text">
-                        Помогают оценить действия и мотивацию в условиях, близких к профессиональным задачам.
-                    </div>
-
-                    <div className="widget-tags-container">
-                        <div className="widget-tag">Интерактивные задачи</div>
-                        <div className="widget-tag">Симуляция работы в карьере</div>
-                        <div className="widget-tag">Eye-tracking</div>
-                        <div className="widget-tag">Face-tracking</div>
-                    </div>
-                </div>
-
-                <div className="home-block">
-                    <div className="home-block-header">
-                        Биологическая обратная связь
-                    </div>
-
-                    <div className="home-block-text">
-                        Если оборудование доступно, система может учитывать ЭЭГ и другие исследовательские каналы во время симуляции.
-                    </div>
-
-                    <div className="widget-tags-container">
-                        <div className="widget-tag">Фиксация пиков концентрации</div>
-                        <div className="widget-tag">Уровень стресса и вовлеченности</div>
-                        <div className="widget-tag">Объективные показатели</div>
-                    </div>
-                </div>
+export const HomeHowItsWorking = () => (
+    <section id="how-it-works" className="home-section home-how-section" aria-labelledby="how-title">
+        <div className="home-section-inner">
+            <div className="home-section-heading home-how-heading">
+                <span className="home-section-title-icon home-section-title-icon--blue">04</span>
+                <div><h2 id="how-title">Как это работает</h2><p>От знакомства с вашими интересами — до списка подходящих инженерных профессий.</p></div>
             </div>
 
-            <div className="home-block item-2">
-                <div className="home-block-header">
-                    Как формируется результат
-                </div>
+            <div className="home-how-layout">
+                <ol className="home-how-steps">
+                    {steps.map(({ title, description, Icon }, index) => (
+                        <li className="home-how-step" key={title}>
+                            <span className="home-how-number">0{index + 1}</span>
+                            <div className="home-how-icon"><Icon size={23} /></div>
+                            <div><h3>{title}</h3><p>{description}</p></div>
+                        </li>
+                    ))}
+                </ol>
 
-                <div className="home-block-text">
-                    Система объединяет доступные результаты психологических тестов, учебный профиль и данные практических сценариев, затем сопоставляет их с референсными профилями профессий. Вы получаете понятный результат соответствия, который помогает обсудить дальнейший образовательный маршрут со специалистом или куратором.
-                </div>
+                <aside className="home-how-result" aria-label="Пример отображения результата">
+                    <span>Пример отображения результата</span>
+                    <h3>Результат математического расчёта</h3>
+                    <div className="home-how-score">
+                        <div><strong>Горный инженер</strong><span>84%</span></div>
+                        <div className="home-how-score-bar"><span style={{ width: "84%" }} /></div>
+                    </div>
+                    <div className="home-how-score">
+                        <div><strong>Горный мастер</strong><span>76%</span></div>
+                        <div className="home-how-score-bar"><span style={{ width: "76%" }} /></div>
+                    </div>
+                    <small>Это mock-интерфейс, а не реальный расчёт.</small>
+                </aside>
             </div>
         </div>
-    )
-}
+    </section>
+)

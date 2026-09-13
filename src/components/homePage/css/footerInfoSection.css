@@ -1,0 +1,13 @@
+.home-footer { width: 100%; color: var(--text-secondary-color); background: #fbfcfd; }
+.home-footer .home-section-inner { padding-top: 25px; padding-bottom: 18px; }
+.home-footer-top { display: grid; grid-template-columns: 210px 1fr 170px; align-items: center; gap: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--home-border); }
+.home-footer-brand { display: flex; flex-direction: column; }
+.home-footer-brand strong { color: var(--accent-color-950); font-size: 1rem; }
+.home-footer-brand span { color: var(--text-secondary-color); font-size: .62rem; }
+.home-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; color: var(--text-primary-color); font-size: .62rem; font-weight: var(--font-weight-medium); }
+.home-footer nav a:hover { color: var(--home-blue-dark); }
+.home-footer-foundation-logo { width: 170px; max-height: 54px; padding: 8px 10px; border-radius: 7px; background: var(--home-blue-dark); object-fit: contain; }
+.home-footer-details { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; padding: 15px 0; color: var(--text-secondary-color); font-size: .61rem; line-height: 1.45; }
+.home-footer-details strong { display: block; margin-bottom: 4px; color: var(--text-primary-color); }
+.home-footer-bottom { padding-top: 12px; border-top: 1px solid var(--home-border); font-size: .6rem; }
+@media (max-width: 760px) { .home-footer-top { grid-template-columns: 1fr; align-items: flex-start; } .home-footer nav { justify-content: flex-start; } .home-footer-details { grid-template-columns: 1fr; gap: 10px; } }

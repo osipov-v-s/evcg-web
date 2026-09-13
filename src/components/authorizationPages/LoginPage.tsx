@@ -2,13 +2,15 @@ import "./css/authStyle.css"
 
 import { FC, FormEvent, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GraduationCap, KeyRound, MailOpen, DoorOpen, UserRoundPlus } from "lucide-react"
+import { ArrowRight, KeyRound, MailOpen } from "lucide-react"
 
 import { Button } from "../ui/reusable/button";
 import { authApi } from "../../services/api/authApi";
 import { useAuth } from "../../contexts/AuthContext";
 import toast, { Toaster } from "react-hot-toast";
 import { FieldInput } from "../ui/reusable/fieldInput";
+import { AuthBrand } from "./AuthBrand";
+import { AuthSocialButtons } from "./AuthSocialButtons";
 
 export const LoginPage: FC = () => {
     const navigate = useNavigate()
@@ -45,18 +47,13 @@ export const LoginPage: FC = () => {
         }
     }
 
-    const handleBackToRegistration = () => {
-        navigate("/register")
-    }
-
     return (
         <div className="auth-container">
             <div className="login-container">
                 <div className="login-header">
-                    <Button label="На главную" onClick={() => {navigate("/")}} className="back-btn"/>
-                    <div className="login-icon"><GraduationCap size={34} /></div>
-                    <h2>Вход в систему</h2>
-                    <span>Система профориентации для школьников, студентов и специалистов</span>
+                    <AuthBrand />
+                    <h2>С возвращением!</h2>
+                    <span>Войдите в свой аккаунт, чтобы продолжить диагностику и посмотреть результаты.</span>
                 </div>
 
                 <form className="login-form-cols" onSubmit={handleSubmit}>
@@ -79,13 +76,17 @@ export const LoginPage: FC = () => {
                             isPassword={true}
                             inputValue={formData.password}
                             inputOnChange={updateField("password")} />
+                        <div className="auth-help-row"><button type="button" onClick={() => toast("Восстановление пароля будет подключено позже.")}>Забыли пароль?</button></div>
                     </div>
 
                     <div className="login-form-row">
-                        <Button type="submit" disabled={isSubmitting} label={isSubmitting ? "Входим…" : "Войти"} icon={<DoorOpen />} />
-                        <Button type="button" variant="tertiary" label="Создать аккаунт" onClick={handleBackToRegistration} icon={<UserRoundPlus />} />
+                        <Button type="submit" disabled={isSubmitting} label={isSubmitting ? "Входим…" : "Войти"} icon={<ArrowRight size={18} />} />
                     </div>
                 </form>
+
+                <div className="auth-divider"><span>или войдите через</span></div>
+                <AuthSocialButtons />
+                <p className="auth-switch">Нет аккаунта? <button type="button" onClick={() => navigate("/register")}>Зарегистрироваться</button></p>
             </div>
 
             <Toaster />

@@ -1,24 +1,23 @@
-.widget-tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: auto;
-    padding-top: 24px;
-}
-
-.widget-tag {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #374151;
-    background-color: #f3f4f6;
-    padding: 6px 12px;
-    border-radius: 100px;
-    border: 1px solid transparent;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Интерактив для тегов */
-.widget-tag:hover {
-    background-color: #e5e7eb;
-    color: #111827;
-}
+.home-how-section { overflow: hidden; background: #fff; }
+.home-how-section .home-section-inner { padding-top: 36px; padding-bottom: 38px; }
+.home-how-heading { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+.home-how-heading h2 { margin-bottom: 3px; }
+.home-how-layout { display: flex; flex-direction: column; gap: 12px; }
+.home-how-steps { position: relative; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); padding: 0 8px; }
+.home-how-steps::before { position: absolute; top: 26px; right: 10%; left: 10%; height: 1px; background: linear-gradient(90deg,var(--home-blue),var(--accent-color-200)); content: ""; }
+.home-how-step { position: relative; z-index: 1; display: grid; grid-template-columns: 38px 1fr; gap: 9px; min-height: 112px; padding: 8px 18px 8px 0; background: #fff; }
+.home-how-step:not(:last-child)::after { position: absolute; top: 18px; right: 7px; color: var(--home-blue); content: "→"; font-size: 1rem; }
+.home-how-number { position: absolute; top: -5px; left: -3px; z-index: 2; color: var(--home-blue-dark); background: #fff; font-size: .58rem; font-weight: var(--font-weight-bold); }
+.home-how-icon { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--accent-color-100); border-radius: 8px; color: var(--home-blue-dark); background: var(--home-blue-soft); }
+.home-how-step h3 { margin: 1px 18px 4px 0; font-size: .75rem; line-height: 1.22; }
+.home-how-step p { display: -webkit-box; overflow: hidden; color: var(--text-secondary-color); font-size: .62rem; line-height: 1.32; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.home-how-result { position: relative; display: grid; grid-template-columns: 170px 1fr 1fr 155px; align-items: center; gap: 16px; min-height: 76px; padding: 11px 16px; overflow: hidden; border: 1px solid var(--accent-color-200); border-radius: 9px; color: var(--text-primary-color); background: linear-gradient(90deg,#e8f5ff,#f8fbfd); }
+.home-how-result::before { position: absolute; right: 7%; width: 150px; height: 150px; border: 1px solid rgba(32,146,233,.14); border-radius: 50%; content: ""; }
+.home-how-result > span { color: var(--home-blue-dark); font-size: .58rem; font-weight: var(--font-weight-bold); letter-spacing: .05em; text-transform: uppercase; }
+.home-how-result h3 { font-size: .74rem; line-height: 1.25; }
+.home-how-score > div:first-child { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 4px; font-size: .62rem; }
+.home-how-score-bar { height: 4px; overflow: hidden; background: var(--grey-color-300); }
+.home-how-score-bar span { display: block; height: 100%; background: var(--home-blue); }
+.home-how-result small { position: relative; z-index: 1; color: var(--text-placeholder-color); font-size: .55rem; }
+@media (max-width: 960px) { .home-how-steps { grid-template-columns: repeat(2,1fr); gap: 8px; } .home-how-steps::before { display: none; } .home-how-step { border-bottom: 1px solid var(--home-border); } .home-how-result { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .home-how-steps { grid-template-columns: 1fr; } .home-how-step { min-height: 90px; } .home-how-step::after { top: auto !important; right: 50% !important; bottom: -7px; transform: rotate(90deg); } .home-how-result { grid-template-columns: 1fr; } }

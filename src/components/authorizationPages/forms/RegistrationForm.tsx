@@ -1,10 +1,13 @@
-import { GraduationCap, MailOpen, KeyRound, Repeat, MoveLeft, CheckCheck, ArrowLeft } from "lucide-react"
+import { MailOpen, KeyRound, Repeat, CheckCheck, ArrowLeft } from "lucide-react"
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useState } from "react"
 import { FieldInput } from "../../ui/reusable/fieldInput";
 import { Button } from "../../ui/reusable/button"
 import toast, { Toaster } from "react-hot-toast"
 import { AccountForm } from "../../../types/account/account";
 import { Checkbox } from "../../ui/reusable/checkbox";
+import { useNavigate } from "react-router-dom";
+import { AuthBrand } from "../AuthBrand";
+import { AuthSocialButtons } from "../AuthSocialButtons";
 
 type UserType = "Школьник" | "Специалист" | "Эксперт"
 interface RegistrationFormProps {
@@ -16,6 +19,7 @@ interface RegistrationFormProps {
     isSubmitting?: boolean
 }
 export const RegistrationForm = ({ userType, account, setAccount, handleRegistration, handleBack, isSubmitting = false }: RegistrationFormProps) => {
+    const navigate = useNavigate()
     const [privacyPoliceChecked, setPrivacyPoliceChecked] = useState(false)
     const [userAgreementChecked, setUserAgreementChecked] = useState(false)
 
@@ -44,9 +48,10 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
         <form className="auth-container" onSubmit={startRegistration}>
             <div className="registration-container">
                 <div className="registration-header">
-                    <div className="registration-icon"><GraduationCap size={34} /></div>
-                    <h2>Регистрация</h2>
-                    <span>Заполните электронную почту и пароль</span>
+                    <AuthBrand />
+                    <span className="auth-role-badge">{userType}</span>
+                    <h2>Создайте аккаунт</h2>
+                    <span>Заполните электронную почту и придумайте пароль.</span>
                 </div>
 
                 <div className="registrarion-form-cols">
@@ -115,6 +120,9 @@ export const RegistrationForm = ({ userType, account, setAccount, handleRegistra
                         <Button type="button" disabled={isSubmitting} label="Назад" variant="tertiary" onClick={handleBack} icon={<ArrowLeft />} />
                     </div>
                 </div>
+                <div className="auth-divider"><span>или зарегистрируйтесь через</span></div>
+                <AuthSocialButtons />
+                <p className="auth-switch">Уже есть аккаунт? <button type="button" onClick={() => navigate("/login")}>Войти</button></p>
             </div>
         </form>
         <Toaster />
