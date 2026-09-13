@@ -74,9 +74,9 @@ import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from 
 import { InterestsMapTest } from "./components/testsPage/interestsMap/InterestsMapTest";
 import { InterestsMapResults } from "./components/testsPage/interestsMap/InterestsMapResults";
 import { ProfessionalPreferencesTest } from "./components/testsPage/professionalPreferences/ProfessionalPreferencesTest";
-import { ProfessionalPreferencesResults } from "./components/testsPage/professionalPreferences/ProfessionalPreferecesResults";
-import { CareerAnchorsTest } from "./components/testsPage/careerAnchors/careerAnchorsTest";
-import { CareerAnchorsResults } from "./components/testsPage/careerAnchors/careerAnchorsResults";
+import { ProfessionalPreferencesResults } from "./components/testsPage/professionalPreferences/ProfessionalPreferencesResults";
+import { CareerAnchorsTest } from "./components/testsPage/careerAnchors/CareerAnchorsTest";
+import { CareerAnchorsResults } from "./components/testsPage/careerAnchors/CareerAnchorsResults";
 import { EngineeringThinkingResults } from "./components/testsPage/engineeringThinking/EngineeringThinkingResults";
 import { TestRoutes } from "./routing/tests/TestRoutes";
 export default function App() {

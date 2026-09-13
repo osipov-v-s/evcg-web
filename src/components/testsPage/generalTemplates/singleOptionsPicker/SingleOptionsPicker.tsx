@@ -27,6 +27,7 @@ interface SingleOptionPickerProps {
     timerString?: string
     pickerStyleType?: "squeezed" | "extended"
     optionStyleType?: "row" | "column"
+    hideSkipButton?: boolean
 }
 
 export const SingleOptionsPicker = ({
@@ -36,7 +37,8 @@ export const SingleOptionsPicker = ({
     description,
     timerString,
     pickerStyleType = "squeezed",
-    optionStyleType = "column"
+    optionStyleType = "column",
+    hideSkipButton = false,
 }: SingleOptionPickerProps) => {
     const [currentTask, setCurrentTask] = useState<Task>()
     const [currentTaskNumber, setCurrentTaskNumber] = useState<number>(0)
@@ -131,7 +133,9 @@ export const SingleOptionsPicker = ({
                     <Button label="Назад" variant="secondary" icon={<ArrowLeft />} disabled={currentTaskNumber === 0} onClick={() => { changeTask(-1) }} />
 
                     {currentTaskNumber < tasks.length - 1 ? (
-                        <Button label={"Пропустить"} icon={<ArrowRight />} onClick={() => changeTask(1)} />
+                        !hideSkipButton && (
+                            <Button label="Пропустить" icon={<ArrowRight />} onClick={() => changeTask(1)} />
+                        )
                     ) : (
                         <Button label={"Завершить"} icon={<CheckCheck />} onClick={navigateToResults} />
                     )}

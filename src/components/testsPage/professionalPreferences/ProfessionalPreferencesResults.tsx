@@ -1,24 +1,25 @@
 import { useNavigate } from "react-router-dom"
-import { calculateOrientationScores } from "./careerAnchorsResultCalc"
+import { calculatePreferenceScores, PreferenceQuestion } from "./professionalPreferencesResultCalc"
 import { sortByParam } from "../utils/sortByParams"
 import { Toaster } from "react-hot-toast"
-import { orientationsDescriptions, orientationsTranslate } from "./careerAnchorsData"
+import { interpretationsDescriptions, interpretationsTranslate } from "./professionalPreferencesData"
 import { formatDateRU } from "../../../services/dates/formatDate"
 import { formatTime } from "../utils/formatTime"
 import { Button } from "../../ui/reusable/button"
 import { ArrowLeft } from "lucide-react"
 import { useClientTestResult } from "../../resultsPage/hooks/useClientTestResult"
 
-export const CareerAnchorsResults = () => {
+export const ProfessionalPreferencesResults = () => {
     const navigate = useNavigate()
 
     const { result, loading } = useClientTestResult({
-        extractInputData: (state) => state?.careerAnchorsTasks,
-        calculateResult: (tasks, time) => calculateOrientationScores(tasks, time),
+        extractInputData: (state) => state?.professionalPreferencesTask,
+        calculateResult: (tasks, time) =>
+            calculatePreferenceScores(tasks as PreferenceQuestion[], time),
         transformResponse: (response) => ({
             ...response,
-            psychParams: sortByParam(response.psychParams)
-        })
+            psychParams: sortByParam(response.psychParams),
+        }),
     })
 
     if (loading || !result) {
@@ -32,21 +33,21 @@ export const CareerAnchorsResults = () => {
 
     return (
         <div className="result-wrapper">
-            <h3>Результаты теста «Якоря карьеры»:</h3>
+            <h3>Результаты теста «Профессиональные предпочтения»:</h3>
 
             <div className="results-list">
                 {result.psychParams.map((param) => {
-                    const title = orientationsTranslate[param.name] || param.name
-                    const description = orientationsDescriptions[param.name]
-                    const isHigh = param.param >= 5
+                    const title = interpretationsTranslate[param.name] || param.name
+                    const description = interpretationsDescriptions[param.name]
+                    const isHigh = param.param >= 6
 
                     return (
                         <div className={`result-card ${isHigh ? "active-anchor" : ""}`} key={param.name}>
                             <p className="result-title">
                                 {isHigh ? (
-                                    <b>{title}: {param.param}</b>
+                                    <b>{title}: {param.param} (из 12)</b>
                                 ) : (
-                                    `${title}: ${param.param}`
+                                    `${title}: ${param.param} (из 12)`
                                 )}
                             </p>
                             {description && <p className="description-text">{description}</p>}

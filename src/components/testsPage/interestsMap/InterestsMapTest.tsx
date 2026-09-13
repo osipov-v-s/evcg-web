@@ -9,7 +9,7 @@ export const InterestsMapTest = StandartTest<Task>({
             id: item.id,
             taskNumber: item.id,
             text: item.text,
-            variants: [],
+            direction: item.direction,
             options: item.options.map(option => ({
                 ...option,
                 isPicked: false
@@ -17,9 +17,10 @@ export const InterestsMapTest = StandartTest<Task>({
             userAnswer: 0,
         })) as Task[],
     resultPath: "/tests/interests-map/results",
-    stateKey: "interestsMapTask",
+    stateKey: "interestsMapTasks",
     description: "Выбери то, что нравится или ближе именно тебе.",
     autoStartTimer: true,
     pickerStyle: "squeezed",
     optionStyle: "column",
+    hideSkipButton: true,
 })

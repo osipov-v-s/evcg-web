@@ -5,11 +5,13 @@ export const calculateResults = (testData: KlimovTask[]): TestResultResponse => 
     const result: TestResultResponse = {
         completionTimeSeconds: 0,
         testTypeName: "Professional-Orientation-Klimov",
-        psychParams: [{ name: "human_score", param: 0 },
-        { name: "nature_score", param: 0 },
-        { name: "tech_score", param: 0 },
-        { name: "sign_score", param: 0 },
-        { name: "artistic_score", param: 0 }]
+        psychParams: [
+            { name: "human_score", param: 0 },
+            { name: "nature_score", param: 0 },
+            { name: "tech_score", param: 0 },
+            { name: "sign_score", param: 0 },
+            { name: "artistic_score", param: 0 }
+        ]
     }
 
     testData.forEach(task => {

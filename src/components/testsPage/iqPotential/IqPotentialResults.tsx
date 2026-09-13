@@ -32,6 +32,12 @@ export const IqPotentialResults = () => {
 
     const isViewMode = location.state?.isViewMode || false
 
+
+    // Вывод state в консоль браузера при монтировании компонента
+    useEffect(() => {
+        console.log("Данные из location.state:", location.state)
+    }, [location.state])
+
     //  STEP 1: Load IQ table data
     useEffect(() => {
         const loadIqTable = async () => {

@@ -2,50 +2,44 @@
     "data": [
         {
             "id": 1,
-            "text": "Мне хотелось бы в своей профессиональной деятельности",
+            "text": "Мне хотелось бы в своей будущей профессиональной деятельности",
             "options": [
                 {
                     "id": 1,
                     "text": "общаться с самыми разными людьми",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "снимать фильмы, писать книги, рисовать, выступать на сцене и т.д",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 3,
                     "text": "заниматься расчетами; вести документацию",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
         },
         {
             "id": 2,
-            "text": "В книге или кинофильме меня больше всего привлекает",
+            "text": "В книге или фильме меня больше всего привлекает",
             "options": [
                 {
                     "id": 1,
                     "text": "возможность следить за ходом мыслей автора",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 2,
                     "text": "художественная форма, мастерство писателя или режиссера",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 3,
                     "text": "сюжет, действия героев",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 }
             ],
             "userAnswer": 0
@@ -57,20 +51,17 @@
                 {
                     "id": 1,
                     "text": "за общественную деятельность",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "в области наук",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 3,
                     "text": "в области искусства",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 }
             ],
             "userAnswer": 0
@@ -82,20 +73,17 @@
                 {
                     "id": 1,
                     "text": "главным механиком",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 2,
                     "text": "начальником экспедиции",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 },
                 {
                     "id": 3,
                     "text": "главным бухгалтером",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -107,20 +95,17 @@
                 {
                     "id": 1,
                     "text": "взаимопонимание между людьми",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "научные открытия",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 3,
                     "text": "развитие производства",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 }
             ],
             "userAnswer": 0
@@ -132,20 +117,17 @@
                 {
                     "id": 1,
                     "text": "созданием дружного, сплоченного коллектива",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "разработкой новых технологий обучения",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 3,
                     "text": "работой с документами",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -157,20 +139,17 @@
                 {
                     "id": 1,
                     "text": "внутреннее устройство экспонатов",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 2,
                     "text": "их практическое применение",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 3,
                     "text": "внешний вид экспонатов (цвет, форма)",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 }
             ],
             "userAnswer": 0
@@ -182,20 +161,17 @@
                 {
                     "id": 1,
                     "text": "дружелюбие и отзывчивость",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "смелость и выносливость",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 },
                 {
                     "id": 3,
                     "text": "обязательность и аккуратность",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -207,45 +183,39 @@
                 {
                     "id": 1,
                     "text": "ставить различные опыты, эксперименты",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 2,
                     "text": "писать стихи, сочинять музыку или рисовать",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 3,
                     "text": "тренироваться",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 }
             ],
             "userAnswer": 0
         },
         {
             "id": 10,
-            "text": "В заграничных поездках меня скорее заинтересует",
+            "text": "В поездках в другие страны меня скорее заинтересует",
             "options": [
                 {
                     "id": 1,
                     "text": "возможность знакомства с историей и культурой другой страны",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 2,
                     "text": "экстремальный туризм (альпинизм, виндсерфинг, горные лыжи)",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 },
                 {
                     "id": 3,
-                    "text": "деловое общение",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "text": "общение по работе",
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -257,20 +227,17 @@
                 {
                     "id": 1,
                     "text": "человеческих взаимоотношениях",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "новой научной гипотезе",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 3,
                     "text": "технических характеристиках новой модели машины, компьютера",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 }
             ],
             "userAnswer": 0
@@ -282,20 +249,17 @@
                 {
                     "id": 1,
                     "text": "технический",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 2,
                     "text": "музыкальный",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 3,
                     "text": "спортивный",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 }
             ],
             "userAnswer": 0
@@ -307,20 +271,17 @@
                 {
                     "id": 1,
                     "text": "улучшение взаимопонимания между учителями и учениками",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "поддержание здоровья учащихся, занятия спортом",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 },
                 {
                     "id": 3,
                     "text": "укрепление дисциплины",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -332,20 +293,17 @@
                 {
                     "id": 1,
                     "text": "научно-популярные фильмы",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 2,
                     "text": "программы о культуре и искусстве",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 3,
                     "text": "спортивные программы",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 }
             ],
             "userAnswer": 0
@@ -357,20 +315,17 @@
                 {
                     "id": 1,
                     "text": "с детьми или сверстниками",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "с машинами, механизмами",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 3,
                     "text": "с объектами природы",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 }
             ],
             "userAnswer": 0
@@ -382,20 +337,17 @@
                 {
                     "id": 1,
                     "text": "учить общению с другими людьми",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "давать знания",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 3,
                     "text": "обучать навыкам работы",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -407,20 +359,17 @@
                 {
                     "id": 1,
                     "text": "иметь возможность заниматься творчеством",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 2,
                     "text": "вести здоровый образ жизни",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 },
                 {
                     "id": 3,
                     "text": "тщательно планировать свои дела",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -432,20 +381,17 @@
                 {
                     "id": 1,
                     "text": "защите интересов и прав граждан",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "достижениях в области науки и техники",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 3,
                     "text": "материальном благополучии граждан",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 }
             ],
             "userAnswer": 0
@@ -456,21 +402,18 @@
             "options": [
                 {
                     "id": 1,
-                    "text": "труда",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "text": "труда (технологии)",
+                    "interpretation": 3
                 },
                 {
                     "id": 2,
                     "text": "физкультуры",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 },
                 {
                     "id": 3,
                     "text": "математики",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -481,21 +424,18 @@
             "options": [
                 {
                     "id": 1,
-                    "text": "заниматься сбытом товаров",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "text": "заниматься продажей товаров",
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "изготавливать изделия",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 3,
                     "text": "планировать производство товаров",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -507,20 +447,17 @@
                 {
                     "id": 1,
                     "text": "выдающихся ученых и их открытиях",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 2,
                     "text": "интересных изобретениях",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 3,
                     "text": "жизни и творчестве писателей, художников, музыкантов",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 }
             ],
             "userAnswer": 0
@@ -532,20 +469,17 @@
                 {
                     "id": 1,
                     "text": "читать, думать, рассуждать",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 2,
                     "text": "что-нибудь мастерить, шить, ухаживать за животными, растениями",
-                    "interpretation": 3,
-                    "isPicked": false
+                    "interpretation": 3
                 },
                 {
                     "id": 3,
                     "text": "ходить на выставки, концерты, в музеи",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 }
             ],
             "userAnswer": 0
@@ -557,20 +491,17 @@
                 {
                     "id": 1,
                     "text": "научном открытии",
-                    "interpretation": 2,
-                    "isPicked": false
+                    "interpretation": 2
                 },
                 {
                     "id": 2,
                     "text": "художественной выставке",
-                    "interpretation": 4,
-                    "isPicked": false
+                    "interpretation": 4
                 },
                 {
                     "id": 3,
                     "text": "экономической ситуации",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0
@@ -582,20 +513,17 @@
                 {
                     "id": 1,
                     "text": "в помещении, где много людей",
-                    "interpretation": 1,
-                    "isPicked": false
+                    "interpretation": 1
                 },
                 {
                     "id": 2,
                     "text": "в необычных условиях",
-                    "interpretation": 5,
-                    "isPicked": false
+                    "interpretation": 5
                 },
                 {
                     "id": 3,
                     "text": "в обычном кабинете",
-                    "interpretation": 6,
-                    "isPicked": false
+                    "interpretation": 6
                 }
             ],
             "userAnswer": 0

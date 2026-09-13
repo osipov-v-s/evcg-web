@@ -16,6 +16,7 @@ interface StandartTestConfig<T> {
     autoNavigationOnTimeout?: boolean
     pickerStyle?: "squeezed" | "extended"
     optionStyle?: "column" | "row"
+    hideSkipButton?: boolean
 }
 
 export const StandartTest = <T,>(config: StandartTestConfig<T>) => {
@@ -73,6 +74,7 @@ export const StandartTest = <T,>(config: StandartTestConfig<T>) => {
                 description={config.description}
                 pickerStyleType={config.pickerStyle}
                 optionStyleType={config.optionStyle}
+                hideSkipButton={config.hideSkipButton}
                 timerString={config.hasTimer !== false ? timerString : undefined} />
         )
     }

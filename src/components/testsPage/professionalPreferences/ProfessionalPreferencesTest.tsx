@@ -9,9 +9,11 @@ export const ProfessionalPreferencesTest = StandartTest<Task>({
             id: item.id,
             taskNumber: item.id,
             text: item.text,
-            options: item.options.map(option => ({
-                ...option,
-                isPicked: false
+            options: item.options.map((option) => ({
+                id: option.id,
+                text: option.text,
+                interpretation: option.interpretation,
+                isPicked: false,
             })),
             userAnswer: 0,
         })) as Task[],
@@ -21,4 +23,5 @@ export const ProfessionalPreferencesTest = StandartTest<Task>({
     autoStartTimer: true,
     pickerStyle: "squeezed",
     optionStyle: "column",
+    hideSkipButton: true,
 })

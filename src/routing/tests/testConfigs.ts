@@ -1,33 +1,43 @@
 import { ComponentType } from "react"
-// Import all test components
-import { TemperamentTest } from "../../components/testsPage/temperament/TemperamentTest";
-import { TemperamentResults } from "../../components/testsPage/temperament/TemperamentResults";
 
-import { GroupRolesTest } from "../../components/testsPage/groupRoles/GroupRolesTest";
-import { GroupRolesResults } from "../../components/testsPage/groupRoles/GroupRolesResults";
+import { TemperamentTest } from "../../components/testsPage/temperament/TemperamentTest"
+import { TemperamentResults } from "../../components/testsPage/temperament/TemperamentResults"
 
-import { EngineeringThinkingTest } from "../../components/testsPage/engineeringThinking/EngineeringThinkingTest";
-import { EngineeringThinkingResults } from "../../components/testsPage/engineeringThinking/EngineeringThinkingResults";
+import { GroupRolesTest } from "../../components/testsPage/groupRoles/GroupRolesTest"
+import { GroupRolesResults } from "../../components/testsPage/groupRoles/GroupRolesResults"
 
-import { KlimovTest } from "../../components/testsPage/klimov/KlimovTest";
-import { KlimovResults } from "../../components/testsPage/klimov/KlimovResults";
+import { EngineeringThinkingTest } from "../../components/testsPage/engineeringThinking/EngineeringThinkingTest"
+import { EngineeringThinkingResults } from "../../components/testsPage/engineeringThinking/EngineeringThinkingResults"
 
-import { IqPotentialTest } from "../../components/testsPage/iqPotential/IqPotentialTest";
-import { IqPotentialResults } from "../../components/testsPage/iqPotential/IqPotentialResults";
+import { KlimovTest } from "../../components/testsPage/klimov/KlimovTest"
+import { KlimovResults } from "../../components/testsPage/klimov/KlimovResults"
 
-import { HollandTest } from "../../components/testsPage/holland/HollandTest";
-import { HollandResults } from "../../components/testsPage/holland/HollandResults";
+import { IqPotentialTest } from "../../components/testsPage/iqPotential/IqPotentialTest"
+import { IqPotentialResults } from "../../components/testsPage/iqPotential/IqPotentialResults"
+
+import { HollandTest } from "../../components/testsPage/holland/HollandTest"
+import { HollandResults } from "../../components/testsPage/holland/HollandResults"
+
+import { InterestsMapTest } from "../../components/testsPage/interestsMap/InterestsMapTest"
+import { InterestsMapResults } from "../../components/testsPage/interestsMap/InterestsMapResults"
+
+import { ProfessionalPreferencesTest } from "../../components/testsPage/professionalPreferences/ProfessionalPreferencesTest"
+import { ProfessionalPreferencesResults } from "../../components/testsPage/professionalPreferences/ProfessionalPreferencesResults"
+
+import { CareerAnchorsTest } from "../../components/testsPage/careerAnchors/CareerAnchorsTest"
+import { CareerAnchorsResults } from "../../components/testsPage/careerAnchors/CareerAnchorsResults"
+
 export interface TestConfig {
     id: string
     path: string
-    name: string 
+    name: string
     testComponent: ComponentType
     resultsComponent: ComponentType
     descriptionPath: string
 }
 
 export const TEST_CONFIGS: TestConfig[] = [
-        {
+    {
         id: "temperament",
         path: "temperament",
         name: "Темперамент",
@@ -74,5 +84,30 @@ export const TEST_CONFIGS: TestConfig[] = [
         testComponent: HollandTest,
         resultsComponent: HollandResults,
         descriptionPath: "public/prof_holland/data/description.json"
+    },
+    {
+        id: "interests-map",
+        path: "interests-map",
+        name: "Карта интересов",
+        testComponent: InterestsMapTest,
+        resultsComponent: InterestsMapResults,
+        descriptionPath: "public/prof_holland/data/description.json" //TODO Поменять
+    },
+    {
+        id: "professional-preferences",
+        path: "professional-preferences",
+        name: "Профессиональные предпочтения",
+        testComponent: ProfessionalPreferencesTest,
+        resultsComponent: ProfessionalPreferencesResults,
+        descriptionPath: "public/prof_holland/data/description.json" //TODO Поменять
+    },
+    {
+        id: "career-anchors",
+        path: "career-anchors",
+        name: "Якоря карьеры",
+        testComponent: CareerAnchorsTest,
+        resultsComponent: CareerAnchorsResults,
+        descriptionPath: "public/prof_holland/data/description.json" //TODO Поменять
     }
+
 ]

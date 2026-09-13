@@ -24,25 +24,32 @@ export interface SaveTestResponse {
   testId?: string;
 }
 
-export type TestTypeName = 'Temperament' | 'Group-Roles' | 
-                          'Professional-Orientation' | 'Engineering-Thinking' | 
-                          'Intellectual-Potential' | 'Professional-Orientation-Klimov';
+export type TestTypeName =
+  | "Temperament"
+  | "Group-Roles"
+  | "Professional-Orientation"
+  | "Engineering-Thinking"
+  | "Intellectual-Potential"
+  | "Professional-Orientation-Klimov"
+  | "Career-Anchors"
+  | "Interests-Map"
+  | "Professional-Preferences";
 
-export type PsychParamName = 
-  | 'working_bee_score'
-  | 'supervision_score'
-  | 'motivation_score'
-  | 'idea_generator_score'
-  | 'supplier_score'
-  | 'dedicator_score'
-  | 'controller_score'
-  | 'completion_time_seconds'
-  | 'engineering_thinking_level'
-  | 'nature_score'
-  | 'tech_score'
-  | 'human_score'
-  | 'artistic_score'
-  | 'signed_score'
-  | 'extrav_introver_score'
-  | 'neirotizm_score'
-  | 'sincerity_score';
+export type PsychParamName =
+  | "working_bee_score"
+  | "supervision_score"
+  | "motivation_score"
+  | "idea_generator_score"
+  | "supplier_score"
+  | "dedicator_score"
+  | "controller_score"
+  | "completion_time_seconds"
+  | "engineering_thinking_level"
+  | "nature_score"
+  | "tech_score"
+  | "human_score"
+  | "artistic_score"
+  | "signed_score"
+  | "extrav_introver_score"
+  | "neirotizm_score"
+  | "sincerity_score";

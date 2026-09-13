@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom"
-import { TestResultRequest, TestResultResponse } from "../../../types/testTypes"
+import { TestResultResponse } from "../../../types/testTypes"
 import { useAuth } from "../../../contexts/AuthContext"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
