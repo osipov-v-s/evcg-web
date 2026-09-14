@@ -8,11 +8,13 @@ import { formatTime } from "../utils/formatTime"
 import { Button } from "../../ui/reusable/button"
 import { ArrowLeft } from "lucide-react"
 import { useClientTestResult } from "../../resultsPage/hooks/useClientTestResult"
+import { useTestResult } from "../../resultsPage/hooks/useTestResult"
 
 export const ProfessionalPreferencesResults = () => {
     const navigate = useNavigate()
 
-    const { result, loading } = useClientTestResult({
+    const { result, loading } = useTestResult({
+        testType: "Professional-Preferences",
         extractInputData: (state) => state?.professionalPreferencesTask,
         calculateResult: (tasks, time) =>
             calculatePreferenceScores(tasks as PreferenceQuestion[], time),
