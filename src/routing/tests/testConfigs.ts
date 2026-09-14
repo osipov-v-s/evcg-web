@@ -24,8 +24,8 @@ import { InterestsMapResults } from "../../components/testsPage/interestsMap/Int
 import { ProfessionalPreferencesTest } from "../../components/testsPage/professionalPreferences/ProfessionalPreferencesTest"
 import { ProfessionalPreferencesResults } from "../../components/testsPage/professionalPreferences/ProfessionalPreferencesResults"
 
-import { CareerAnchorsTest } from "../../components/testsPage/careerAnchors/CreerAnchorsTest"
-import { CareerAnchorsResults } from "../../components/testsPage/careerAnchors/CreerAnchorsResults"
+import { CareerAnchorsTest } from "../../components/testsPage/careerAnchors/CareerAnchorsTest"
+import { CareerAnchorsResults } from "../../components/testsPage/careerAnchors/CareerAnchorsResults"
 
 export interface TestConfig {
     id: string
