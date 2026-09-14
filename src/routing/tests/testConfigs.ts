@@ -91,7 +91,7 @@ export const TEST_CONFIGS: TestConfig[] = [
         name: "Карта интересов",
         testComponent: InterestsMapTest,
         resultsComponent: InterestsMapResults,
-        descriptionPath: "public/prof_holland/data/description.json" //TODO Поменять
+        descriptionPath: "public/interests_map/data/description.json" //TODO Поменять +
     },
     {
         id: "professional-preferences",
@@ -99,7 +99,7 @@ export const TEST_CONFIGS: TestConfig[] = [
         name: "Профессиональные предпочтения",
         testComponent: ProfessionalPreferencesTest,
         resultsComponent: ProfessionalPreferencesResults,
-        descriptionPath: "public/prof_holland/data/description.json" //TODO Поменять
+        descriptionPath: "public/professional_preferences/data/description.json" //TODO Поменять +
     },
     {
         id: "career-anchors",
@@ -107,7 +107,7 @@ export const TEST_CONFIGS: TestConfig[] = [
         name: "Якоря карьеры",
         testComponent: CareerAnchorsTest,
         resultsComponent: CareerAnchorsResults,
-        descriptionPath: "public/prof_holland/data/description.json" //TODO Поменять
+        descriptionPath: "public/career_anchors/data/description.json" //TODO Поменять +
     }
 
 ]
