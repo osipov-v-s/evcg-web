@@ -20,7 +20,6 @@ export const IqPotentialTest = FormSelectionTest<Task>({
     Component: SingleOptionsPicker,
     fetchFormData: async (formId) => {
         const response = await axios.get(`${getBaseUrl()}/public/iq_potential/data/${formId}.json`)
-        console.log(response.data)
 
         return response.data[formId].questions.map((task: Task) => ({
             ...task,
