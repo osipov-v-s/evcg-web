@@ -8,11 +8,13 @@ import { formatTime } from "../utils/formatTime"
 import { Button } from "../../ui/reusable/button"
 import { ArrowLeft } from "lucide-react"
 import { useClientTestResult } from "../../resultsPage/hooks/useClientTestResult"
+import { useTestResult } from "../../resultsPage/hooks/useTestResult"
 
 export const CareerAnchorsResults = () => {
     const navigate = useNavigate()
 
-    const { result, loading } = useClientTestResult({
+    const { result, loading } = useTestResult({
+        testType: "Career-Anchors",
         extractInputData: (state) => state?.careerAnchorsTasks,
         calculateResult: (tasks, time) => calculateOrientationScores(tasks, time),
         transformResponse: (response) => ({

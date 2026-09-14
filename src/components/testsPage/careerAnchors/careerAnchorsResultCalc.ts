@@ -32,11 +32,12 @@ export const calculateOrientationScores = (
     const overallScore = psychParams.length > 0
         ? Number((psychParams.reduce((sum, item) => sum + item.param, 0) / psychParams.length).toFixed(2))
         : 0
-
+    /*
     psychParams.push({
         name: "Обобщенный результат",
         param: overallScore,
     })
+    */
 
     return {
         completionTimeSeconds,
