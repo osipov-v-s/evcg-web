@@ -8,11 +8,13 @@ import { formatTime } from "../utils/formatTime"
 import { Button } from "../../ui/reusable/button"
 import { ArrowLeft } from "lucide-react"
 import { useClientTestResult } from "../../resultsPage/hooks/useClientTestResult"
+import { useTestResult } from "../../resultsPage/hooks/useTestResult"
 
 export const InterestsMapResults = () => {
     const navigate = useNavigate()
 
-    const { result, loading } = useClientTestResult({
+    const { result, loading } = useTestResult({
+        testType: "Interests-Map",
         extractInputData: (state) => state?.interestsMapTasks,
         calculateResult: (tasks, time) => calculateInterestScores(tasks, time),
         transformResponse: (response) => ({
@@ -34,7 +36,7 @@ export const InterestsMapResults = () => {
         <div className="result-wrapper">
             <h3>Результаты теста «Карта интересов»:</h3>
 
-            <div className="results-list">
+            <div className="results-list flex flex-col gap-3">
                 {result.psychParams.map((param) => {
                     const title = directionsTranslate[param.name] || param.name
                     const isHigh = param.param >= 5 // Выделяем ярко выраженные интересы (от 5 до 10 баллов)
