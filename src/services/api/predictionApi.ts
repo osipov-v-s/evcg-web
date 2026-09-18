@@ -1,4 +1,4 @@
-import { Prediction } from "../../types/prediction/prediction"
+import { MathPrediction, Prediction } from "../../types/prediction/prediction"
 import api from "./api"
 
 export const predictionAPI = {
@@ -14,7 +14,13 @@ export const predictionAPI = {
         })
         return response.data
     },
-    mathPredict: async (token: string) => {
+    getLatestMathPrediction: async(token: string): Promise<MathPrediction[]> => {
+        const response = await api.get<MathPrediction[]>("/api/predictions/math/latest", {
+            headers: {Authorization: `Bearer ${token}`}
+        })
+        return response.data
+    },
+    mathPredict: async (token: string):Promise<MathPrediction[]> => {
         const response = await api.post("/api/predictions/math", null, {
             headers: {
                 Authorization: `Bearer ${token}`
