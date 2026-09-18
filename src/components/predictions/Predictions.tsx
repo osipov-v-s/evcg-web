@@ -1,31 +1,38 @@
 import { useEffect, useState } from "react"
-import { Prediction } from "../../types/prediction/prediction"
+import { MathPrediction, Prediction } from "../../types/prediction/prediction"
 import { useAuth } from "../../contexts/AuthContext"
 import toast, { Toaster } from "react-hot-toast"
 import { NoResults } from "../ui/noResultComponent/NoResult"
 import "./css/prediction.css"
-import { getCategoryLabel, getCompatibilityColor, getCompatibilityFromDistance }
-    from "../../utils/distanceCategory"
-import { formatDateTime } from "../../services/dates/formatDate"
-import { Button } from "../ui/reusable/button"
 import { predictionAPI } from "../../services/api/predictionApi"
 import { getApiErrorMessage } from "../../services/api/error"
 import axios from "axios"
+import { MathPredictionCard } from "./cards/MathPredictionCard"
+import { PredictionCard } from "./cards/PredictionCard"
+
 
 export const Predictions = () => {
     const [prediction, setPrediction] = useState<Prediction | null>(null)
-    const [loading, setLoading] = useState(true) // Initial load only
-    const [isPredicting, setIsPredicting] = useState(false) // Button action only
+    const [mathPredictions, setMathPredictions] = useState<MathPrediction[] | null>(null)
+    const [loading, setLoading] = useState(true)
+    const [isPredicting, setIsPredicting] = useState(false)
     const { getToken, getEmail } = useAuth()
 
     useEffect(() => {
-        const getPrediction = async () => {
+        const load = async () => {
             try {
                 setLoading(true)
-                const response = await predictionAPI.getLatestPrediction(getToken())
-                setPrediction(response)
+                const token = getToken()
+                const [predictionsTemp, mathPredictionsTemp] = await Promise.all([
+                    predictionAPI.getLatestPrediction(token),
+                    predictionAPI.getLatestMathPrediction(token)
+                ])
+                if (!predictionsTemp || !mathPredictionsTemp){
+                    toast.error("Не удалось загрузить один из результатов")
+                }
+                setPrediction(predictionsTemp)
+                setMathPredictions(mathPredictionsTemp.sort((f, s) => s.percentage - f.percentage))
             } catch (err) {
-                console.error(err)
                 setPrediction(null)
                 if (!(axios.isAxiosError(err) && err.response?.status === 404)) {
                     toast.error(getApiErrorMessage(err, "Не удалось загрузить результат"))
@@ -34,157 +41,58 @@ export const Predictions = () => {
                 setLoading(false)
             }
         }
-        getPrediction()
+        load()
     }, [])
 
     const predict = async () => {
-        if (isPredicting || loading) return // Prevent double clicks
+        if (isPredicting || loading) return
         try {
-            setIsPredicting(true) // Use the new state here
+            setIsPredicting(true)
             const token = getToken()
-            const predictionTemp = await predictionAPI.predict(token)
-            const mathPredicitonTemp = await predictionAPI.mathPredict(token)
-            console.log(mathPredicitonTemp)
-            setPrediction(predictionTemp)
+            const [cluster, math] = await Promise.all([
+                predictionAPI.predict(token),
+                predictionAPI.mathPredict(token),
+            ])
+            setPrediction(cluster)
+            setMathPredictions(math.sort((f, s) => s.percentage - f.percentage))
             toast.success("Результаты успешно получены!")
-        } catch(err) {
+        } catch (err) {
             toast.error(getApiErrorMessage(err, "Возникла ошибка при подсчете результатов"))
         } finally {
             setIsPredicting(false)
         }
     }
 
-    // Only show full-screen loading on initial page load
     if (loading) {
         return <NoResults variant="loading" message="Загрузка результатов..." />
     }
 
-    if (!prediction) {
-        return (
-            <NoResults 
-                variant="empty" 
-                message="У вас пока нет результатов" 
-                actionText={isPredicting ? "Загрузка..." : "Получить результаты"} 
-                onAction={predict}
-            />
-        )
-    }
-
-    const distance = prediction.distance
-    const compatibility = getCompatibilityFromDistance(distance)
-    const categoryLabel = getCategoryLabel(distance)
-    const color = getCompatibilityColor(distance)
 
     return (
-        <div className="prediction-results">
+        <div className="prediction-results scroll-y">
             <div className="results-header">
                 <h1 className="results-title">Результаты подбора для {getEmail()}</h1>
                 <p className="results-subtitle">
                     Результат рассчитывается по доступным данным профиля и пройденных этапов диагностики.
                 </p>
             </div>
+            {!prediction ? <NoResults variant="empty" message="Пока нет результатов" />:
+            
+                <PredictionCard
+                    prediction={prediction}
+                    isPredicting={isPredicting}
+                    onRefresh={predict}
+                />}
 
-            {/* Prediction Card */}
-            <div className="prediction-card">
-                <div className="card-header">
-                    <Button disabled={isPredicting} label={isPredicting ? "Вычисляем…" : "Обновить результат"} onClick={() => predict()} />
-                </div>
-
-                <div className="card-body">
-                    <div className="profession-section">
-                        <div className="label">Профессия с наилучшим текущим соответствием</div>
-                        <h2 className="profession-name">{prediction.predictedProfession}</h2>
+            {!mathPredictions ? <NoResults variant="empty" message="Пока нет результатов" /> : 
+            (
+                mathPredictions.map(mathPred => (
+                    <div className="math-prediction-block">
+                        <MathPredictionCard math={mathPred} />
                     </div>
-
-                    <div className="stats-grid">
-                        <div className="stat-item">
-                            <label className="label">Кластер</label>
-                            <div className="stat-value">K{prediction.cluster}</div>
-                        </div>
-
-                        <div className="stat-item">
-                            <label className="label">Категория дистанции</label>
-                            <div className="stat-value" style={{ color }}>
-                                {categoryLabel}
-                            </div>
-                        </div>
-
-                        <div className="stat-item">
-                            <label className="label">Дистанция</label>
-                            <div className="stat-value">{distance.toFixed(3)}</div>
-                        </div>
-
-                        <div className="stat-item">
-                            <label className="label">Совместимость</label>
-                            <div className="stat-value" style={{ color }}>
-                                {compatibility}%
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Compatibility Bar */}
-                    <div className="compatibility-section">
-                        <div className="compat-label">
-                            <span>Уровень совместимости</span>
-                            <span style={{ color }}>{compatibility}%</span>
-                        </div>
-                        <div className="compat-bar">
-                            <div 
-                                className="compat-fill" 
-                                style={{ 
-                                    width: `${compatibility}%`,
-                                    background: color
-                                }}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Category Description */}
-                    <div className="category-info">
-                        <div className="info-badge" style={{ background: color }}>
-                            {categoryLabel}
-                        </div>
-                        <span className="info-text">
-                            {distance <= 0.7 ? 'Отличный результат! Профессия идеально подходит.' :
-                             distance <= 1.5 ? 'Хороший результат. Профессия очень подходит.' :
-                             distance <= 2.2 ? 'Средний результат. Профессия подходит.' :
-                             distance <= 3.0 ? 'Ниже среднего. Есть более подходящие профессии.' :
-                             distance <= 4.0 ? 'Низкая совместимость. Рекомендуется рассмотреть другие варианты.' :
-                             'Очень низкая совместимость. Профессия не рекомендуется.'}
-                        </span>
-                    </div>
-
-                    {/* Distance Scale */}
-                    <div className="distance-scale">
-                        <div className="scale-labels">
-                            <span>Идеально</span>
-                            <span>Средне</span>
-                            <span>Экстремально</span>
-                        </div>
-                        <div className="scale-bar">
-                            <div 
-                                className="scale-marker" 
-                                style={{ left: `${Math.min(100, (distance / 5) * 100)}%`}}>
-                                ●
-                            </div>
-                            <div className="scale-gradient">
-                                <div className="gradient-section" style={{ background: '#10b981' }} />
-                                <div className="gradient-section" style={{ background: '#fbbf24' }} />
-                                <div className="gradient-section" style={{ background: '#f59e0b' }} />
-                                <div className="gradient-section" style={{ background: '#ef4444' }} />
-                                <div className="gradient-section" style={{ background: '#991b1b' }} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="card-footer">
-                    <span className="date">
-                        {formatDateTime(prediction.createdAt)}
-                    </span>
-                    <span className="id">ID: {prediction.pupilId}</span>
-                </div>
-            </div>
+                ))
+                
+            )}
 
             <Toaster position="top-right" />
         </div>
