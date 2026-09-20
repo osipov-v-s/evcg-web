@@ -48,9 +48,10 @@ export const TestsPage: FC = () => {
             navigate(testItem.pathResults, {
                 state: {
                     isViewMode: true,
-                    psychTest: recentTests[testItem.id]
+                    psychTest: recentTests[testItem.name]
                 }
             })
+
         } catch (err) {
             console.error(err)
             toast.error("Ошибка при загрузке результатов")
@@ -86,7 +87,7 @@ export const TestsPage: FC = () => {
                             item={item}
                             onClick={handleClick}
                             resultOnClick={showResultClick}
-                            isComplete={Boolean(recentTests[item.id])}
+                            isComplete={recentTests ? recentTests[item.name] != null : false}
                         />
                     </div>
                 ))}

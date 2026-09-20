@@ -22,6 +22,7 @@ export interface TestItem {
     path?: string
     pathResults?: string
     isAvailable?: boolean
+    name: string
     isVr?: boolean
 }
 
@@ -37,6 +38,7 @@ export const testsList: TestItem[] = [
         path: "/tests/temperament/intro",
         pathResults: "/tests/temperament/results",
         isAvailable: true,
+        name: "Temperament",
         isVr: false
     },
     {
@@ -49,6 +51,7 @@ export const testsList: TestItem[] = [
         path: "/tests/group-roles/intro",
         pathResults: "/tests/group-roles/results",
         isAvailable: true,
+        name: "Group-Roles",
         isVr: false
     },
     {
@@ -61,6 +64,7 @@ export const testsList: TestItem[] = [
         path: "/tests/engineering-thinking/intro",
         pathResults: "/tests/engineering-thinking/results",
         isAvailable: true,
+        name: "Engineering-Thinking",
         isVr: false
     },
     {
@@ -73,6 +77,7 @@ export const testsList: TestItem[] = [
         path: "/tests/professional-orientation-klimov/intro",
         pathResults: "/tests/professional-orientation-klimov/results",
         isAvailable: true,
+        name: "Professional-Orientation-Klimov",
         isVr: false
     },
     {
@@ -85,6 +90,7 @@ export const testsList: TestItem[] = [
         path: "/tests/iq-potential/intro",
         pathResults: "/tests/iq-potential/results",
         isAvailable: true,
+        name: "Intellectual-Potential",
         isVr: false
     },
     {
@@ -97,6 +103,7 @@ export const testsList: TestItem[] = [
         path: "/tests/prof-holland/intro",
         pathResults: "/tests/prof-holland/results",
         isAvailable: true,
+        name: "Professional-Orientation-Holland",
         isVr: false
     },
     {
@@ -109,6 +116,7 @@ export const testsList: TestItem[] = [
         path: "/tests/interests-map/intro",
         pathResults: "/tests/interests-map/results",
         isAvailable: true,
+        name: "Interests-Map",
         isVr: false
     },
     {
@@ -121,6 +129,7 @@ export const testsList: TestItem[] = [
         path: "/tests/professional-preferences/intro",
         pathResults: "/tests/professional-preferences/results",
         isAvailable: true,
+        name: "Professional-Preferences",
         isVr: false
     },
     {
@@ -133,6 +142,7 @@ export const testsList: TestItem[] = [
         path: "/tests/career-anchors/intro",
         pathResults: "/tests/career-anchors/results",
         isAvailable: true,
+        name: "Career-Anchors",
         isVr: false
     },
 
@@ -148,6 +158,7 @@ export const testsList: TestItem[] = [
         path: "/tests/vr-mine-foreman/intro",
         pathResults: "/tests/vr-mine-foreman/results",
         isAvailable: true,
+        name: "vr-mine-foreman",
         isVr: true
     },
     {
@@ -159,6 +170,7 @@ export const testsList: TestItem[] = [
         path: "/tests/vr-mining-process-engineer/intro",
         pathResults: "/tests/vr-mining-process-engineer/results",
         isAvailable: true,
+        name: "vr-mining-process-engineer",
         isVr: true
     },
     {
@@ -170,6 +182,7 @@ export const testsList: TestItem[] = [
         path: "/tests/vr-drilling-and-blasting-specialist/intro",
         pathResults: "/tests/vr-drilling-and-blasting-specialist/results",
         isAvailable: true,
+        name: "vr-drilling-and-blasting-specialist",
         isVr: true
     },
     {
@@ -181,6 +194,7 @@ export const testsList: TestItem[] = [
         path: "/tests/vr-mine-rescuer/intro",
         pathResults: "/tests/vr-mine-rescuer/results",
         isAvailable: true,
+        name: "vr-mine-rescuer",
         isVr: true
     },
     {
@@ -192,6 +206,7 @@ export const testsList: TestItem[] = [
         path: "/tests/vr-haul-truck-driver/intro",
         pathResults: "/tests/vr-haul-truck-driver/results",
         isAvailable: true,
+        name: "vr-haul-truck-driver",
         isVr: true
     }
 ]
