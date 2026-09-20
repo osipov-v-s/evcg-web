@@ -1,15 +1,31 @@
 /* СЕТКА - ПРОГРЕСС БАР, СЕТКА КАРТОЧЕК ТЕСТОВ, ИНДИКАТОР ПРОКРУТКИ */
 .test-container {
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 20px auto;
     grid-template-areas:
-        "progress-bar cards"
-        "indicator indicator";
+        "switch"
+        "cards";
     gap: 10px;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+}
+
+.test-tabs {
+    grid-area: switch;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.test-tabs .tab-btn {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.test-tabs .tab-btn.active {
+    color: var(--accent-color-500);
 }
 
 .test-grid {
@@ -29,32 +45,6 @@
 
 .test-grid::-webkit-scrollbar {
     display: none;
-}
-
-/* ИНДИКАТОР ПРОКРУТКИ СЕТКИ */
-.test-indicator {
-    grid-area: indicator;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    width: 100%;
-    height: 50px;
-    background-color: var(--primary-color-50);
-    border-radius: 15px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--grey-color-300);
-    border-radius: 50%;
-    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dot.active {
-    background-color: var(--accent-color-500);
 }
 
 @media (max-width: 1260px) {

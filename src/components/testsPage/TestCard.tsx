@@ -55,12 +55,6 @@ export const TestCard: FC<TestItemProps> = memo(({
                     </div>
                 </div>
 
-                {!isComplete && (
-                    <div className="test-selection-item-description">
-                        <span>{item.description}</span>
-                    </div>
-                )}
-
                 <div className="test-selection-item-info">
                     <div className="test-selection-item-hint">
                         <Timer />
@@ -89,5 +83,3 @@ export const TestCard: FC<TestItemProps> = memo(({
         </div>
     )
 })
-
-TestCard.displayName = "TestCard"

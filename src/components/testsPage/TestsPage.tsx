@@ -1,92 +1,38 @@
 import "./css/layoutGrid.css"
-import "./css/progressBar.css"
 
-import { FC, useCallback, useEffect, useRef, useState } from "react"
+import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { TestItem, testsList } from "./TestsData"
 import { TestCard } from "./TestCard"
 import { useNavigate } from "react-router-dom"
-import { CheckCheck } from "lucide-react"
 import { testApi } from "../../services/api/testApi"
 import { useAuth } from "../../contexts/AuthContext"
 import { TestResultResponse } from "../../types/testTypes"
 import toast from "react-hot-toast"
 
-export const TestsPage: FC = ({ }) => {
+export const TestsPage: FC = () => {
     const navigate = useNavigate()
     const { getToken } = useAuth()
-    const testContainerRef = useRef<HTMLDivElement>(null)
 
-    const [displayProgress, setDisplayProgress] = useState(0)
-    const [visibleIds, setVisibleIds] = useState<number[]>([])
     const [recentTests, setRecentTests] = useState<Record<string, TestResultResponse>>({})
-    const [isLoading, setIsLoading] = useState(true)
+    const [isVr, setIsVr] = useState<boolean>(false)
 
     useEffect(() => {
         const loadRecentTests = async () => {
             try {
                 const tests = await testApi.getRecentTests(getToken())
                 setRecentTests(tests || {})
-
             } catch (error) {
                 console.error("Failed to load recent tests:", error)
                 toast.error("Не удалось загрузить прогресс тестирования")
-            } finally {
-                setIsLoading(false)
             }
         }
 
         loadRecentTests()
-    }, [])
+    }, [getToken])
 
-    useEffect(() => {
-        if (!recentTests || testsList.length === 0) return
-
-        const completedCount = Object.keys(recentTests).length
-        const rawPercent = (completedCount / testsList.length) * 100
-        const finalPercent = Math.min(Math.max(rawPercent, 0), 100)
-
-        const timer = setTimeout(() => setDisplayProgress(finalPercent), 100)
-        return () => clearTimeout(timer)
-    }, [recentTests])
-
-    useEffect(() => {
-        const container = testContainerRef.current
-        if (!container) return
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                setVisibleIds((prev) => {
-                    let updated = [...prev]
-                    let hasChanges = false
-
-                    entries.forEach((entry) => {
-                        const id = Number(entry.target.getAttribute("data-id"))
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("show")
-                            if (!updated.includes(id)) {
-                                updated.push(id)
-                                hasChanges = true
-                            }
-                        } else {
-                            entry.target.classList.remove("show")
-                            if (updated.includes(id)) {
-                                updated = updated.filter((i) => i !== id)
-                                hasChanges = true
-                            }
-                        }
-                    })
-
-                    return hasChanges ? updated.sort((a, b) => a - b) : prev
-                })
-            },
-            { root: container, threshold: 0.15 }
-        )
-
-        const items = container.querySelectorAll(".test-grid-item")
-        items.forEach((el) => observer.observe(el))
-
-        return () => observer.disconnect()
-    }, [])
+    const filteredTests = useMemo(() => {
+        return testsList.filter((test) => Boolean(test.isVr) === isVr)
+    }, [isVr])
 
     const handleClick = useCallback((path: string) => {
         navigate(path)
@@ -102,10 +48,9 @@ export const TestsPage: FC = ({ }) => {
             navigate(testItem.pathResults, {
                 state: {
                     isViewMode: true,
-                    psychTest: recentTests[testItem.name]
+                    psychTest: recentTests[testItem.id]
                 }
             })
-
         } catch (err) {
             console.error(err)
             toast.error("Ошибка при загрузке результатов")
@@ -114,50 +59,36 @@ export const TestsPage: FC = ({ }) => {
 
     return (
         <div className="test-container">
-
-            {/* Прогресс-бар */}
-            <div className="progress-container">
-                <div
-                    className="progress-fill"
-                    style={{ height: `${displayProgress}%` }}>
-
-                    <div className="wave-element wave-front" />
-                    <div className="wave-element wave-back" />
-                </div>
-
-                <div className="progress-count">
-                    <CheckCheck />
-                    <span>{Object.keys(recentTests).length} / {testsList.length}</span>
-                    {isLoading && <span className="sr-only">Загрузка прогресса</span>}
-                </div>
+            {/* Переключатель типов тестов */}
+            <div className="test-tabs">
+                <button
+                    className={`tab-btn ${!isVr ? "active" : ""}`}
+                    onClick={() => setIsVr(false)}
+                >
+                    Обычные тесты
+                </button>
+                <button
+                    className={`tab-btn ${isVr ? "active" : ""}`}
+                    onClick={() => setIsVr(true)}
+                >
+                    VR тесты
+                </button>
             </div>
 
             {/* Сетка карточек */}
-            <div
-                ref={testContainerRef}
-                className="test-grid">
-                {testsList.map((item, index) => {
-                    return (
-                        <div key={index} data-id={index} className="test-grid-item">
-                            <TestCard
-                                dataId={item.id}
-                                index={index}
-                                isAvailable={item.isAvailable}
-                                item={item}
-                                onClick={handleClick}
-                                resultOnClick={showResultClick}
-                                isComplete={recentTests ? recentTests[item.name] != null : false} />
-                        </div>
-                    )
-                })}
-            </div>
-
-            {/* Индикатор страниц */}
-            <div className="test-indicator">
-                {testsList.map((_, index) => (
-                    <div
-                        key={index}
-                        className={`dot ${visibleIds.includes(index) ? "active" : ""}`} />
+            <div className="test-grid">
+                {filteredTests.map((item, index) => (
+                    <div key={item.id} className="test-grid-item show">
+                        <TestCard
+                            dataId={item.id}
+                            index={index}
+                            isAvailable={item.isAvailable}
+                            item={item}
+                            onClick={handleClick}
+                            resultOnClick={showResultClick}
+                            isComplete={Boolean(recentTests[item.id])}
+                        />
+                    </div>
                 ))}
             </div>
         </div>

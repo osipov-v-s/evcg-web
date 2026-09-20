@@ -1,0 +1,196 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "text": "Управлять карьерным самосвалом в сложных условиях рельефа и погоды",
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 2,
+            "text": "Выполнять и перевыполнять сменную норму перевозок породы",
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 3,
+            "text": "Обучать новичков безопасному вождению карьерной техники",
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 4,
+            "text": "Получать премии и надбавки за результативную работу",
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 5,
+            "text": "Работать по стабильному графику с гарантиями соцзащиты",
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        },
+        {
+            "id": 6,
+            "text": "Разбираться в устройстве и технике карьерного самосвала",
+            "options": [
+                {
+                    "id": 1,
+                    "text": "Очень нравится",
+                    "type": "veryPositive"
+                },
+                {
+                    "id": 2,
+                    "text": "Нравится",
+                    "type": "positive"
+                },
+                {
+                    "id": 3,
+                    "text": "Не знаю",
+                    "type": "neutral"
+                },
+                {
+                    "id": 4,
+                    "text": "Не нравится",
+                    "type": "negative"
+                },
+                {
+                    "id": 5,
+                    "text": "Очень не нравится",
+                    "type": "veryNegative"
+                }
+            ],
+            "userAnswer": 0
+        }
+    ]
+}

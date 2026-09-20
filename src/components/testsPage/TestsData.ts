@@ -1,147 +1,197 @@
 import React from "react"
-import { Palette, UsersRound, Settings, BriefcaseBusiness, Brain, Compass, Map, Target, Anchor } from "lucide-react"
+import {
+    Palette,
+    UsersRound,
+    Settings,
+    BriefcaseBusiness,
+    Brain,
+    Compass,
+    Map,
+    Target,
+    Anchor,
+    Glasses
+} from "lucide-react"
 
-// Интерфейс для элмента выбора теста (карточки тестов)
 export interface TestItem {
-    id: string              // Id
-    label: string           // Название теста
-    author?: string         // Автор теста
-    description: string     // Описание теста
-    time: number            // Примерное затраченое время на тест
-    questionscount: number  // Количсетво вопросов в тесте
-    icon: React.ElementType // Иконка теста
-    path?: string           // URL до теста
-    pathResults?: string    // URL до результатов
-    dataItem: string        // Для тестирования / селекторов
-    name: string
+    id: string
+    author?: string
+    label: string
+    time: number
+    questionscount: number
+    icon: React.ElementType
+    path?: string
+    pathResults?: string
     isAvailable?: boolean
+    isVr?: boolean
 }
 
-// Список доступных тестов для прохождения
 export const testsList: TestItem[] = [
+    // Профориентационные тесты
     {
         id: "test-temperament",
-        label: "Темперамент",
         author: "Ганс Юрген Айзенк",
-        description: "Определение типа темперамента и личностных характеристик",
+        label: "Темперамент",
         time: 10,
         questionscount: 57,
         icon: Palette,
-        path: "/tests/temperament/intro",           // ✅
-        pathResults: "/tests/temperament/results",   // ✅
-        dataItem: "test-item-1",
-        name: "Temperament",
-        isAvailable: true
+        path: "/tests/temperament/intro",
+        pathResults: "/tests/temperament/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-group-roles",
-        label: "Групповые роли",
         author: "Реймонд Мередит Белбин",
-        description: "Выявление вашей роли в команде по методике Белбина",
+        label: "Групповые роли",
         time: 10,
         questionscount: 7,
         icon: UsersRound,
-        path: "/tests/group-roles/intro",           // ✅
-        pathResults: "/tests/group-roles/results",   // ✅
-        dataItem: "test-item-2",
-        name: "Group-Roles",
-        isAvailable: true
+        path: "/tests/group-roles/intro",
+        pathResults: "/tests/group-roles/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-engineering-thinking",
-        label: "Инженерное мышление",
         author: "Джордж Кеттнер Беннет",
-        description: "Оценка технических и аналитических способностей",
+        label: "Инженерное мышление",
         time: 25,
         questionscount: 70,
         icon: Settings,
-        path: "/tests/engineering-thinking/intro",           // ✅
-        pathResults: "/tests/engineering-thinking/results",   // ✅
-        dataItem: "test-item-3",
-        name: "Engineering-Thinking",
-        isAvailable: true
+        path: "/tests/engineering-thinking/intro",
+        pathResults: "/tests/engineering-thinking/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-professional-orientation-klimov",
-        label: "Профориентация",
         author: "Евгений Александрович Климов",
-        description: "Профессиональные предпочтения",
+        label: "Профориентация",
         time: 20,
         questionscount: 20,
         icon: BriefcaseBusiness,
-        path: "/tests/professional-orientation-klimov/intro",           // ✅
-        pathResults: "/tests/professional-orientation-klimov/results",   // ✅
-        dataItem: "test-item-5",
-        name: "Professional-Orientation-Klimov",
-        isAvailable: true
+        path: "/tests/professional-orientation-klimov/intro",
+        pathResults: "/tests/professional-orientation-klimov/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-intellectual-potential",
+        author: "Диагностический центр",
         label: "Интеллектуальный потенциал",
-        description: "Анализ когнитивных способностей и потенциала развития",
         time: 12,
         questionscount: 29,
         icon: Brain,
-        path: "/tests/iq-potential/intro",           // ✅
-        pathResults: "/tests/iq-potential/results",   // ✅
-        dataItem: "test-item-4",
-        name: "Intellectual-Potential",
-        isAvailable: true
+        path: "/tests/iq-potential/intro",
+        pathResults: "/tests/iq-potential/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-professional-orientation-holland",
-        label: "Тип личности",
         author: "Джон Льюис Холланд",
-        description: "Описание",
+        label: "Тип личности",
         time: 15,
         questionscount: 42,
         icon: Compass,
-        path: "/tests/prof-holland/intro",           // ✅
-        pathResults: "/tests/prof-holland/results",   // ✅
-        dataItem: "test-item-6",
-        name: "Professional-Orientation-Holland",
-        isAvailable: true
+        path: "/tests/prof-holland/intro",
+        pathResults: "/tests/prof-holland/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-professional-orientation-glomshtok",
-        label: "Карта интересов",
         author: "Александр Ефимович Голомшток",
-        description: "Описание",
+        label: "Карта интересов",
         time: 15,
         questionscount: 50,
         icon: Map,
-        path: "/tests/interests-map/intro",           // ✅
-        pathResults: "/tests/interests-map/results",   // ✅
-        dataItem: "test-item-7",
-        name: "Interests-Map",
-        isAvailable: true
+        path: "/tests/interests-map/intro",
+        pathResults: "/tests/interests-map/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-professional-orientation-yovayshi",
-        label: "Профессиональные предпочтения",
         author: "Леонардас Адамович Йовайша",
-        description: "Описание",
+        label: "Профессиональные предпочтения",
         time: 15,
         questionscount: 24,
         icon: Target,
-        path: "/tests/professional-preferences/intro",           // ✅
-        pathResults: "/tests/professional-preferences/results",   // ✅
-        dataItem: "test-item-8",
-        name: "Professional-Preferences",
-        isAvailable: true
+        path: "/tests/professional-preferences/intro",
+        pathResults: "/tests/professional-preferences/results",
+        isAvailable: true,
+        isVr: false
     },
     {
         id: "test-professional-orientation-sheyn",
-        label: "Якоря карьеры",
         author: "Эдгар Генри Шейн",
-        description: "Описание",
+        label: "Якоря карьеры",
         time: 5,
         questionscount: 41,
         icon: Anchor,
-        path: "/tests/career-anchors/intro",           // ✅
-        pathResults: "/tests/career-anchors/results",   // ✅
-        dataItem: "test-item-9",
-        name: "Career-Anchors",
-        isAvailable: true
+        path: "/tests/career-anchors/intro",
+        pathResults: "/tests/career-anchors/results",
+        isAvailable: true,
+        isVr: false
     },
-];
+
+
+
+    // VR Тесты
+    {
+        id: "vr-mine-foreman",
+        label: "VR Горный мастер",
+        time: 3,
+        questionscount: 6,
+        icon: Glasses,
+        path: "/tests/vr-mine-foreman/intro",
+        pathResults: "/tests/vr-mine-foreman/results",
+        isAvailable: true,
+        isVr: true
+    },
+    {
+        id: "vr-mining-process-engineer",
+        label: "VR Горный инженер-технолог",
+        time: 3,
+        questionscount: 6,
+        icon: Glasses,
+        path: "/tests/vr-mining-process-engineer/intro",
+        pathResults: "/tests/vr-mining-process-engineer/results",
+        isAvailable: true,
+        isVr: true
+    },
+    {
+        id: "vr-drilling-and-blasting-specialist",
+        label: "VR Специалист буровзрывных работ",
+        time: 3,
+        questionscount: 6,
+        icon: Glasses,
+        path: "/tests/vr-drilling-and-blasting-specialist/intro",
+        pathResults: "/tests/vr-drilling-and-blasting-specialist/results",
+        isAvailable: true,
+        isVr: true
+    },
+    {
+        id: "vr-mine-rescuer",
+        label: "VR Горноспасатель",
+        time: 3,
+        questionscount: 6,
+        icon: Glasses,
+        path: "/tests/vr-mine-rescuer/intro",
+        pathResults: "/tests/vr-mine-rescuer/results",
+        isAvailable: true,
+        isVr: true
+    },
+    {
+        id: "vr-haul-truck-driver",
+        label: "VR Водитель карьерного самосвала",
+        time: 3,
+        questionscount: 6,
+        icon: Glasses,
+        path: "/tests/vr-haul-truck-driver/intro",
+        pathResults: "/tests/vr-haul-truck-driver/results",
+        isAvailable: true,
+        isVr: true
+    }
+]

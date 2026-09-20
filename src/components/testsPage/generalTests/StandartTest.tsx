@@ -57,8 +57,16 @@ export const StandartTest = <T,>(config: StandartTestConfig<T>) => {
         }, [tasks])
 
         useEffect(() => {
-            if (config.autoNavigationOnTimeout && timer.seconds === 0 && tasks && isTimerStarted.current && isCountdown)
+            if (
+                config.autoNavigationOnTimeout &&
+                timer.seconds === 0 &&
+                tasks &&
+                isTimerStarted.current &&
+                isCountdown
+            ) {
                 handleComplete()
+            }
+
         }, [timer.seconds, tasks, handleComplete, config.autoNavigationOnTimeout, isCountdown])
 
         const timerString = `${formatTime(timer.minutes)} : ${formatTime(timer.remaningSeconds)}`

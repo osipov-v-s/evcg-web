@@ -7,4 +7,6 @@ export interface BaseTestComponentProps<T> {
     description?: string
     pickerStyleType?: "squeezed" | "extended"
     optionStyleType?: "column" | "row"
+    hideSkipButton?: boolean
+    timerString?: string
 }

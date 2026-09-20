@@ -10,7 +10,6 @@ import { vrTestApi } from "../../services/api/vrTestsApi"
 import { useAuth } from "../../contexts/AuthContext"
 import { ProfessionWithStatus, VRTestStatus } from "../../types/vrTests/VRTest"
 import { NoResults } from "../ui/noResultComponent/NoResult"
-import { PageHeader } from "../ui/common/PageHeader"
 
 export type Status = "not started" | "first stage" | "second stage"
 
@@ -119,7 +118,6 @@ export const VRTestsPage = () => {
     if (isLoading) return <NoResults variant="loading" message="Загружаем VR-тесты…" />
     return (
         <div className="vr-page">
-            <PageHeader title="VR-тесты" description="Оценка когнитивной и мотивационно-деятельностной составляющей по выбранной профессии." />
             <div className="search-container">
                 <Search size={25} />
                 <input

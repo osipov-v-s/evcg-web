@@ -33,31 +33,7 @@ import { Specialists } from "./components/adminPages/specialists/Specialists"
 
 // Outlet для тестов
 import { TestViewer } from "./components/testsPage/TestViewer"
-import { TestIntro } from "./components/testsPage/TestIntro"
 
-// Тест темперамента
-import { TemperamentTest } from "./components/testsPage/temperament/TemperamentTest"
-import { TemperamentResults } from "./components/testsPage/temperament/TemperamentResults"
-
-// Тест грпповых ролей
-import { GroupRolesTest } from "./components/testsPage/groupRoles/GroupRolesTest"
-import { GroupRolesResults } from "./components/testsPage/groupRoles/GroupRolesResults"
-
-// Тест инженерного мышления
-import { EngineeringThinkingTest } from "./components/testsPage/engineeringThinking/EngineeringThinkingTest"
-
-
-// Тест Климова
-import { KlimovTest } from "./components/testsPage/klimov/KlimovTest"
-import { KlimovResults } from "./components/testsPage/klimov/KlimovResults"
-
-// Тест интеллекта
-import { IqPotentialTest } from "./components/testsPage/iqPotential/IqPotentialTest"
-import { IqPotentialResults } from "./components/testsPage/iqPotential/IqPotentialResults"
-
-// Тест Холланда
-import { HollandTest } from "./components/testsPage/holland/HollandTest"
-import { HollandResults } from "./components/testsPage/holland/HollandResults"
 import { DownloadTestsResults } from "./components/adminPages/results/DownloadTestsResults";
 import { crudRoutes } from "./components/adminPages/crud/routes.config";
 import { FormsListPage } from "./components/adminPages/crud/FormsListPage";
@@ -71,14 +47,8 @@ import { SchoolManagement } from "./components/adminPages/schools/SchoolManageme
 import { CuratorDashboard } from "./components/curatorPages/CuratorDashboard";
 import { TestTypeManagement } from "./components/adminPages/results/TestTypeManagement";
 import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from "./routing/roleAccess";
-import { InterestsMapTest } from "./components/testsPage/interestsMap/InterestsMapTest";
-import { InterestsMapResults } from "./components/testsPage/interestsMap/InterestsMapResults";
-import { ProfessionalPreferencesTest } from "./components/testsPage/professionalPreferences/ProfessionalPreferencesTest";
-import { ProfessionalPreferencesResults } from "./components/testsPage/professionalPreferences/ProfessionalPreferencesResults";
-import { CareerAnchorsTest } from "./components/testsPage/careerAnchors/CareerAnchorsTest";
-import { CareerAnchorsResults } from "./components/testsPage/careerAnchors/CareerAnchorsResults";
-import { EngineeringThinkingResults } from "./components/testsPage/engineeringThinking/EngineeringThinkingResults";
 import { TestRoutes } from "./routing/tests/TestRoutes";
+
 export default function App() {
 	return (
 		<Routes>
