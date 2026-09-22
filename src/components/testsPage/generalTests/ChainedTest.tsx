@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react"
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom"
 import { useTimer } from "../hooks/useTimer"
 import { formatTime } from "../utils/formatTime"
+import { NoResults } from "../../ui/noResultComponent/NoResult"
 
 // Интерфейсы и Типы
 export interface BaseTestComponentProps<T = any> {
@@ -52,6 +53,7 @@ interface TestStepRunnerProps {
 
 const TestStepRunner: React.FC<TestStepRunnerProps> = ({ config, onStepComplete }) => {
     const [tasks, setTasks] = useState<any[]>()
+    const [error, setError] = useState<string | null>(null)
     const isCountdown = Boolean(config.initialSeconds)
     const timer = useTimer(config.initialSeconds || 0, isCountdown)
     const isTimerStarted = useRef(false)
@@ -64,11 +66,17 @@ const TestStepRunner: React.FC<TestStepRunnerProps> = ({ config, onStepComplete 
         onStepComplete(config.id, tasks || [], completionTime)
     }, [config.id, config.initialSeconds, onStepComplete, tasks, timer.seconds])
 
-    useEffect(() => {
+        useEffect(() => {
         let isMounted = true
-        config.fetchData().then((data) => {
-            if (isMounted) setTasks(data)
-        })
+        setError(null)
+        setTasks(undefined)
+        config.fetchData()
+            .then((data) => {
+                if (isMounted) setTasks(data)
+            })
+            .catch((err) => {
+                if (isMounted) setError(err?.message ?? "LOAD_ERROR")
+            })
         return () => {
             isMounted = false
         }
@@ -92,6 +100,17 @@ const TestStepRunner: React.FC<TestStepRunnerProps> = ({ config, onStepComplete 
             handleComplete()
         }
     }, [timer.seconds, tasks, handleComplete, config.autoNavigationOnTimeout, isCountdown])
+    if (error === "VR_TEST_NOT_FOUND") {
+        return (
+            <NoResults
+                variant="empty"
+                title="Тест ещё не готов"
+                message="Для этой профессии пока нет заданий. Попробуйте позже."
+            />
+        )
+    }
+    if (error) 
+        return <NoResults variant="error" message="Не удалось загрузить задания." />
 
     if (!tasks) return <p>Загрузка заданий...</p>
 
