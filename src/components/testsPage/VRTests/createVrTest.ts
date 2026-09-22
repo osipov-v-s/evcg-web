@@ -2,14 +2,14 @@ import { SingleOptionsPicker, Task } from "../generalTemplates/singleOptionsPick
 import { MultipleOptionsPicker, MultipleTask } from "../generalTemplates/multipleOptionsPicker/MultipleOptionsPicker"
 import { ChainedTest } from "../generalTests/ChainedTest"
 
-type RawOption = {
+export type RawOption = {
     id: number
     text: string
     correct?: boolean
     type?: string
 }
 
-type RawTask = {
+export type RawTask = {
     id: number
     text: string
     direction?: number
@@ -18,26 +18,30 @@ type RawTask = {
 }
 
 export interface VrTestOptions {
-    singleChoiceData: RawTask[]
-    multipleChoiceData: RawTask[]
-    resultPath?: string
-    secondIntroPath?: string
-    fisrtStepDescription?: string
+    fetchSingleChoice: () => Promise<RawTask[]>
+    fetchMultipleChoice: () => Promise<RawTask[]>
+    resultPath: string
+    firstStepDescription?: string
     secondStepDescription?: string
+    checkRequired?: number
 }
 
 // Универсальная фабрика для создания двухэтапных VR-тестов (Single Choice -> Multiple Choice)
+//Принимает функции для подтягивания данных для 1ого и 2ого теста
+//путь к результату и описание каждого теста
+//Приводит данные к нужному виду и полноценно настраивает каждый тест
 export const createVrTest = ({
-    singleChoiceData = [],
-    multipleChoiceData = [],
-    resultPath = "/tests/vr-test/results", // TODO: переделать
-    secondIntroPath,
-    fisrtStepDescription = "Первый этап: выбери то, что нравится или ближе именно тебе.",
-    secondStepDescription = "Второй этап: выберите ровно 2 правильных варианта ответа."
+    fetchSingleChoice,
+    fetchMultipleChoice,
+    resultPath ,
+    firstStepDescription= "Первый этап: выбери то, что нравится или ближе именно тебе.",
+    secondStepDescription = "Второй этап: выберите ровно 2 правильных варианта ответа.",
+    checkRequired = 2
 }: VrTestOptions) => {
 
     const loadSingleChoiceTasks = async (): Promise<Task[]> => {
-        return (singleChoiceData || []).map((task) => ({
+        const data = await fetchSingleChoice()
+        return (data || []).map((task) => ({
             ...task,
             taskNumber: task.id,
             options: (task.options || []).map((option) => ({
@@ -49,7 +53,8 @@ export const createVrTest = ({
     }
 
     const loadMultipleChoiceTasks = async (): Promise<MultipleTask[]> => {
-        return (multipleChoiceData || []).map((task) => ({
+        const data = await fetchMultipleChoice()
+        return (data || []).map((task) => ({
             ...task,
             taskNumber: task.id,
             userAnswers: [],
@@ -67,7 +72,7 @@ export const createVrTest = ({
                 id: "testFirstStep",
                 Component: SingleOptionsPicker,
                 fetchData: loadSingleChoiceTasks,
-                description: fisrtStepDescription,
+                description: firstStepDescription,
                 autoStartTimer: true,
                 pickerStyle: "squeezed",
                 optionStyle: "column",
@@ -75,12 +80,12 @@ export const createVrTest = ({
             },
             {
                 id: "testSecondStep",
-                secondIntroPath,
                 Component: MultipleOptionsPicker,
                 fetchData: loadMultipleChoiceTasks,
                 description: secondStepDescription,
                 autoStartTimer: true,
                 hideSkipButton: false,
+                componentProps: {checkRequired}
             },
         ],
     })
