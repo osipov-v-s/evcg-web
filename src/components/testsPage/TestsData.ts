@@ -9,7 +9,6 @@ import {
     Map,
     Target,
     Anchor,
-    Glasses
 } from "lucide-react"
 
 export interface TestItem {
@@ -23,11 +22,9 @@ export interface TestItem {
     pathResults?: string
     isAvailable?: boolean
     name: string
-    isVr?: boolean
 }
 
 export const testsList: TestItem[] = [
-    // Профориентационные тесты
     {
         id: "test-temperament",
         author: "Ганс Юрген Айзенк",
@@ -39,7 +36,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/temperament/results",
         isAvailable: true,
         name: "Temperament",
-        isVr: false
     },
     {
         id: "test-group-roles",
@@ -52,7 +48,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/group-roles/results",
         isAvailable: true,
         name: "Group-Roles",
-        isVr: false
     },
     {
         id: "test-engineering-thinking",
@@ -65,7 +60,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/engineering-thinking/results",
         isAvailable: true,
         name: "Engineering-Thinking",
-        isVr: false
     },
     {
         id: "test-professional-orientation-klimov",
@@ -78,7 +72,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/professional-orientation-klimov/results",
         isAvailable: true,
         name: "Professional-Orientation-Klimov",
-        isVr: false
     },
     {
         id: "test-intellectual-potential",
@@ -91,7 +84,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/iq-potential/results",
         isAvailable: true,
         name: "Intellectual-Potential",
-        isVr: false
     },
     {
         id: "test-professional-orientation-holland",
@@ -104,7 +96,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/prof-holland/results",
         isAvailable: true,
         name: "Professional-Orientation-Holland",
-        isVr: false
     },
     {
         id: "test-professional-orientation-glomshtok",
@@ -117,7 +108,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/interests-map/results",
         isAvailable: true,
         name: "Interests-Map",
-        isVr: false
     },
     {
         id: "test-professional-orientation-yovayshi",
@@ -130,7 +120,6 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/professional-preferences/results",
         isAvailable: true,
         name: "Professional-Preferences",
-        isVr: false
     },
     {
         id: "test-professional-orientation-sheyn",
@@ -143,70 +132,5 @@ export const testsList: TestItem[] = [
         pathResults: "/tests/career-anchors/results",
         isAvailable: true,
         name: "Career-Anchors",
-        isVr: false
     },
-
-
-
-    // VR Тесты
-    {
-        id: "vr-mine-foreman",
-        label: "VR Горный мастер",
-        time: 3,
-        questionscount: 6,
-        icon: Glasses,
-        path: "/tests/vr-mine-foreman/intro",
-        pathResults: "/tests/vr-mine-foreman/results",
-        isAvailable: true,
-        name: "vr-mine-foreman",
-        isVr: true
-    },
-    {
-        id: "vr-mining-process-engineer",
-        label: "VR Горный инженер-технолог",
-        time: 3,
-        questionscount: 6,
-        icon: Glasses,
-        path: "/tests/vr-mining-process-engineer/intro",
-        pathResults: "/tests/vr-mining-process-engineer/results",
-        isAvailable: true,
-        name: "vr-mining-process-engineer",
-        isVr: true
-    },
-    {
-        id: "vr-drilling-and-blasting-specialist",
-        label: "VR Специалист буровзрывных работ",
-        time: 3,
-        questionscount: 6,
-        icon: Glasses,
-        path: "/tests/vr-drilling-and-blasting-specialist/intro",
-        pathResults: "/tests/vr-drilling-and-blasting-specialist/results",
-        isAvailable: true,
-        name: "vr-drilling-and-blasting-specialist",
-        isVr: true
-    },
-    {
-        id: "vr-mine-rescuer",
-        label: "VR Горноспасатель",
-        time: 3,
-        questionscount: 6,
-        icon: Glasses,
-        path: "/tests/vr-mine-rescuer/intro",
-        pathResults: "/tests/vr-mine-rescuer/results",
-        isAvailable: true,
-        name: "vr-mine-rescuer",
-        isVr: true
-    },
-    {
-        id: "vr-haul-truck-driver",
-        label: "VR Водитель карьерного самосвала",
-        time: 3,
-        questionscount: 6,
-        icon: Glasses,
-        path: "/tests/vr-haul-truck-driver/intro",
-        pathResults: "/tests/vr-haul-truck-driver/results",
-        isAvailable: true,
-        name: "vr-haul-truck-driver",
-        isVr: true
-    }
 ]
