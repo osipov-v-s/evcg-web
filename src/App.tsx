@@ -38,16 +38,15 @@ import { DownloadTestsResults } from "./components/adminPages/results/DownloadTe
 import { crudRoutes } from "./components/adminPages/crud/routes.config";
 import { FormsListPage } from "./components/adminPages/crud/FormsListPage";
 import { Predictions } from "./components/predictions/Predictions";
-import { VRTestsPage } from "./components/VRTestsPage/VRTestsPage";
-import { VRTestIntro } from "./components/VRTestsPage/VRTestIntro";
-import { VRTest } from "./components/VRTestsPage/VRTest";
-import { VRTestResults } from "./components/VRTestsPage/results/VRTestResults";
 import { CompanyManagement } from "./components/adminPages/companies/CompanyManagement";
 import { SchoolManagement } from "./components/adminPages/schools/SchoolManagement";
 import { CuratorDashboard } from "./components/curatorPages/CuratorDashboard";
 import { TestTypeManagement } from "./components/adminPages/results/TestTypeManagement";
 import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from "./routing/roleAccess";
 import { TestRoutes } from "./routing/tests/TestRoutes";
+import { VRTestDynamic } from "./components/testsPage/VRTests/VrTestDynamic";
+import { VrTestResults } from "./components/testsPage/VRTests/VrTestResults";
+import { VrTestIntro } from "./components/testsPage/VRTests/VrTestIntro";
 
 export default function App() {
 	return (
@@ -106,21 +105,16 @@ export default function App() {
 							<Route index element={<TestsPage/>}/>
 							<Route element={<TestViewer/>} >
 								{TestRoutes()}
+								<Route path="vr/:professionId">
+									<Route index element={<VRTestDynamic/>} />
+									<Route path="intro" element={<VrTestIntro/>}/>
+									<Route path="results" element={<VrTestResults />} />
+								</Route>
 							</Route>
 							
 						</Route>
 						<Route path="/my-results" element={<ResultsPage />} />
 						<Route path="/my-results/:testType" element={<ResultsPage />} />
-					</Route>
-
-					{/* VR tests routes*/}
-					<Route element={<RolesProtectedRoute approvedRoles={CAREER_TEST_ROLES} />}>
-						<Route path="/vr-tests">
-							<Route index element={<VRTestsPage />} />
-							<Route path=":profession/:professionId/intro" element={<VRTestIntro />} />
-							<Route path=":profession/:professionId/questionnaire" element={<VRTest />} />
-							<Route path=":profession/:professionId/results" element={<VRTestResults />} />
-						</Route>
 					</Route>
 
 					{/* Results routes */}

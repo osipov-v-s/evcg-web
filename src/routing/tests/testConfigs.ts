@@ -27,17 +27,6 @@ import { ProfessionalPreferencesResults } from "../../components/testsPage/profe
 import { CareerAnchorsTest } from "../../components/testsPage/careerAnchors/CareerAnchorsTest"
 import { CareerAnchorsResults } from "../../components/testsPage/careerAnchors/CareerAnchorsResults"
 
-import { MineForemanTest } from "../../components/testsPage/VRTests/mineForeman/MineForemanTest"
-
-import { MiningProcessEngineerTest } from "../../components/testsPage/VRTests/miningProcessEngineer/MiningProcessEngineerTest"
-
-import { DrillingAndBlastingSpecialistTest } from "../../components/testsPage/VRTests/drillingAndBlastingSpecialist/DrillingAndBlastingSpecialistTest"
-
-import { MineRescuerTest } from "../../components/testsPage/VRTests/mineRescuer/MineRescuerTest"
-
-import { HaulTruckDriverTest } from "../../components/testsPage/VRTests/haulTrackDriver/HaulTruckDriverTest"
-
-import { VrTestResults } from "../../components/testsPage/VRTests/VrTestResults"
 
 export interface TestConfig {
     id: string
@@ -121,48 +110,4 @@ export const TEST_CONFIGS: TestConfig[] = [
         resultsComponent: CareerAnchorsResults,
         descriptionPath: "public/career_anchors/data/description.json"
     },
-
-
-
-    // VR routes
-    {
-        id: "vr-mine-foreman",
-        path: "vr-mine-foreman",
-        name: "VR Горный мастер",
-        testComponent: MineForemanTest,
-        resultsComponent: VrTestResults, // TODO: переделать
-        descriptionPath: "public/career_anchors/data/description.json" // TODO: переделать
-    },
-    {
-        id: "vr-mining-process-engineer",
-        path: "vr-mining-process-engineer",
-        name: "VR Горный инженер-технолог",
-        testComponent: MiningProcessEngineerTest,
-        resultsComponent: VrTestResults, // TODO: переделать
-        descriptionPath: "public/career_anchors/data/description.json" // TODO: переделать
-    },
-    {
-        id: "vr-drilling-and-blasting-specialist",
-        path: "vr-drilling-and-blasting-specialist",
-        name: "VR Специалист буровзрывных работ",
-        testComponent: DrillingAndBlastingSpecialistTest,
-        resultsComponent: VrTestResults, // TODO: переделать
-        descriptionPath: "public/career_anchors/data/description.json" // TODO: переделать
-    },
-    {
-        id: "vr-mine-rescuer",
-        path: "vr-mine-rescuer",
-        name: "VR Горноспасатель",
-        testComponent: MineRescuerTest,
-        resultsComponent: VrTestResults, // TODO: переделать
-        descriptionPath: "public/career_anchors/data/description.json" // TODO: переделать
-    },
-    {
-        id: "vr-haul-truck-driver",
-        path: "vr-haul-truck-driver",
-        name: "Водитель карьерного самосвала",
-        testComponent: HaulTruckDriverTest,
-        resultsComponent: VrTestResults, // TODO: переделать
-        descriptionPath: "public/career_anchors/data/description.json" // TODO: переделать
-    }
 ]
