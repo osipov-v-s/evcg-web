@@ -8,6 +8,7 @@ import { testApi } from "../../services/api/testApi"
 import { useAuth } from "../../contexts/AuthContext"
 import { TestResultResponse } from "../../types/testTypes"
 import toast from "react-hot-toast"
+import { VrTestsPage } from "./VRTests/VrTestsPage"
 
 export const TestsPage: FC = () => {
     const navigate = useNavigate()
@@ -29,10 +30,6 @@ export const TestsPage: FC = () => {
 
         loadRecentTests()
     }, [getToken])
-
-    const filteredTests = useMemo(() => {
-        return testsList.filter((test) => Boolean(test.isVr) === isVr)
-    }, [isVr])
 
     const handleClick = useCallback((path: string) => {
         navigate(path)
@@ -57,7 +54,6 @@ export const TestsPage: FC = () => {
             toast.error("Ошибка при загрузке результатов")
         }
     }
-
     return (
         <div className="test-container">
             {/* Переключатель типов тестов */}
@@ -75,10 +71,10 @@ export const TestsPage: FC = () => {
                     VR тесты
                 </button>
             </div>
-
-            {/* Сетка карточек */}
+            {isVr ? ( <VrTestsPage />) :
+            (
             <div className="test-grid">
-                {filteredTests.map((item, index) => (
+                {testsList.map((item, index) => (
                     <div key={item.id} className="test-grid-item show">
                         <TestCard
                             dataId={item.id}
@@ -91,7 +87,7 @@ export const TestsPage: FC = () => {
                         />
                     </div>
                 ))}
-            </div>
+            </div>) }
         </div>
     )
 }

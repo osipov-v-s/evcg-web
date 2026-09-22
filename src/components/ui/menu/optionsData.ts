@@ -30,14 +30,6 @@ export const menuButtons: MenuItemProps[] = [
         order: 2,
         allowedRoles: CAREER_TEST_ROLES
     },
-        {
-        id: "VR",
-        label: "VR тесты",
-        icon: Glasses,
-        path: "/vr-tests",
-        order: 3,
-        allowedRoles: CAREER_TEST_ROLES
-    },
     {
         id: "grades",
         label: "Учеба",
