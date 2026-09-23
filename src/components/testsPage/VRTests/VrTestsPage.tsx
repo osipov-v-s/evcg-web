@@ -16,10 +16,10 @@ import api, { getBaseUrl } from "../../../services/api/api"
     При добавлении новых файлов на сервер, новая карточка сама добавится сюда
 */
 
-const hasStage2 = async (professionId: number): Promise<boolean> => {
+const hasBeforeTest = async (professionId: number): Promise<boolean> => {
     try {
 
-        const response = await api.get(`/public/vr_tests/${professionId}/tasks_2.json`)
+        const response = await api.get(`/public/vr_tests/${professionId}/before.json`)
         console.log(response)
         if (!response) return false
         return true
@@ -52,7 +52,7 @@ export const VrTestsPage = () => {
                 const availability = await Promise.all(
                     profs.map(async (p) => ({
                         profession: p,
-                        available: await hasStage2(p.id),
+                        available: await hasBeforeTest(p.id),
                     }))
                 )
 

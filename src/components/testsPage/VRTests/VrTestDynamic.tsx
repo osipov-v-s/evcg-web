@@ -4,40 +4,55 @@ import { specialistsAPI } from "../../../services/api/specialistApi"
 import { createVrTest, RawTask } from "./createVrTest"
 import { NoResults } from "../../ui/noResultComponent/NoResult"
 import api from "../../../services/api/api"
+import { vrTestApi } from "../../../services/api/vrTestsApi"
+import { useAuth } from "../../../contexts/AuthContext"
 /*
     Компонент извлекает id профессии из url как параметр
     и использует createVrTest для создания компонента со всеми данными
     Возвращает полностью собранный под профессию компонент с тестами
 */
-const QUESTIONNAIRE_BASE = "/professions_questionnaire/data"
-const VR_TESTS_BASE = "/vr_tests"
 
-const fetchJson = async <T,>(url: string): Promise<T> => {
-    const response = await fetch(url)
-    if (response.status === 404) throw new Error("VR_TEST_NOT_FOUND")
-    if (!response.ok) throw new Error(`Failed to load ${url}`)
-    return response.json()
-}
 export const VRTestDynamic = () => {
     const {professionId} = useParams<{professionId: string}>()
     const [professionName, setProfessionName] = useState<string>("")
+    
+    const {getToken} = useAuth()
+    const [stage2File, setStage2File] = useState<"before.json" | "after.json" | null>(null)
     //Тут важно находим настоящую профессию из id в url
     useEffect(() => {
         if (!professionId) return
+        let cancelled = false
         const getProfessionById = async () => {
-            const professions = await specialistsAPI.getProfessions()
-            if (!professions) {
-                setProfessionName("")
-                return
+            try {
+                const [professions, tests] = await Promise.all([
+                    specialistsAPI.getProfessions(),
+                    vrTestApi.getMyTestsByProfessionId(getToken(), professionId).catch(() => [])
+                ])
+                if (cancelled) return
+                if (!professions) {
+                    setProfessionName("")
+                    return
+                }
+                const profession = professions.find(p => String(p.id) === professionId)
+                setProfessionName(profession?.name ?? "")
+
+                setStage2File(tests.length === 0 ? "before.json" : "after.json")
+            } catch(err) {
+                if (!cancelled) {
+                    setProfessionName("")
+                    setStage2File("before.json")
+                }
             }
-            const profession = professions.find(p => String(p.id) === professionId)
-            setProfessionName(profession?.name ?? "")
+
         }
         getProfessionById()
+        return () => {
+            cancelled = true
+        }
     }, [professionId])
 
     const Component = useMemo(() => {
-        if (!professionId || !professionName) return null
+        if (!professionId || !professionName || !stage2File) return null
         return createVrTest({
             resultPath: `/tests/vr/${professionId}/results`,
             fetchSingleChoice: async () => {
@@ -48,15 +63,15 @@ export const VRTestDynamic = () => {
                     ...task,
                     text: (task.text ?? "").replace(/\{profession\}/g, professionName),
                 }))
-            },
+            },//need to pickup test depends on stage 
             fetchMultipleChoice: async () => {
                 const { data } = await api.get<{ data: RawTask[] }>(
-                    `/public/vr_tests/${professionId}/tasks_2.json`
+                    `/public/vr_tests/${professionId}/${stage2File}`
                 )
                 return data.data
             },
         })
-    }, [professionId, professionName])
+    }, [professionId, professionName, stage2File])
 
     if (!professionId) return <NoResults variant="error" message="Профессия не найдена" />
     if (!professionName || !Component) return <NoResults variant="loading" message="Загружаем тест…" />
