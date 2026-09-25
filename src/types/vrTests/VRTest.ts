@@ -2,6 +2,7 @@
 export interface VRTest {
     id?: number,
     professionId: number,
+    score?: number
     typeName: string,
     pupilId?: number
     specialistId?: number
@@ -12,6 +13,7 @@ export interface VRTest {
 export interface Answer {
     questionText: string
     answerText: string
+    answerScore: number
 }
 export type VRTestStatus = "not_started" | "first_stage" | "second_stage" | "completed";
 

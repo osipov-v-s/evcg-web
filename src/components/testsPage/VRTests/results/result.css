@@ -1,0 +1,40 @@
+/* Page container */
+.page-container {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: var(--font-size-base);
+}
+
+/* Result card */
+.result-card {
+  background: var(--primary-color);
+  border: 1px solid var(--grey-color-300);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--surface-shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(10, 39, 71, .12);
+}
+
+.result-card h3 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary-color);
+  margin-bottom: .75rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--grey-color-300);
+}
+
+/* Answer rows */
+.answer-row {
+  background: var(--grey-color-100);
+  border-radius: 8px;
+}
+
+/* Helper text colors */
+.text-secondary { color: var(--text-secondary-color); }
+.text-accent    { color: var(--accent-color-600); }
