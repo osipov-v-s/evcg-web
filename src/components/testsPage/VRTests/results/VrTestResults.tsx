@@ -9,7 +9,16 @@ import { vrTestApi } from "../../../../services/api/vrTestsApi";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { VRTest } from "../../../../types/vrTests/VRTest";
 import { calcResults } from "./scoring";
+import { toSession } from "./sort";
+import { formatDateRU } from "../../../../services/dates/formatDate";
+import { formatTime } from "../../utils/formatTime";
+import "./result.css"
 
+const TYPE_LABELS: Record<string, string> = {
+    knowledge: "Знания",
+    motivation: "Мотивация"
+}
+const MAX_LENGTH = 100
 
 export interface ChainedResults {
   testFirstStep: { tasks: any[]; completionTimeSeconds: number };
@@ -86,33 +95,42 @@ export const VrTestResults = () => {
     //const stage2Count = chained.testFirstStep?.tasks?.length ?? 0;
     //const time1 = chained.testFirstStep?.completionTimeSeconds ?? 0;
     //const time2 = chained.testFirstStep?.completionTimeSeconds ?? 0;
-
+    const sessions = toSession(vrTestsResults ?? [])
     return (
         <div className="result-wrapper">
-        <h3>Результаты VR-теста</h3>
-        {vrTestsResults?.map(result => (
-            <ResultCard title={result.typeName}> 
-                <p>
-                    Результат: {result.score}
-                </p>
-                {result.answers && (
-                    result.answers.map(answer => (
-                        <p>{answer.questionText}: <b>{answer.answerText}({answer.answerScore})</b></p>
+            <h3 className="page-header">Результаты VR-теста</h3>
+            {sessions.map((session) => (
+                <section className="session" key={session[0]?.id}>
+                    <div className="session__grid">
+                        {session.map(result => (
+                            <ResultCard
+                                key={result.id}
+                                title={TYPE_LABELS[result.typeName] ?? result.typeName}>
+                                <p className="result-score">Результат: {result.score}</p>
 
-                    ))
-                )}
-                <p>
-                    Время: {result.completionTimeSeconds}
-                </p>
-            </ResultCard>
-        ))}
+                                {result.answers?.length > 0 && (
+                                    <ul className="answer-list">
+                                        {result.answers.map(answer => (
+                                            <li className="answer" key={answer.questionText}>
+                                                <p className="answer__question">
+                                                    {answer.questionText.length < MAX_LENGTH
+                                                        ? answer.questionText
+                                                        : answer.questionText.substring(0, MAX_LENGTH) + "..."}
+                                                </p>
+                                                <p className="answer__text">{answer.answerText}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
 
-        <Button
-            label="Назад к тестам"
-            icon={<ArrowLeft />}
-            onClick={() => navigate("/tests")}
-        />
-        <Toaster />
+                                <span className="result-time">
+                                    Пройдено за: {formatTime(Math.floor(result.completionTimeSeconds / 60))} : {formatTime(result.completionTimeSeconds % 60)}
+                                </span>
+                            </ResultCard>
+                        ))}
+                    </div>
+                </section>
+            ))}
         </div>
-    );
-    };
+    )
+};

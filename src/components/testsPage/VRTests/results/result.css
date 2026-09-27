@@ -1,40 +1,74 @@
-/* Page container */
-.page-container {
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-  padding: var(--font-size-base);
+/* шапка сессии — как было */
+.page-header { height: auto; }
+
+.session {
+    background: var(--primary-color);
+    border: 1px solid var(--grey-color-300);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--surface-shadow);
 }
 
-/* Result card */
-.result-card {
-  background: var(--primary-color);
-  border: 1px solid var(--grey-color-300);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
-  box-shadow: var(--surface-shadow);
-  transition: transform .2s ease, box-shadow .2s ease;
+.session__head {
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--grey-color-200);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary-color);
 }
 
-.result-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(10, 39, 71, .12);
+.session__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
-.result-card h3 {
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary-color);
-  margin-bottom: .75rem;
-  padding-bottom: .5rem;
-  border-bottom: 1px solid var(--grey-color-300);
+/* карточка результата */
+.result-score {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary-color);
 }
 
-/* Answer rows */
-.answer-row {
-  background: var(--grey-color-100);
-  border-radius: 8px;
+/* список ответов */
+.answer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 12px 0;
 }
 
-/* Helper text colors */
-.text-secondary { color: var(--text-secondary-color); }
-.text-accent    { color: var(--accent-color-600); }
+.answer {
+    padding-left: 10px;
+    border-left: 2px solid var(--accent-color-200);
+}
+
+.answer__question {
+    font-size: var(--font-size-xs);
+    line-height: 1.4;
+    color: var(--text-secondary-color);
+    margin-bottom: 2px;
+}
+
+.answer__text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary-color);
+}
+
+.result-time {
+    display: block;
+    padding-top: 10px;
+    border-top: 1px solid var(--grey-color-200);
+    font-size: var(--font-size-xs);
+    color: var(--text-placeholder-color);
+}
+
+@media (max-width: 768px) {
+    .result-wrapper {
+        padding: 0 12px 24px;
+        gap: 16px;
+    }
+    .session { padding: 12px; }
+    .session__grid { flex-direction: column; }
+}
