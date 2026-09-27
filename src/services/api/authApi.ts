@@ -61,5 +61,11 @@ export const authApi = {
       headers: {Authorization: token}
     })
     return response.data
+  },
+  resetPasswordByPupilId: async(token: string, pupilId: number) => {
+    const response = await api.post("/api/auth/pupil/reset-password", {id: pupilId}, {
+      headers: {Authorization: token}
+    })
+    return response
   }
 }
