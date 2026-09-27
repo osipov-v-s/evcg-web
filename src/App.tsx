@@ -45,8 +45,9 @@ import { TestTypeManagement } from "./components/adminPages/results/TestTypeMana
 import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from "./routing/roleAccess";
 import { TestRoutes } from "./routing/tests/TestRoutes";
 import { VRTestDynamic } from "./components/testsPage/VRTests/VrTestDynamic";
-import { VrTestResults } from "./components/testsPage/VRTests/VrTestResults";
+
 import { VrTestIntro } from "./components/testsPage/VRTests/VrTestIntro";
+import { VrTestResults } from "./components/testsPage/VRTests/results/VrTestResults";
 
 export default function App() {
 	return (
