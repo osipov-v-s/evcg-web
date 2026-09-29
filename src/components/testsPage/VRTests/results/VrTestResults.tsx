@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft , Trash2 } from "lucide-react";
 import { Button } from "../../../ui/reusable/button";
 import { NoResults } from "../../../ui/noResultComponent/NoResult";
 import { ResultCard } from "../../../resultsPage/ResultCard";
@@ -13,12 +13,14 @@ import { toSession } from "./sort";
 import { formatDateRU } from "../../../../services/dates/formatDate";
 import { formatTime } from "../../utils/formatTime";
 import "./result.css"
+import api, { getBaseUrl } from "../../../../services/api/api";
 
 const TYPE_LABELS: Record<string, string> = {
     knowledge: "Знания",
     motivation: "Мотивация"
 }
 const MAX_LENGTH = 100
+const MAX_TEST_SCORE = 12
 
 export interface ChainedResults {
   testFirstStep: { tasks: any[]; completionTimeSeconds: number };
@@ -53,7 +55,6 @@ export const VrTestResults = () => {
         }
         saveTests()
 
-    // TODO: call vrTestApi.createTest here later
     }, [chained, professionId]);
     useEffect(() => {
         //if there is a chained (results from tests) or no professionId then return
@@ -68,6 +69,7 @@ export const VrTestResults = () => {
         }
         loadResults()
     },[])
+
     if (!professionId) {
         return (<div>
             <NoResults variant="error" title="Тест не найден" message="Проверьте наличие теста" />
@@ -90,15 +92,28 @@ export const VrTestResults = () => {
         </div>
         );
     }
-
-    //const stage1Count = chained.testFirstStep?.tasks?.length ?? 0;
-    //const stage2Count = chained.testFirstStep?.tasks?.length ?? 0;
-    //const time1 = chained.testFirstStep?.completionTimeSeconds ?? 0;
-    //const time2 = chained.testFirstStep?.completionTimeSeconds ?? 0;
+    const resetTestResult = async (professionId: number | string) => {
+        try {
+            await vrTestApi.resetTests(getToken(), professionId)
+            navigate("/tests")
+        } catch(err) {
+            console.log(err)
+        }
+    }
+    const renderScoreColor = (score: number) => {
+        if (score >= 9) return "green"
+        else if (score >= 5) return "yellow"
+        else return "red"
+    }
+    
     const sessions = toSession(vrTestsResults ?? [])
     return (
         <div className="result-wrapper">
-            <h3 className="page-header">Результаты VR-теста</h3>
+            <div className="page-header-wrapper">
+                <h3 className="page-header">Результаты VR-теста</h3>
+                <Trash2 color="red" onClick={() => resetTestResult(professionId)}/>
+            </div>
+            
             {sessions.map((session) => (
                 <section className="session" key={session[0]?.id}>
                     <div className="session__grid">
@@ -106,7 +121,9 @@ export const VrTestResults = () => {
                             <ResultCard
                                 key={result.id}
                                 title={TYPE_LABELS[result.typeName] ?? result.typeName}>
-                                <p className="result-score">Результат: {result.score}</p>
+                                <p className="result-score" style={{color: `${renderScoreColor(result.score || 0)}`}}>
+                                    Результат: {result.score} {TYPE_LABELS[result.typeName] === "Знания" ? `/ ${MAX_TEST_SCORE}` : ""}
+                                </p>
 
                                 {result.answers?.length > 0 && (
                                     <ul className="answer-list">

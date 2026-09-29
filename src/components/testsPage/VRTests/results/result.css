@@ -1,4 +1,9 @@
 /* шапка сессии — как было */
+.page-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .page-header { height: auto; }
 
 .session {
