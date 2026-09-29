@@ -95,14 +95,14 @@ export const VrTestResults = () => {
     const resetTestResult = async (professionId: number | string) => {
         try {
             await vrTestApi.resetTests(getToken(), professionId)
-            navigate("/tests")
+            navigate("/tests?view=vr")
         } catch(err) {
             console.log(err)
         }
     }
     const renderScoreColor = (score: number) => {
         if (score >= 9) return "green"
-        else if (score >= 5) return "yellow"
+        else if (score >= 5) return "orange"
         else return "red"
     }
     
