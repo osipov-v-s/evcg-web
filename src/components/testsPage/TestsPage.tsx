@@ -3,7 +3,7 @@ import "./css/layoutGrid.css"
 import { FC, useCallback, useEffect, useMemo, useState } from "react"
 import { TestItem, testsList } from "./TestsData"
 import { TestCard } from "./TestCard"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { testApi } from "../../services/api/testApi"
 import { useAuth } from "../../contexts/AuthContext"
 import { TestResultResponse } from "../../types/testTypes"
@@ -11,6 +11,8 @@ import toast from "react-hot-toast"
 import { VrTestsPage } from "./VRTests/VrTestsPage"
 
 export const TestsPage: FC = () => {
+    const [searchParams, setSearchParams] = useSearchParams()
+
     const navigate = useNavigate()
     const { getToken } = useAuth()
 
@@ -59,19 +61,21 @@ export const TestsPage: FC = () => {
             {/* Переключатель типов тестов */}
             <div className="test-tabs">
                 <button
-                    className={`tab-btn ${!isVr ? "active" : ""}`}
-                    onClick={() => setIsVr(false)}
+                    className={`primary-action`}
+                    style={{backgroundColor: `${searchParams.get("view") !== "vr" ? "" : "white"}`, color: `${searchParams.get("view") !== "vr" ? "" : "black"}`}}
+                    onClick={() => setSearchParams({view: "common"})}
                 >
                     Обычные тесты
                 </button>
                 <button
-                    className={`tab-btn ${isVr ? "active" : ""}`}
-                    onClick={() => setIsVr(true)}
+                    className={`primary-action`}
+                    style={{backgroundColor: `${searchParams.get("view") === "vr" ? "" : "white"}`, color: `${searchParams.get("view") === "vr" ? "" : "black"}`}}
+                    onClick={() => setSearchParams({view: "vr"})}
                 >
                     VR тесты
                 </button>
             </div>
-            {isVr ? ( <VrTestsPage />) :
+            {searchParams.get("view") === "vr" ? ( <VrTestsPage />) :
             (
             <div className="test-grid">
                 {testsList.map((item, index) => (
