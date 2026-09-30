@@ -16,21 +16,6 @@ import api, { getBaseUrl } from "../../../services/api/api"
     При добавлении новых файлов на сервер, новая карточка сама добавится сюда
 */
 
-const hasBeforeTest = async (professionId: number): Promise<boolean> => {
-    try {
-
-        const response = await api.get(`/public/vr_tests/${professionId}/before.json`)
-        console.log(response)
-        if (!response) return false
-        return true
-        //const contentType = response.headers.get("content-type") ?? ""
-        //return contentType.includes("application/json")
-
-    } catch {
-        return false
-    }
-}
-
 export const VrTestsPage = () => {
     const navigate = useNavigate()
     const { getToken } = useAuth()
@@ -44,18 +29,19 @@ export const VrTestsPage = () => {
 
         const load = async () => {
             try {
-                const [profs, tests] = await Promise.all([
+                const [profs, tests, testsId] = await Promise.all([
                     specialistsAPI.getProfessions(),
                     vrTestApi.getMyTests(getToken()).catch(() => []),
+                    vrTestApi.getAvailableTests(getToken())
                 ])
                 //Сама магия проверки доступных тестов
                 const availability = await Promise.all(
                     profs.map(async (p) => ({
                         profession: p,
-                        available: await hasBeforeTest(p.id),
+                        available: testsId.some(id => p.id === Number(id)),
                     }))
                 )
-
+                
                 if (cancelled) return
 
                 setAvailableProfessions(

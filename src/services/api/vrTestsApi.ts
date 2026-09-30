@@ -26,5 +26,11 @@ export const vrTestApi = {
         const response = await api.delete(`api/vr-tests/my-tests/profession/${professionId}`, {
             headers: {Authorization: token}
         })
+    },
+    getAvailableTests: async(token: string): Promise<string[]> => {
+        const response = await api.get(`api/vr-tests/available`, {
+            headers: {Authorization: token}
+        })
+        return response.data
     }
 }
