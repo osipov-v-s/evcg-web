@@ -1,0 +1,27 @@
+.achivements {
+    position: relative;
+    width: 100%;
+}
+
+.achivements-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.achivement-card {
+    background-color: gray;
+    border-radius: 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.achivement-card img {
+    width: 100%;
+    height: 150px;
+    background-color: white;
+    border-radius: 15px;
+}

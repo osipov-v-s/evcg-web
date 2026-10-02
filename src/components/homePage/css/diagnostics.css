@@ -1,0 +1,54 @@
+.diagnostics {
+    position: relative;
+    width: 100%;
+}
+
+.diagnostics-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.diagnostic-card {
+    width: 100%;
+    position: relative;
+    border-radius: 20px;
+    justify-content: start;
+    align-items: start;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.diagnostic-bg {
+    position: absolute;
+    inset: 0;
+    background-color: gray;
+    z-index: -1;
+}
+
+.diagnostic-content {
+
+}
+
+.diagnostic-title {
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+}
+
+.diagnositc-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.diagnostic-cost {
+    position: absolute;
+    display: flex;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    padding: 5px 15px;
+    border-radius: 8px;
+}
