@@ -21,7 +21,6 @@ export const MainLayout: FC = () => {
             <div className="layout-bg">
                 {!hideHeader && (
                     <header className="layout-title-bar">
-                        <h1>LOGO</h1>
                         <div className="layout-title">
                             <h4>
                                 {routeTitles[location.pathname] || "Загрузка..."}

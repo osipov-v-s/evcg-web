@@ -2,6 +2,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background-color: var(--accent-color-100);
 }
 
 .layout-bg {
@@ -10,7 +11,7 @@
     height: calc(100% - 20px);
     margin: 10px;
     border-radius: 20px;
-    background-color: lightgray;
+    background-color: var(--primary-color-50);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -61,7 +62,7 @@
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    margin-top: 86px;
+    margin-top: 96px;
     padding-bottom: 120px;
     scroll-behavior: smooth;
 }

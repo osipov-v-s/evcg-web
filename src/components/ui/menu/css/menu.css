@@ -1,0 +1,88 @@
+.menu-bar {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 100;
+    max-width: calc(100% - 60px);
+    width: max-content;
+}
+
+.menu-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    pointer-events: none;
+    z-index: 90;
+    background: linear-gradient(to bottom,
+            rgba(248, 250, 252, 0) 0%,
+            rgba(248, 250, 252, 0.6) 40%,
+            rgba(248, 250, 252, 0.95) 75%,
+            rgba(248, 250, 252, 1) 100%);
+}
+
+.menu-nav {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--text-disabled-color);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary-color);
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.menu-item-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.8;
+}
+
+.menu-item:hover {
+    color: var(--accent-color-500);
+    background: rgba(32, 146, 233, 0.1);
+}
+
+.menu-item.active {
+    color: var(--accent-color-500);
+    background: rgba(32, 146, 233, 0.1);
+}
+
+.menu-item.predictions {
+    background-color: var(--accent-color-500);
+    color: var(--primary-color);
+}
+
+.menu-item.admin {
+    color: var(--error-color-500);
+}
+
+.menu-item.admin:hover {
+    background-color: rgba(249, 115, 146, 0.3);
+}
+
+.menu-item.logout:hover {
+    background-color: rgba(249, 115, 146, 0.3);
+    color: var(--error-color-500);
+}

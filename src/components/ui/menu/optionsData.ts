@@ -1,4 +1,4 @@
-import { Home, FileCheck, Book, UserRound, ShieldUser, DoorOpen, Brain, Glasses, School } from "lucide-react"
+import { Home, GraduationCap, FileCheckIcon, Share2, Award, UserRound, ShieldCheck, School, DoorOpen } from "lucide-react"
 import { ROLES } from "../../../types/account/role"
 import { CAREER_TEST_ROLES, PROFILE_ROLES } from "../../../routing/roleAccess"
 
@@ -14,7 +14,6 @@ export interface MenuItemProps {
 }
 
 export const menuButtons: MenuItemProps[] = [
-    // пункты меню доступные всем
     {
         id: "home",
         label: "Домой",
@@ -23,33 +22,35 @@ export const menuButtons: MenuItemProps[] = [
         order: 1,
     },
     {
-        id: "tests",
-        label: "Тесты",
-        icon: FileCheck,
-        path: "/tests",
-        order: 2,
-        allowedRoles: CAREER_TEST_ROLES
-    },
-    {
         id: "grades",
         label: "Учеба",
-        icon: Book,
+        icon: GraduationCap,
         path: "/my-grades",
-        order: 4,
+        order: 2,
         allowedRoles: [ROLES.PUPIL],
+    },
+    {
+        id: "tests",
+        label: "Тесты",
+        icon: FileCheckIcon,
+        className: "test",
+        path: "/tests",
+        order: 3,
+        allowedRoles: CAREER_TEST_ROLES
     },
     {
         id: "predictions",
         label: "Подбор профессии",
-        icon: Brain,
+        icon: Share2,
+        className: "predictions",
         path: "/predictions",
-        order: 5,
+        order: 4,
         allowedRoles: [ROLES.PUPIL]
     },
     {
         id: "test-results",
-        label: "Результаты тестов",
-        icon: FileCheck,
+        label: "Результаты",
+        icon: Award,
         path: "/my-results",
         order: 5,
         allowedRoles: CAREER_TEST_ROLES
@@ -66,10 +67,10 @@ export const menuButtons: MenuItemProps[] = [
     {
         id: "admin-panel",
         label: "Адм",
-        icon: ShieldUser,
+        icon: ShieldCheck,
+        className: "admin",
         path: "/admin",
         order: 7,
-        className: "spec",
         allowedRoles: [ROLES.ADMIN],
     },
     {
@@ -77,7 +78,7 @@ export const menuButtons: MenuItemProps[] = [
         label: "Моя школа",
         icon: School,
         path: "/curator",
-        order: 7,
+        order: 8,
         allowedRoles: [ROLES.CURATOR]
     }
 ]
@@ -86,6 +87,7 @@ export const logoutButton: MenuItemProps = {
     id: "logout",
     label: "Выход",
     icon: DoorOpen,
+    className: "logout",
     path: "/login",
     order: 99,
     isLogout: true,
