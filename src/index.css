@@ -10,6 +10,14 @@
     /* Кроссбраузерное сглаживание шрифтов */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 :root {
@@ -189,19 +197,6 @@ select:disabled {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-}
-
-.page-header {
-    display: flex;
-    align-items: center;
-    height: 90px;
-    width: 100%;
-}
-
-.page-header h1 {
-    font-size: clamp(var(--font-size-md), 0.943rem + 0.91vw, var(--font-size-xl));
-    font-weight: var(--font-weight-medium);
-    text-transform: uppercase;
 }
 
 @media (max-width: 768px) {

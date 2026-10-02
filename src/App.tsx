@@ -10,7 +10,6 @@ import { ProtectedRoute } from "./routing/ProtectedRoute";
 import { RolesProtectedRoute } from "./routing/RolesProtectedRoute";
 
 // Общий layout для страниц
-import { Layout } from "./components/layout/Layout"
 
 // Страницы
 // Авторизация / Регистрация
@@ -48,16 +47,17 @@ import { VRTestDynamic } from "./components/testsPage/VRTests/VrTestDynamic";
 
 import { VrTestIntro } from "./components/testsPage/VRTests/VrTestIntro";
 import { VrTestResults } from "./components/testsPage/VRTests/results/VrTestResults";
+import { MainLayout } from "./components/layout/MainLayout";
 
 export default function App() {
 	return (
 		<Routes>
 			{/* Public routes */}
-			<Route element={<Layout />}>
+			<Route element={<MainLayout />}>
 				<Route path="/" element={<HomePage />} />
 			</Route>
 			<Route element={<AuthRouter />}>
-				<Route element={<Layout />}>
+				<Route element={<MainLayout />}>
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/register" >
 						<Route path="" element={<RegistrationTypePicker />} />
@@ -70,7 +70,7 @@ export default function App() {
 
 			{/* Protected routes */}
 			<Route element={<ProtectedRoute />}>
-				<Route element={<Layout />}>
+				<Route element={<MainLayout />}>
 					<Route element={<RolesProtectedRoute approvedRoles={ADMIN_ROLES} />}>
 						<Route path="/admin" element={<AdminPage />}>
 							<Route index element={<Navigate to="/admin/pupils" replace />} />
