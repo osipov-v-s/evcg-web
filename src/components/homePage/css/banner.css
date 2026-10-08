@@ -1,10 +1,10 @@
 .banner {
     position: relative;
-    min-height: 500px;
+    min-height: 600px;
     width: 100%;
     display: flex;
-    align-items: center;
-    padding: 40px 20px 90px;
+    padding: 60px;
+    padding-top: 60px;
     overflow: hidden;
     border-radius: 20px;
 }
@@ -12,17 +12,30 @@
 .banner-bg {
     position: absolute;
     inset: 0;
-    background-color: gray;
-    z-index: -1;
+    background-color: violet;
 }
 
 .banner-content {
-    max-width: 600px;
+    position: relative;
+    max-width: 700px;
+}
+
+.banner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: .875rem;
+    padding: 7px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
 }
 
 .banner-title {
     letter-spacing: -0.02em;
+    line-height: 60px;
     margin-bottom: 20px;
+    font-size: 3rem;
 }
 
 .banner-subtitle {
@@ -37,8 +50,13 @@
 }
 
 .banner-stat {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .875rem;
+    padding: 7px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
 }
 
 .banner-actions {
@@ -52,11 +70,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
-    left: 20px;
-    right: 20px;
+    left: 60px;
+    right: 60px;
     bottom: 20px;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
+    font-size: .875rem;
 }

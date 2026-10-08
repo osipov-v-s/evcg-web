@@ -1,37 +1,73 @@
+import { EmblaCarousel } from "../ui/reusable/EmblaCarousel"
+
+const ACHIVEMETS_SLIDES = [
+    {
+        id: 1,
+        title: "Победитель программы Фонда содействия инновациям",
+        content: "Получили поддержку для развития проекта",
+        imgUrl: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 2,
+        title: "Зарегистрированные разработки",
+        content: "Программные решения и методики диагностики",
+        imgUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 3,
+        title: "Научные публикации и выступления",
+        content: "Представляем результаты на конференциях",
+        imgUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 4,
+        title: "Внедрение в образовательных организациях",
+        content: "Нашу систему используют в школах и учебных центрах",
+        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 5,
+        title: "Абоба",
+        content: "Абоба",
+        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 6,
+        title: "Абоба",
+        content: "Абоба",
+        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 7,
+        title: "Абоба",
+        content: "Абоба",
+        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 8,
+        title: "Абоба",
+        content: "Абоба",
+        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
+    },
+    {
+        id: 9,
+        title: "Абоба",
+        content: "Абоба",
+        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
+    },
+]
+
 export const Achivements = () => {
     return (
         <section className="achivements">
             <div className="container">
-                <header>
+                <header className="achivements-header">
+                    <span>Доверие</span>
                     <h3>Наши победы</h3>
                     <span>Наш проект получает признание и уже дает реальные результаты</span>
                 </header>
 
-                <div className="achivements-grid">
-                    <div className="achivement-card">
-                        <img></img>
-                        <h4 className="achivement-title">Победитель программы <br /> Фонда содействия инновациям</h4>
-                        <span className="achivement-subtitle">Получили поддержку для развития проекта</span>
-                    </div>
-
-                    <div className="achivement-card">
-                        <img></img>
-                        <h4 className="achivement-title">Зарегистрированные <br /> разработки</h4>
-                        <span className="achivement-subtitle">Программные решения и методики диагностики</span>
-                    </div>
-
-                    <div className="achivement-card">
-                        <img></img>
-                        <h4 className="achivement-title">Научные публикации <br /> и выступления</h4>
-                        <span className="achivement-subtitle">Представляем результаты на конференциях</span>
-                    </div>
-
-                    <div className="achivement-card">
-                        <img></img>
-                        <h4 className="achivement-title">Внедрение в <br /> образовательные организации</h4>
-                        <span className="achivement-subtitle">Нашу систему используют в школах и учебных центрах</span>
-                    </div>
-                </div>
+                <EmblaCarousel slides={ACHIVEMETS_SLIDES} slidesToShow={4}/>
             </div>
         </section>
     )

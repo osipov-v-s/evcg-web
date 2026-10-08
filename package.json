@@ -36,6 +36,7 @@
             "classnames": "^2.5.1",
             "clsx": "*",
             "cmdk": "^1.1.1",
+            "embla-carousel": "^8.6.0",
             "embla-carousel-react": "^8.6.0",
             "file-saver": "^2.0.5",
             "input-otp": "^1.4.2",

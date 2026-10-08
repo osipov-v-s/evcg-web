@@ -1,3 +1,4 @@
+import { Check, Sparkles } from "lucide-react"
 import { Button } from "../ui/reusable/button"
 
 export const Banner = () => {
@@ -7,6 +8,11 @@ export const Banner = () => {
 
             <div className="container banner-inner">
                 <div className="container banner-content">
+                    <div className="banner-badge">
+                        <Sparkles />
+                        <span>#1 в инженерной профориентации</span>
+                    </div>
+
                     <h1 className="banner-title">
                         Пойми, какая <br />
                         <span className="banner-title-accent">
@@ -16,18 +22,18 @@ export const Banner = () => {
                     </h1>
 
                     <p className="banner-subtitle">
-                        Мы сравниваем ваш профиль с профилями <br /> инженерных профессий и показываем, <br /> какая из них вам ближе
+                        Мы сравниваем ваш профиль с профилями инженерных профессий и <br /> показываем, какая из них вам ближе
                     </p>
 
                     <div className="banner-stats">
                         <div className="banner-stat">
-                            <strong>Бесплатная базовая диагностика</strong>
-                            <span>Узнайте свои сильные стороны</span>
+                            <Check />
+                            <span>Бесплатная базовая диагностика</span>
                         </div>
 
                         <div className="banner-stat">
-                            <strong>Углубленная диагностика</strong>
-                            <span>Более точный результат с современными технологиями</span>
+                            <Check />
+                            <span>Углубленная диагностика</span>
                         </div>
                     </div>
 
