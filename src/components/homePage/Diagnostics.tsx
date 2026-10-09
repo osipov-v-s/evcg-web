@@ -3,8 +3,8 @@ export const Diagnostics = () => {
         <section className="diagnostics">
             <div className="container">
                 <header>
-                    <span>Форматы</span>
-                    <h3>Два формата диагностики</h3>
+                    <strong>Форматы</strong>
+                    <h1>Два формата диагностики</h1>
                     <span>Выберите подходящий уровень - начните бесплатно или получите более точный результат</span>
                 </header>
 

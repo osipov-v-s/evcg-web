@@ -36,8 +36,8 @@ export const Professions = () => {
         <section className="professions">
             <div className="container">
                 <header>
-                    <span>Профессиональный вектор</span>
-                    <h3>Инженерные профессии</h3>
+                    <strong>Профессиональный вектор</strong>
+                    <h1>Инженерные профессии</h1>
                     <span>Показываем, какая инженерная профессия вам ближе. Мы анализируем ваш профиль и сравниваем его с реальными профессиями</span>
                 </header>
 
@@ -54,7 +54,7 @@ export const Professions = () => {
                                 )}
                                 <div className="profession-item-overlay" />
                                 <div className="profession-item-content-wrap">
-                                    <h3 className="profession-item-title">{item.title}</h3>
+                                    <h1 className="profession-item-title">{item.title}</h1>
                                     {item.description && (
                                         <span className="profession-item-description">{item.description}</span>
                                     )}

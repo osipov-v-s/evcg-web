@@ -27,8 +27,8 @@ export const Practice = () => {
         <section>
             <div className="container">
                 <header>
-                    <span>Практика</span>
-                    <h3>Где уже используется</h3>
+                    <strong>Практика</strong>
+                    <h1>Где уже используется</h1>
                     <span>Нашей системой пользуеются в образовательных организациях</span>
                 </header>
 

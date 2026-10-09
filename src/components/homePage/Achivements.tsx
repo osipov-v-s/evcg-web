@@ -61,9 +61,9 @@ export const Achivements = () => {
     return (
         <section className="achivements">
             <div className="container">
-                <header className="achivements-header">
-                    <span>Доверие</span>
-                    <h3>Наши победы</h3>
+                <header>
+                    <strong>Доверие</strong>
+                    <h1>Наши победы</h1>
                     <span>Наш проект получает признание и уже дает реальные результаты</span>
                 </header>
 

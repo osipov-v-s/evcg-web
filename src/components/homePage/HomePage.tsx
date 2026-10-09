@@ -1,4 +1,4 @@
-import "./css/homePageStyles.css"
+import "./css/homePage.css"
 import "./css/banner.css"
 import "./css/achivements.css"
 import "./css/diagnostics.css"

@@ -1,0 +1,37 @@
+main {
+    width: 100%;
+}
+
+section {
+    margin-bottom: 80px;
+}
+
+section header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+section header strong {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--accent-color-500);
+    text-transform: uppercase;
+    letter-spacing: .3px;
+}
+
+section header h1 {
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary-color);
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    line-height: 35px;
+}
+
+section header span {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary-color);
+    letter-spacing: .3px;
+}

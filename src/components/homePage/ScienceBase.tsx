@@ -3,8 +3,8 @@ export const ScienceBase = () => {
         <section>
             <div className="container">
                 <header>
-                    <span>Больше информации</span>
-                    <h3>Научная и технологическая база</h3>
+                    <strong>Больше информации</strong>
+                    <h1>Научная и технологическая база</h1>
                 </header>
             </div>
         </section>
