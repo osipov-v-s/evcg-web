@@ -7,7 +7,16 @@
 
 .how-it-works-item {
     width: 100%;
-    background-color: violet;
-    padding: 20px;
+    position: relative;
     border-radius: 20px;
+    justify-content: start;
+    align-items: start;
+    padding: 30px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    border: 1px solid var(--text-disabled-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    gap: 10px;
 }

@@ -1,4 +1,4 @@
-import { Check, Sparkles } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "../ui/reusable/button"
 
 export const Banner = () => {
@@ -15,7 +15,7 @@ export const Banner = () => {
 
                     <h1 className="banner-title">
                         Пойми, какая <br />
-                        <span className="banner-title-accent">
+                        <span>
                             инженерная профессия
                         </span> <br />
                         тебе подходит
@@ -25,21 +25,9 @@ export const Banner = () => {
                         Мы сравниваем ваш профиль с профилями инженерных профессий и <br /> показываем, какая из них вам ближе
                     </p>
 
-                    <div className="banner-stats">
-                        <div className="banner-stat">
-                            <Check />
-                            <span>Бесплатная базовая диагностика</span>
-                        </div>
-
-                        <div className="banner-stat">
-                            <Check />
-                            <span>Углубленная диагностика</span>
-                        </div>
-                    </div>
-
                     <div className="banner-actions">
-                        <Button label="Пройти бесплатно" />
-                        <Button label="Углубленная диагностика" />
+                        <Button label="Пройти бесплатно" icon={<ArrowRight />} />
+                        <Button label="Углубленная диагностика" variant="ghost" icon={<ArrowRight />} />
                     </div>
                 </div>
 

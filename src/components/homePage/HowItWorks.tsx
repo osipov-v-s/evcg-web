@@ -17,7 +17,7 @@ export const HowItWorks = () => {
                             <UserRound />
                         </div>
                         <div className="how-it-works-content">
-                            <h1>Заполните профиль</h1>
+                            <strong>Заполните профиль</strong>
                             <span>Заполните профиль и пройдите тесты</span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@ export const HowItWorks = () => {
                             <FileCheck />
                         </div>
                         <div className="how-it-works-content">
-                            <h1>Пройдите диагностику</h1>
+                            <strong>Пройдите диагностику</strong>
                             <span>Система соберет информацию о способностях, интересах и результатах заданий</span>
                         </div>
                     </div>
@@ -39,7 +39,7 @@ export const HowItWorks = () => {
                             <Share2 />
                         </div>
                         <div className="how-it-works-content">
-                            <h1>Система расчитает результат</h1>
+                            <strong>Система расчитает результат</strong>
                             <span>Математическая модель сравнит ваши показатели с профилями специалистов</span>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ export const HowItWorks = () => {
                             <Award />
                         </div>
                         <div className="how-it-works-content">
-                            <h1>Получите список подходящих профессий</h1>
+                            <strong>Получите список подходящих профессий</strong>
                             <span>Вы увидите, какие профессии подходят вам больше всего</span>
                         </div>
                     </div>

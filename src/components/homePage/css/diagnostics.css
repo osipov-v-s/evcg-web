@@ -14,18 +14,34 @@
     border-radius: 20px;
     justify-content: start;
     align-items: start;
-    padding: 20px;
+    padding: 30px;
+    padding-bottom: 80px;
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    border-radius: 20px;
+    border: 1px solid var(--text-disabled-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    user-select: none;
     gap: 10px;
 }
 
 .diagnostic-bg {
     position: absolute;
     inset: 0;
-    background-color: violet;
+    background-color: lightgray;
+}
+
+.diagnostic-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(100deg,
+            rgba(248, 250, 252, 1) 0%,
+            rgba(248, 250, 252, 0.9) 20%,
+            rgba(248, 250, 252, 0.4) 40%,
+            rgba(248, 250, 252, 0) 55%);
 }
 
 .diagnostic-content {
@@ -35,22 +51,65 @@
 }
 
 .diagnostic-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary-color);
     letter-spacing: -0.02em;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .diagnositc-tags {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 30px;
+}
+
+.diagnostic-tag-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary-color);
+}
+
+.diagnostic-tag-item svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5;
 }
 
 .diagnostic-cost {
     position: absolute;
     display: flex;
-    top: 10px;
-    right: 10px;
-    background-color: white;
-    padding: 5px 15px;
-    border-radius: 8px;
+    top: -5px;
+    right: -5px;
+    padding: 10px 15px;
+    border-radius: 999px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary-color);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.cost-free {
+    background: rgba(16, 185, 129, 0.18);
+    border: 1px solid rgba(52, 211, 153, 0.15);
+}
+
+.cost-buy {
+    background: rgba(20, 108, 250, 0.18);
+    border: 1px solid rgba(96, 165, 250, 0.15);
+}
+
+.diagnostic-action {
+    position: absolute;
+    bottom: -45px;
 }
