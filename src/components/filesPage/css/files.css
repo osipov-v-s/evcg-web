@@ -1,0 +1,91 @@
+/* ─── FileKindBadge ─── */
+
+.file-kind-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .2rem .55rem;
+    border: 1px solid;
+    border-radius: 100px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.file-kind-badge--sm { font-size: .7rem;  padding: .2rem .55rem; }
+.file-kind-badge--md { font-size: .8rem;  padding: .3rem .75rem; }
+
+.file-kind-badge[data-kind="SIMULATION"] {
+    color: var(--accent-color-700);
+    border-color: var(--accent-color-300);
+    background: var(--accent-color-50);
+}
+.file-kind-badge[data-kind="COMPARISON_SESSION"] {
+    color: var(--accent-color-900);
+    border-color: var(--accent-color-500);
+    background: var(--accent-color-100);
+}
+.file-kind-badge[data-kind="COMPARISON_SAMPLE_IMAGE"] {
+    color: var(--scfly-color-500);
+    border-color: var(--scfly-color-400);
+    background: #eafaf1;
+}
+.file-kind-badge[data-kind="VR_TEST_ASSET"] {
+    color: var(--warn-color-500);
+    border-color: var(--warn-color-400);
+    background: #fff3ec;
+}
+
+/* ─── FileMeta ─── */
+
+.file-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .5rem .75rem;
+    min-width: 0;             /* allow inner ellipsis in flex */
+}
+
+.file-meta__name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-weight: 600;
+    color: var(--text-primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-meta__size,
+.file-meta__type {
+    flex: 0 0 auto;
+    font-size: .8rem;
+    color: var(--text-secondary-color);
+}
+
+.file-meta__type {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    max-width: 22ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* -- FileCard --*/
+.file-card-title__name {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: .5rem;
+}
+
+@media (max-width: 480px) {
+    .file-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .15rem;
+    }
+    .file-meta__name { white-space: normal; }
+    .file-meta__type { max-width: 100%; }
+}

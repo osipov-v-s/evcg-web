@@ -1,7 +1,7 @@
 
 export interface Simulation {
     id: number
-    filePath: string
+    file: StoredFile
     startSimulation: string
     endSimulation: string
     createdAt: string

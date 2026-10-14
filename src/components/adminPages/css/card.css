@@ -79,6 +79,7 @@
     display: flex;
     min-width: 110px;
     color: #666;
+    gap: 10px;
 }
 
 .info-row a {

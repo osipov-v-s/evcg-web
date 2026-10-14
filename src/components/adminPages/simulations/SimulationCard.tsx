@@ -7,6 +7,9 @@ import { FieldInput } from "../../ui/reusable/fieldInput"
 import { useEffect, useRef, useState } from "react"
 import { simulationAPI } from "../../../services/api/simulationApi"
 import toast, { Toaster } from "react-hot-toast"
+import { useAuth } from "../../../contexts/AuthContext"
+import { StoredFile } from "../../../types/files/file"
+import { storedFileApi } from "../../../services/api/storedFileApi"
 
 interface SimulationCardProps {
     simulation: SimulationResponse
@@ -14,6 +17,7 @@ interface SimulationCardProps {
 export const SimulationCard = ({simulation}: SimulationCardProps) => {
     const [description, setDescription] = useState<string>(simulation.simulation.description)
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+    const {getToken} = useAuth()
     const handleDescription = (e: any) => {
         const value = e.target.value
         setDescription(value)
@@ -30,6 +34,13 @@ export const SimulationCard = ({simulation}: SimulationCardProps) => {
             }
         }, 1500)
         
+    }
+    const downloadFile = async(file: StoredFile, token: string) => {
+        try {
+            storedFileApi.downloadFile(file, token)
+        } catch(e) {
+            toast.error(`Возникла ошибка при загрузке файла, ${e}`)
+        }
     }
     useEffect(() => {
         return () => {
@@ -60,9 +71,10 @@ export const SimulationCard = ({simulation}: SimulationCardProps) => {
             
             <div className="info-row">
                 <span className="info-label">Файл:</span>
-                <a download href={`${BASE_URL}/${simulation.simulation.filePath}`}>
-                    {simulation.simulation.filePath?.split('/').pop() || 'скачать'}
+                <a download onClick={() => downloadFile(simulation.simulation.file, getToken())}>
+                    {simulation.simulation.file.originalName}
                 </a>
+                <p>{simulation.simulation.file.sizeBytes}Б</p>
             </div>
             <textarea 
                 className="description" 

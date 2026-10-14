@@ -48,6 +48,10 @@ import { VRTestDynamic } from "./components/testsPage/VRTests/VrTestDynamic";
 
 import { VrTestIntro } from "./components/testsPage/VRTests/VrTestIntro";
 import { VrTestResults } from "./components/testsPage/VRTests/results/VrTestResults";
+import { FileKindBadge } from "./components/filesPage/FileKindBadge";
+import { FileMeta } from "./components/filesPage/FileMeta";
+import { FileDownloadButton } from "./components/filesPage/FileDownloadButton";
+import { FilesPage } from "./components/filesPage/FilesPage";
 
 export default function App() {
 	return (
@@ -92,6 +96,8 @@ export default function App() {
 							<Route path="companies" element={<CompanyManagement />} />
 							<Route path="schools" element={<SchoolManagement />} />
 							<Route path="test-types" element={<TestTypeManagement />} />
+							{/* files filtering */}
+							<Route path="files" element={<FilesPage/>} />
 
 						</Route>
 					</Route>
@@ -126,6 +132,7 @@ export default function App() {
 
 					{/* Rest routes */}
 					<Route path="/profile" element={<ProfileCommonPage />} />
+					
 				</Route>
 			</Route>
 

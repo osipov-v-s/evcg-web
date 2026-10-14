@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    padding: 10px 0px;
 }
 .pagination .current-page,
 .pagination .page {
