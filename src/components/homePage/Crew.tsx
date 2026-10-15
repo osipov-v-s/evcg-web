@@ -9,96 +9,88 @@ export const Crew = () => {
 
                 <div className="crew-grid">
                     <div className="crew-item">
-                        <span>01</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>В.С. Осипов</strong>
+                            <h2>В.С. Осипов</h2>
                             <p>Руководитель проекта</p>
                             <span>placeholder@gmail.com</span>
                         </div>
                     </div>
 
                     <div className="crew-item">
-                        <span>02</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>А.А. Ступина</strong>
+                            <h2>А.А. Ступина</h2>
                             <p>Научный руководитель</p>
                             <span>placeholder@gmail.com</span>
                         </div>
                     </div>
 
                     <div className="crew-item">
-                        <span>03</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>И.С. Замулин</strong>
+                            <h2>И.С. Замулин</h2>
                             <p>Инженер-математик</p>
                             <span>placeholder@gmail.com</span>
                         </div>
                     </div>
 
                     <div className="crew-item">
-                        <span>04</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>О.В. Бобылева</strong>
+                            <h2>О.В. Бобылева</h2>
                             <p>Инженер-математик</p>
                             <span>placeholder@gmail.com</span>
                         </div>
                     </div>
 
                     <div className="crew-item">
-                        <span>05</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>А.В. Печенкина</strong>
+                            <h2>А.В. Печенкина</h2>
                             <p>Инженер-исследователь</p>
                             <span>placeholder@gmail.com</span>
                         </div>
                     </div>
 
                     <div className="crew-item">
-                        <span>06</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>П.Д. Большаков</strong>
+                            <h2>П.Д. Большаков</h2>
                             <p>Инженер-программист</p>
                             <span>placeholder@gmail.com</span>
                         </div>
                     </div>
 
                     <div className="crew-item">
-                        <span>07</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>Т.А. Ершов</strong>
+                            <h2>Т.А. Ершов</h2>
                             <p>Инженер-программист</p>
                             <span>placeholder@gmail.com</span>
                         </div>
                     </div>
 
                     <div className="crew-item">
-                        <span>08</span>
                         <div className="crew-member-photo">
                             <img />
                         </div>
                         <div className="crew-member-info">
-                            <strong>Е.М. Кузьмин</strong>
+                            <h2>Е.М. Кузьмин</h2>
                             <p>Соисполнитель</p>
                             <span>placeholder@gmail.com</span>
                         </div>

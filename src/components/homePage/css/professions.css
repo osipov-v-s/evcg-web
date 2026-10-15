@@ -4,8 +4,90 @@
     gap: 20px;
 }
 
-.profession-card {
+.profession-item {
     width: 100%;
-    height: 400px;
-    background-color: violet;
+    max-height: 380px;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    flex-direction: row;
+    border: 1px solid var(--text-disabled-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    gap: 10px;
+}
+
+.profession-item-inner {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.profession-item-img {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 350px;
+}
+
+.profession-item-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profession-item-img-fade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+            transparent 45%,
+            rgba(30, 64, 175, 0.15) 70%,
+            rgba(30, 64, 175, 0.45) 100%);
+}
+
+.profession-item-content-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.profession-item-title {
+    margin-bottom: 10px;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary-color);
+    letter-spacing: -0.02em;
+    line-height: 25px;
+}
+
+.profession-item-description {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary-color);
+}
+
+.profession-item-order {
+    position: absolute;
+    display: flex;
+    top: calc(50% - 60px);
+    right: 10px;
+    padding: 5px 15px;
+    border-radius: 999px;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-accent-color);
+    background: rgba(20, 108, 250, 0.18);
+    border: 1px solid rgba(96, 165, 250, 0.15);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }

@@ -34,6 +34,10 @@
     gap: 10px;
     align-items: center;
     margin-bottom: 20px;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary-color);
+    letter-spacing: -0.02em;
 }
 
 .how-it-works-title svg {
@@ -41,13 +45,6 @@
     height: 30px;
     color: var(--accent-color-500);
     stroke-width: 1.6;
-}
-
-.how-it-works-title {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary-color);
-    letter-spacing: -0.02em;
 }
 
 .how-it-works-description {
@@ -68,8 +65,8 @@
     color: var(--text-primary-color);
     background: rgba(20, 108, 250, 0.18);
     border: 1px solid rgba(96, 165, 250, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.12);
