@@ -12,46 +12,70 @@ export const HowItWorks = () => {
 
                 <div className="how-it-works-grid">
                     <div className="how-it-works-item">
-                        <span>01</span>
-                        <div className="how-it-works-icon">
-                            <UserRound />
-                        </div>
                         <div className="how-it-works-content">
-                            <strong>Заполните профиль</strong>
-                            <span>Заполните профиль и пройдите тесты</span>
+                            <h2 className="how-it-works-title">
+                                <UserRound />
+                                Заполните профиль
+                            </h2>
+
+                            <p className="how-it-works-description">
+                                Заполните профиль и пройдите тесты
+                            </p>
+
+                            <span className="how-it-works-order">
+                                01
+                            </span>
                         </div>
                     </div>
 
                     <div className="how-it-works-item">
-                        <span>02</span>
-                        <div className="how-it-works-icon">
-                            <FileCheck />
-                        </div>
                         <div className="how-it-works-content">
-                            <strong>Пройдите диагностику</strong>
-                            <span>Система соберет информацию о способностях, интересах и результатах заданий</span>
+                            <h2 className="how-it-works-title">
+                                <FileCheck />
+                                Пройдите диагностику
+                            </h2>
+
+                            <p className="how-it-works-description">
+                                Система соберет информацию о способностях, интересах и результатах заданий
+                            </p>
+
+                            <span className="how-it-works-order">
+                                02
+                            </span>
                         </div>
                     </div>
 
                     <div className="how-it-works-item">
-                        <span>03</span>
-                        <div className="how-it-works-icon">
-                            <Share2 />
-                        </div>
                         <div className="how-it-works-content">
-                            <strong>Система расчитает результат</strong>
-                            <span>Математическая модель сравнит ваши показатели с профилями специалистов</span>
+                            <h2 className="how-it-works-title">
+                                <Share2 />
+                                Система расчитает результат
+                            </h2>
+
+                            <p className="how-it-works-description">
+                                Математическая модель сравнит ваши показатели с профилями специалистов
+                            </p>
+
+                            <span className="how-it-works-order">
+                                03
+                            </span>
                         </div>
                     </div>
 
                     <div className="how-it-works-item">
-                        <span>04</span>
-                        <div className="how-it-works-icon">
-                            <Award />
-                        </div>
                         <div className="how-it-works-content">
-                            <strong>Получите список подходящих профессий</strong>
-                            <span>Вы увидите, какие профессии подходят вам больше всего</span>
+                            <h2 className="how-it-works-title">
+                                <Award />
+                                Получите список подходящих профессий
+                            </h2>
+                            
+                            <p className="how-it-works-description">
+                                Вы увидите, какие профессии подходят вам больше всего
+                            </p>
+
+                            <span className="how-it-works-order">
+                                04
+                            </span>
                         </div>
                     </div>
                 </div>
