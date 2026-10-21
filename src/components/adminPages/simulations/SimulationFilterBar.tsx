@@ -45,7 +45,7 @@ export const SimulationFilerBar = ({simulationsRequest, onApply}: SimulationFilt
 
     return <form onSubmit={submit}>
         <DataFilterBar onReset={reset}>
-            <input type="email" aria-label="Email ученика" placeholder="Email ученика" value={draft.email || ""} onChange={e => setDraft({...draft, email: e.target.value})} />
+            <input type="text" aria-label="Email ученика" placeholder="Email ученика" value={draft.email || ""} onChange={e => setDraft({...draft, email: e.target.value})} />
             <select aria-label="Профессия" value={draft.profession || ""} onChange={e => setDraft({...draft, profession: e.target.value})}><option value="">Все профессии</option>{professions.map(item => <option key={item.id ?? item.name} value={item.name}>{item.name}</option>)}</select>
             <select aria-label="Тип симуляции" value={draft.simulationType || ""} onChange={e => setDraft({...draft, simulationType: e.target.value})}><option value="">Все типы</option>{simulationTypes.map(item => <option key={item.id ?? item.name} value={item.name}>{item.name}</option>)}</select>
             <select aria-label="Сценарий" value={draft.scenario || ""} onChange={e => setDraft({...draft, scenario: e.target.value})}><option value="">Все сценарии</option>{scenarios.map(item => <option key={item.id ?? item.name} value={item.name}>{item.name}</option>)}</select>
