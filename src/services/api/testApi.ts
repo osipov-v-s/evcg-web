@@ -67,7 +67,6 @@ export const testApi = {
     if (!startDate) throw new Error("Start date is required")
     if (!endDate) throw new Error("End date is required")
     try {
-      const query = `type=${type}&startDate=${startDate}&endDate=${endDate}`
       const params = new URLSearchParams({
         type: type,
         startDate: startDate,
