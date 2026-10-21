@@ -28,9 +28,12 @@ export const CuratorDashboard = () => {
     const {getToken} = useAuth()
     const navigate = useNavigate()
     const [curator, setCurator] = useState<Curator>()
+
     const [pupils, setPupils] = useState<PupilListResponse>()
+
     const [draftFilters, setDraftFilters] = useState<PupilFilters>(emptyFilters)
     const [filters, setFilters] = useState<PupilFilters>(emptyFilters)
+
     const [currentPage, setCurrentPage] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const [resetTarget, setResetTarget] = useState<PupilResponse>()
@@ -106,11 +109,12 @@ export const CuratorDashboard = () => {
                 toast.error("За выбранный период завершённых тестов нет")
                 return
             }
-            const filename = `school_results_${exportSettings.startDate}_${exportSettings.endDate}`
+            const filename = `results_${exportSettings.startDate}_${exportSettings.endDate}`
             if (exportSettings.format === "xlsx") exportToExcel(data, filename)
             else exportToJson(data, filename)
             toast.success("Файл подготовлен")
         } catch (error) {
+            console.error(error)
             toast.error(getApiErrorMessage(error, "Не удалось выгрузить результаты"))
         } finally {
             setIsExporting(false)
