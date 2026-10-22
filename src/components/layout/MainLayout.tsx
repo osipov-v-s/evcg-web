@@ -6,6 +6,7 @@ import { routeTitles } from "./routeMap"
 import { useAuth } from "../../contexts/AuthContext"
 import { Menu } from "../ui/menu/Menu"
 import { Button } from "../ui/reusable/button"
+import { AppToaster } from "../ui/reusable/appToaster"
 
 export const MainLayout: FC = () => {
     const { getToken, getEmail } = useAuth()
@@ -15,9 +16,12 @@ export const MainLayout: FC = () => {
     const isAdminPage = location.pathname.startsWith("/admin")
     const isAuthPage = location.pathname === "/login" || location.pathname.startsWith("/register")
     const hideHeader = isAuthPage || isAdminPage
+    const showMenu = hasToken && !isAdminPage
 
     return (
         <div className="layout">
+            <AppToaster />
+
             <div className="layout-bg">
                 {!hideHeader && (
                     <header className="layout-title-bar">
@@ -31,7 +35,8 @@ export const MainLayout: FC = () => {
                                 </span> :
                                 <div className="layout-sign-in">
                                     <Button label="Войти" onClick={() => navigate("/login")} />
-                                </div>}
+                                </div>
+                            }
                         </div>
                     </header>
                 )}
@@ -42,9 +47,9 @@ export const MainLayout: FC = () => {
                     </div>
                 </main>
 
-                {hasToken && !isAdminPage && (
-                    <Menu />
-                )}
+                {
+                    showMenu && <Menu />
+                }
             </div>
         </div>
     )
