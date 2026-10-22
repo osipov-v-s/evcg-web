@@ -81,7 +81,7 @@ export const LoginPage: FC = () => {
                     <Button label="На главную" onClick={() => { navigate("/") }} className="back-btn" />
                     <div className="login-icon"><GraduationCap size={34} /></div>
                     <h2>Вход в систему</h2>
-                    <span>Система профориентации для школьников, студентов и специалистов</span>
+                    <span>Система профориентации для школьников и специалистов</span>
                 </div>
 
                 <form className="login-form-cols" onSubmit={handleSubmit} noValidate>
