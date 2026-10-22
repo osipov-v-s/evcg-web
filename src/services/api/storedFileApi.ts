@@ -1,11 +1,11 @@
 import { FileKind, StoredFile, StoredFileFilters } from "../../types/files/file"
 import { PaginatedResponse } from "../../types/common"
-import api from "./api"
+import api, { getBaseUrl } from "./api"
 
 export const storedFileApi = {
     /* ---------- internal helpers ---------- */
     fetchFileBlob:  async (file: StoredFile, token: string): Promise<Blob> => {
-        const res = await fetch(file.url, { headers: { Authorization: token } });
+        const res = await fetch(`${getBaseUrl()}${file.url}`, { headers: { Authorization: token } }); //fallback to react url now 
         if (!res.ok) throw new Error(await res.text());
         return res.blob();
     },
