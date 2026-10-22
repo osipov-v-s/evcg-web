@@ -4,7 +4,7 @@ import { Button } from "../../ui/reusable/button"
 import style from "./pupils-list.module.css"
 import { ReactNode } from "react"
 import toast from "react-hot-toast"
-import { authApi } from "../../../services/api/authApi"
+import { authApi } from "../../../services/api/OLD_authApi"
 import { useAuth } from "../../../contexts/AuthContext"
 interface PupilCardProps {
     pupil: PupilResponse

@@ -3,23 +3,18 @@ import { AccountForm } from "../../types/account/account"
 import toast from "react-hot-toast"
 import { specialistsAPI } from "../../services/api/specialistApi"
 import { Specialist } from "../../types/specialist/specialist"
-import { RegistrationForm } from "./forms/RegistrationForm"
+import { RegistrationForm } from "./OLD_RegistrationForm"
 import { useNavigate } from "react-router-dom"
-import { Gender } from "../../types/pupil/gender"
-
-export const SpecialistRegistrationPage = () => {
+import { authApi } from "../../services/api/OLD_authApi"
+export const PupilRegistrationPage = () => {
     const navigate = useNavigate()
     const [accountData, setAccountData] = useState<AccountForm>({email : "", password : "", repeatPassword : ""})
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [specialistData, setSpecialistData] = useState<Specialist>({email: "", contactEmail: "", name: "", surname: "", patronymic: "", 
-        contactPhone: "", experience: "", jobSatisfaction: "", profession: "", gender: Gender.MALE})
     const registration = async () => {
         if (isSubmitting) return
         try {
             setIsSubmitting(true)
-            await specialistsAPI.specialistRegister({
-                account: {email: accountData.email, password: accountData.password}, 
-                specialist: specialistData})
+            await authApi.register(accountData.email, accountData.password)
             toast.success("Вы успешно зарегистрировались")
             navigate("/login")
         } catch(err) {
@@ -32,6 +27,6 @@ export const SpecialistRegistrationPage = () => {
 
     return (<>
         <RegistrationForm account={accountData} setAccount={setAccountData} 
-        handleBack={() => navigate(-1)} userType={"Специалист"} handleRegistration={registration} isSubmitting={isSubmitting}/>
+        handleBack={() => navigate(-1)} userType={"Школьник"} handleRegistration={registration} isSubmitting={isSubmitting}/>
     </>)
 }

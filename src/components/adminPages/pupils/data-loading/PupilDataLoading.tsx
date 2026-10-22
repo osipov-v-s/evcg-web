@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useExcelMapper } from "../../../../hooks/useExcelMapper";
 import { PupilDataKeys, PupilDTO} from '../../../../types/pupil/pupil'
 import {type AccountApiRegisterDTO} from '../../../../types/pupil/account'
-import { authApi } from "../../../../services/api/authApi";
+import { authApi } from "../../../../services/api/OLD_authApi";
 import style from "./pupil-data-loading.module.css"
 import classNames from "classnames"
 import toast, {Toaster} from 'react-hot-toast'

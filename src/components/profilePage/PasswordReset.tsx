@@ -3,7 +3,7 @@ import { useAuth } from "../../contexts/AuthContext"
 import { FieldInput } from "../ui/reusable/fieldInput"
 import toast from "react-hot-toast"
 import { Button } from "../ui/reusable/button"
-import { authApi } from "../../services/api/authApi"
+import { authApi } from "../../services/api/OLD_authApi"
 
 export const PasswordReset = () => {
     const {getToken} = useAuth()

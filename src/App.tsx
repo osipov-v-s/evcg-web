@@ -1,21 +1,25 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom"
 
 // Хуки
-import { PupilsList } from "./components/adminPages/pupils/PupilsList";
+import { PupilsList } from "./components/adminPages/pupils/PupilsList"
 
 // Новые импорты
 // Роутинг
-import { AuthRouter } from "./routing/AuthRouter";
-import { ProtectedRoute } from "./routing/ProtectedRoute";
-import { RolesProtectedRoute } from "./routing/RolesProtectedRoute";
-
-// Общий layout для страниц
+import { AuthRouter } from "./routing/AuthRouter"
+import { ProtectedRoute } from "./routing/ProtectedRoute"
+import { RolesProtectedRoute } from "./routing/RolesProtectedRoute"
 
 // Страницы
 // Авторизация / Регистрация
+// import { LoginPage } from "./components/authorizationPages/OLD_LoginPage"
+// import { RegistrationTypePicker } from "./components/authorizationPages/OLD_RegistrationTypePage"
+// import { SpecialistRegistrationPage } from "./components/authorizationPages/OLD_SpecialistRegistrationPage"
+// import { PupilRegistrationPage } from "./components/authorizationPages/OLD_PupilRegistrationPage"
 import { LoginPage } from "./components/authorizationPages/LoginPage"
-import { SpecialistRegistrationPage } from "./components/authorizationPages/SpecialistRegistrationPage"
-import { PupilRegistrationPage } from "./components/authorizationPages/PupilRegistrationPage"
+import { RegisterTypePage } from "./components/authorizationPages/RegisterTypePage"
+import { RegisterSchoolboySelect } from "./components/authorizationPages/RegisterSchoolboySelect"
+import { RegisterSpecialistSelect } from "./components/authorizationPages/RegisterSpecialistSelect"
+
 
 // Главные страницы
 import { HomePage } from "./components/homePage/HomePage"
@@ -27,27 +31,26 @@ import { ProfileCommonPage } from "./components/profilePage/ProfileCommonPage"
 // Админские страницы
 import { AdminPage } from "./components/adminPages/AdminPage"
 import { SimulationPage } from "./components/adminPages/simulations/SimulationsPage"
-import { RegistrationTypePicker } from "./components/authorizationPages/RegistrationTypePage"
 import { Specialists } from "./components/adminPages/specialists/Specialists"
 
 // Outlet для тестов
 import { TestViewer } from "./components/testsPage/TestViewer"
 
-import { DownloadTestsResults } from "./components/adminPages/results/DownloadTestsResults";
-import { crudRoutes } from "./components/adminPages/crud/routes.config";
-import { FormsListPage } from "./components/adminPages/crud/FormsListPage";
-import { Predictions } from "./components/predictions/Predictions";
-import { CompanyManagement } from "./components/adminPages/companies/CompanyManagement";
-import { SchoolManagement } from "./components/adminPages/schools/SchoolManagement";
-import { CuratorDashboard } from "./components/curatorPages/CuratorDashboard";
-import { TestTypeManagement } from "./components/adminPages/results/TestTypeManagement";
-import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from "./routing/roleAccess";
-import { TestRoutes } from "./routing/tests/TestRoutes";
-import { VRTestDynamic } from "./components/testsPage/VRTests/VrTestDynamic";
+import { DownloadTestsResults } from "./components/adminPages/results/DownloadTestsResults"
+import { crudRoutes } from "./components/adminPages/crud/routes.config"
+import { FormsListPage } from "./components/adminPages/crud/FormsListPage"
+import { Predictions } from "./components/predictions/Predictions"
+import { CompanyManagement } from "./components/adminPages/companies/CompanyManagement"
+import { SchoolManagement } from "./components/adminPages/schools/SchoolManagement"
+import { CuratorDashboard } from "./components/curatorPages/CuratorDashboard"
+import { TestTypeManagement } from "./components/adminPages/results/TestTypeManagement"
+import { ADMIN_ROLES, CAREER_TEST_ROLES, CURATOR_ROLES, PUPIL_ONLY_ROLES } from "./routing/roleAccess"
+import { TestRoutes } from "./routing/tests/TestRoutes"
+import { VRTestDynamic } from "./components/testsPage/VRTests/VrTestDynamic"
 
-import { VrTestIntro } from "./components/testsPage/VRTests/VrTestIntro";
-import { VrTestResults } from "./components/testsPage/VRTests/results/VrTestResults";
-import { MainLayout } from "./components/layout/MainLayout";
+import { VrTestIntro } from "./components/testsPage/VRTests/VrTestIntro"
+import { VrTestResults } from "./components/testsPage/VRTests/results/VrTestResults"
+import { MainLayout } from "./components/layout/MainLayout"
 
 export default function App() {
 	return (
@@ -60,9 +63,9 @@ export default function App() {
 				<Route element={<MainLayout />}>
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/register" >
-						<Route path="" element={<RegistrationTypePicker />} />
-						<Route path="specialist" element={<SpecialistRegistrationPage />} />
-						<Route path="pupil" element={<PupilRegistrationPage />} />
+						<Route path="" element={<RegisterTypePage />} />
+						<Route path="pupil" element={<RegisterSchoolboySelect />} />
+						<Route path="specialist" element={<RegisterSpecialistSelect />} />
 					</Route>
 
 				</Route>
@@ -103,16 +106,16 @@ export default function App() {
 					{/* Psychological tests autogenerated from testRoutes */}
 					<Route element={<RolesProtectedRoute approvedRoles={CAREER_TEST_ROLES} />}>
 						<Route path="/tests">
-							<Route index element={<TestsPage/>}/>
-							<Route element={<TestViewer/>} >
+							<Route index element={<TestsPage />} />
+							<Route element={<TestViewer />} >
 								{TestRoutes()}
 								<Route path="vr/:professionId">
-									<Route index element={<VRTestDynamic/>} />
-									<Route path="intro" element={<VrTestIntro/>}/>
+									<Route index element={<VRTestDynamic />} />
+									<Route path="intro" element={<VrTestIntro />} />
 									<Route path="results" element={<VrTestResults />} />
 								</Route>
 							</Route>
-							
+
 						</Route>
 						<Route path="/my-results" element={<ResultsPage />} />
 						<Route path="/my-results/:testType" element={<ResultsPage />} />
@@ -132,5 +135,5 @@ export default function App() {
 			{/* Fallback routes */}
 			<Route path="*" element={<Navigate to="/" replace />} />
 		</Routes>
-	);
+	)
 }

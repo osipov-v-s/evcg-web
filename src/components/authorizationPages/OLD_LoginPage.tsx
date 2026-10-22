@@ -1,0 +1,96 @@
+import "./css/authStyle.css"
+
+import { FC, FormEvent, useCallback, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { GraduationCap, KeyRound, MailOpen, DoorOpen, UserRoundPlus } from "lucide-react"
+
+import { Button } from "../ui/reusable/button"
+import { authApi } from "../../services/api/OLD_authApi"
+import { useAuth } from "../../contexts/AuthContext"
+import toast, { Toaster } from "react-hot-toast"
+import { FieldInput } from "../ui/reusable/fieldInput"
+
+
+
+export const LoginPage: FC = () => {
+    const navigate = useNavigate()
+    const { login, setRoles } = useAuth()
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    })
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const updateField = useCallback((field: keyof typeof formData) => (value: string) => {
+        setFormData(prev => ({ ...prev, [field]: value }))
+    }, [])
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault()
+        if (isSubmitting) return
+
+        try {
+            setIsSubmitting(true)
+            const token = await authApi.login(formData.email, formData.password)
+            const roles = await authApi.getRoles(token)
+
+            login(token)
+            setRoles(roles)
+
+            navigate("/")
+
+        } catch (error) {
+            console.error("Login failed:", error)
+            toast.error("Возникла ошибка при входе")
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
+    const handleBackToRegistration = () => {
+        navigate("/register")
+    }
+
+    return (
+        <div className="auth-container">
+            <div className="login-container">
+                <div className="login-header">
+                    <Button label="На главную" onClick={() => {navigate("/")}} className="back-btn"/>
+                    <div className="login-icon"><GraduationCap size={34} /></div>
+                    <h2>Вход в систему</h2>
+                    <span>Система профориентации для школьников, студентов и специалистов</span>
+                </div>
+
+                <form className="login-form-cols" onSubmit={handleSubmit}>
+                    <div className="login-form-row">
+                        <FieldInput inputLabel={"Электронная почта"}
+                            inputIcon={<MailOpen size={20} />}
+                            inputPlaceholder={"example@gmail.com"}
+                            name="email"
+                            autoComplete="email"
+                            inputValue={formData.email}
+                            inputOnChange={updateField("email")} />
+                    </div>
+
+                    <div className="login-form-row">
+                        <FieldInput inputLabel={"Пароль"}
+                            inputIcon={<KeyRound size={20} />}
+                            inputType={"password"}
+                            name="password"
+                            autoComplete="current-password"
+                            isPassword={true}
+                            inputValue={formData.password}
+                            inputOnChange={updateField("password")} />
+                    </div>
+
+                    <div className="login-form-row">
+                        <Button type="submit" disabled={isSubmitting} label={isSubmitting ? "Входим…" : "Войти"} icon={<DoorOpen />} />
+                        <Button type="button" variant="tertiary" label="Создать аккаунт" onClick={handleBackToRegistration} icon={<UserRoundPlus />} />
+                    </div>
+                </form>
+            </div>
+
+            <Toaster />
+        </div>
+    )
+}
