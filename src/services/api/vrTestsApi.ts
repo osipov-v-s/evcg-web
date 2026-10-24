@@ -32,5 +32,16 @@ export const vrTestApi = {
             headers: {Authorization: token}
         })
         return response.data
+    },
+    getCompletedVRTestsBetweenDates: async(token: string, type: string, startDate:string, endDate:string) : Promise<VRTest[]> => {
+        const params = new URLSearchParams({
+            type: type,
+            startDate: startDate,
+            endDate: endDate
+        })
+        const response = await api.get(`/api/vr-tests/completed-tests?${params.toString()}`, {
+            headers: {Authorization: token}
+        })
+        return response.data
     }
 }

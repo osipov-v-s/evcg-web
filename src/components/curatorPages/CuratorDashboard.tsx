@@ -9,8 +9,6 @@ import { getApiErrorMessage } from "../../services/api/error"
 import { Curator } from "../../types/education/education"
 import { Gender } from "../../types/pupil/gender"
 import { PupilFilters, PupilListResponse, PupilResponse } from "../../types/pupil/pupil"
-import { exportToExcel } from "../../utils/convertData/exportToExcel"
-import { exportToJson } from "../../utils/convertData/exportToJson"
 import { PupilCard } from "../adminPages/pupils/PupilCard"
 import { PageHeader } from "../ui/common/PageHeader"
 import { DataFilterBar } from "../ui/common/DataFilterBar"
@@ -18,6 +16,9 @@ import { ConfirmDialog } from "../ui/common/ConfirmDialog"
 import { Pagination } from "../ui/reusable/Pagination"
 import { NoResults } from "../ui/noResultComponent/NoResult"
 import "./curator.css"
+import { AccountsTests } from "../../types/account/account"
+import { exportData } from "../../utils/convertData/exportData"
+import { transformAccountsData } from "../../utils/convertData/transformAccountData"
 
 type ExportFormat = "xlsx" | "json"
 const emptyFilters: PupilFilters = {}
@@ -110,8 +111,8 @@ export const CuratorDashboard = () => {
                 return
             }
             const filename = `results_${exportSettings.startDate}_${exportSettings.endDate}`
-            if (exportSettings.format === "xlsx") exportToExcel(data, filename)
-            else exportToJson(data, filename)
+
+            exportData(data as AccountsTests[], exportSettings.format, filename, transformAccountsData)
             toast.success("Файл подготовлен")
         } catch (error) {
             console.error(error)

@@ -1,25 +1,6 @@
-import * as XLSX from 'xlsx';
-import { saveAs } from 'file-saver';
-import { AccountsTests } from '../../types/account/account';
-export const exportToExcel = (accountsData: AccountsTests[], filename: string = "psych_test_results") => {
-    if (!accountsData.length) {
-        console.error("No data to export")
-        throw new Error("No data to export check dates")
-    }
-    
-    const transformedData = transformAccountsData(accountsData)
-    
-    const workbook = XLSX.utils.book_new()
-    const worksheet = XLSX.utils.json_to_sheet(transformedData)
-    XLSX.utils.book_append_sheet(workbook, worksheet, filename)
-    const excelBuffer = XLSX.write(workbook, {bookType: 'xlsx', type: 'array'})
-    const blob = new Blob([excelBuffer], {
-        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' 
-    })
-    saveAs(blob, `${filename}.xlsx`)
-}
+import { AccountsTests } from "../../types/account/account"
 
-const transformAccountsData = (accountsData: AccountsTests[]) => {
+export const transformAccountsData = (accountsData: AccountsTests[]) => {
     const transformedData: Array<Record<string, string | number>> = []
     
     accountsData.forEach(account => {

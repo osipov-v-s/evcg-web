@@ -1,7 +1,7 @@
 import { saveAs } from "file-saver";
 import { AccountsTests } from "../../types/account/account";
 
-export const exportToJson = (data: AccountsTests[], filename: string = "result") => {
+export const exportToJson = <T> (data: T[], filename: string = "result") => {
     if (!data.length) {
         console.error("No data to export")
         throw new Error("No data to export check dates")

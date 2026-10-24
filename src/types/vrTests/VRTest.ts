@@ -2,8 +2,10 @@
 export interface VRTest {
     id?: number,
     professionId: number,
+    professionName?: string,
     score?: number
     typeName: string,
+    accountEmail?: string
     pupilId?: number
     specialistId?: number
     completionTimeSeconds: number
