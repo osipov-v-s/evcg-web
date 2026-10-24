@@ -35,7 +35,7 @@ export const LoginPage: FC = () => {
             login(token)
             setRoles(roles)
 
-            navigate("/")
+            navigate("/profile")
 
         } catch (error) {
             console.error("Login failed:", error)

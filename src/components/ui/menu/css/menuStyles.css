@@ -27,6 +27,10 @@
     scrollbar-width: none;
     border-radius: 1000px;
 }
+.blocked {
+    pointer-events: none;
+    opacity: 0.5;
+}
 
 .menu-nav-item-container {
     display: flex;

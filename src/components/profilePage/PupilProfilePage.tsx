@@ -18,9 +18,10 @@ import { educationApi } from "../../services/api/educationApi"
 import { School } from "../../types/education/education"
 import { NoResults } from "../ui/noResultComponent/NoResult"
 import { getApiErrorMessage } from "../../services/api/error"
+import { useInteractiveStore } from "../ui/menu/store"
 
 export const PupilProfilePage: FC = () => {
-    const { getToken } = useAuth()
+    const { getToken, isFirstLogin } = useAuth()
 
     const [email, setEmail] = useState<string>("")
     const [schools, setSchools] = useState<School[]>([])
@@ -40,6 +41,7 @@ export const PupilProfilePage: FC = () => {
             classLabel: "",
             gender: Gender.MALE
         })
+    const setIsInteractive = useInteractiveStore((state) => state.setIsInteractive)
 
     useEffect(() => {
         const loadProfile = async () => {
@@ -55,11 +57,13 @@ export const PupilProfilePage: FC = () => {
                 ])
                 setSchools(schoolList)
 
-                if (!pupilData.pupilDTO.id) {
+                if (!pupilData.pupilDTO.id || Object.values(pupilData.pupilDTO).every(val => val === null)) {
                     setEmail(pupilData.email)
+                    toast.error("Для корректного подсчета результатов пожалуйста заполните профиль!")
+                    setIsInteractive(false)
                     return
                 }
-
+                setIsInteractive(true)
                 setEmail(pupilData.email)
                 setFormData(pupilData.pupilDTO)
 
@@ -116,6 +120,7 @@ export const PupilProfilePage: FC = () => {
             const token = getToken()
             if (!token) throw new Error("Empty token")
             await pupilApi.updatePupilData(formData, token)
+            setIsInteractive(true)
             toast.success("Ваши данные успешно обновлены")
 
         } catch (err) {
@@ -127,7 +132,7 @@ export const PupilProfilePage: FC = () => {
     }
 
     if (isLoading) return <NoResults variant="loading" message="Загружаем профиль…" />
-
+    
     return (
         <div className="profile-wrapper">
             <div className="profile-container">

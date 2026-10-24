@@ -4,17 +4,22 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useAuth } from "../../../contexts/AuthContext"
 import { FC, useCallback, useEffect, useMemo, useRef } from "react"
 import { logoutButton, menuButtons, MenuItemProps } from "./optionsData"
+import { useInteractiveStore } from "./store"
 
 interface ItemProps {
     item: MenuItemProps
     isActive: boolean
+    isInteractive: boolean
     onClick: (item: MenuItemProps) => void
 }
 
-const MenuItem: FC<ItemProps> = ({ item, isActive, onClick }) => {
+const MenuItem: FC<ItemProps> = ({ item, isActive, onClick, isInteractive }) => {
     const Icon = item.icon
+    if (item.isLogout) isInteractive = true
     return (
-        <button type="button" className={`menu-nav-item-container ${item.className || ""} ${isActive ? "active" : ""}`} onClick={() => onClick(item)}>
+        <button type="button" 
+            className={`menu-nav-item-container ${item.className || ""} ${isActive ? "active" : ""} ${!isInteractive ? 'blocked' : ''}`} 
+            onClick={() => onClick(item)}>
             <div className="menu-nav-item-icon"><Icon /></div>
             <div className="menu-nav-item-label">{item.label}</div>
         </button>
@@ -26,7 +31,7 @@ export const Menu = () => {
     const { pathname } = useLocation()
     const { logout, checkRole } = useAuth()
     const scrollRef = useRef<HTMLDivElement>(null)
-
+    const isInteractive = useInteractiveStore((state) => state.isInteractive)
     useEffect(() => {
         const el = scrollRef.current
         if (!el)
@@ -67,12 +72,13 @@ export const Menu = () => {
 
     return (
         <div className="menu-wrapper">
-            <nav className="menu-nav" ref={scrollRef}>
+            <nav className='menu-nav'  ref={scrollRef}>
                 {menuItems.map(item => (
                     <MenuItem
                         key={item.id}
                         item={item}
                         isActive={isActive(item.path)}
+                        isInteractive={isInteractive}
                         onClick={handleAction} />
                 ))}
             </nav>
