@@ -4,7 +4,7 @@ import { buildCredentials, getRegistrationMode, hasErrors, LOGIN_HINT, PASSWORD_
 import { FormEvent, useRef, useState } from "react"
 import { parseApiError } from "../../utils/apiError"
 import { notifyError, notifySuccess } from "../../utils/notify"
-import { ArrowLeft, CheckCheck, GraduationCap, KeyRound, MailOpen, Repeat, UserRound } from "lucide-react"
+import { ArrowLeft, AtSign, CheckCheck, KeyRound, Repeat, UserRound } from "lucide-react"
 import { FieldError, FormField } from "../ui/reusable/FormField"
 import { Checkbox } from "../ui/reusable/checkbox"
 import { Button } from "../ui/reusable/button"
@@ -17,20 +17,28 @@ interface RegistrationProps {
     onSuccess?: () => void
 }
 
-type TextField = "email" | "login" | "password" | "repeatPassword"
+type TextField = "identifier" | "password" | "repeatPassword"
 
 const ERRORS_RESET_BY: Record<TextField, RegistrationField[]> = {
-    email: ["email", "identifier"],
-    login: ["login", "identifier"],
+    identifier: ["email", "login", "identifier"],
     password: ["password", "repeatPassword"],
     repeatPassword: ["repeatPassword"]
+}
+
+// Единое поле «почта или логин»: если есть "@" — считаем почтой, иначе логином.
+const splitIdentifier = (identifier: string) => {
+    const value = identifier.trim()
+    const isEmail = value.includes("@")
+    return {
+        email: isEmail ? value : "",
+        login: isEmail ? "" : value,
+    }
 }
 
 export const RegisterPage = ({ userType, onSubmit, onSuccess }: RegistrationProps) => {
     const navigate = useNavigate()
     const [values, setValues] = useState<Record<TextField, string>>({
-        email: "",
-        login: "",
+        identifier: "",
         password: "",
         repeatPassword: "",
     })
@@ -40,8 +48,8 @@ export const RegisterPage = ({ userType, onSubmit, onSuccess }: RegistrationProp
     const [isSubmitting, setIsSubmitting] = useState(false)
     const submittingRef = useRef(false)
 
-    const emailFilled = values.email.trim() !== ""
-    const loginFilled = values.login.trim() !== ""
+    const identifierIsEmail = values.identifier.includes("@")
+    const identifierError = errors.email ?? errors.login ?? errors.identifier
 
     const clearErrors = (...fields: RegistrationField[]) => {
         setErrors(prev => {
@@ -61,19 +69,25 @@ export const RegisterPage = ({ userType, onSubmit, onSuccess }: RegistrationProp
         e.preventDefault()
         if (submittingRef.current) return
 
+        const formValues = {
+            ...splitIdentifier(values.identifier),
+            password: values.password,
+            repeatPassword: values.repeatPassword,
+        }
+
         const validationErrors = validateRegistrationForm({
-            ...values,
+            ...formValues,
             privacyAccepted,
             agreementAccepted,
         })
 
-        const mode = getRegistrationMode(values)
+        const mode = getRegistrationMode(formValues)
         if (hasErrors(validationErrors) || !mode) {
             setErrors(validationErrors)
             return
         }
 
-        const identifier = mode === "email" ? values.email : values.login
+        const identifier = mode === "email" ? formValues.email : formValues.login
         let succeeded = false
 
         try {
@@ -110,116 +124,87 @@ export const RegisterPage = ({ userType, onSubmit, onSuccess }: RegistrationProp
     }
 
     return (
-        <form className="auth-container" onSubmit={handleSubmit} noValidate>
-            <div className="registration-container">
-                <div className="registration-header">
-                    <div className="registration-icon"><GraduationCap size={34} /></div>
-                    <h2>Регистрация</h2>
-                    <span>{userType}</span>
+        <div className="auth">
+            <div className="auth-container">
+                <div className="auth-header">
+                    <div onClick={() => navigate("/")}>
+                        <h2>ПрофиВектор</h2>
+                        <span>Твой вектор в инженерное будущее</span>
+                    </div>
+                    <h2>Создайте аккаунт</h2>
                 </div>
 
-                <div className="registrarion-form-cols">
-                    <div className="registration-form-row">
-                        <p className="form-group-title">Регистрация по Логину или Почте</p>
-                    </div>
+                <form className="auth-form-cols" onSubmit={handleSubmit} noValidate>
+                    <FormField inputLabel={"Электронная почта или Логин"}
+                        inputIcon={<UserRound size={20} />}
+                        inputPlaceholder={"example@mail.ru или Логин"}
+                        inputValue={values.identifier}
+                        name="identifier"
+                        autoComplete="username"
+                        error={identifierError}
+                        inputOnChange={updateField("identifier")} />
 
-                    <div className="registration-form-row">
-                        <FormField inputLabel={"Логин"}
-                            inputIcon={<UserRound size={20} />}
-                            inputPlaceholder={"ivan_petrov"}
-                            inputValue={values.login}
-                            name="login"
-                            autoComplete="off"
-                            isDisabled={emailFilled}
-                            error={errors.login}
-                            hint={emailFilled ? "Недоступно, пока заполнена почта" : LOGIN_HINT}
-                            inputOnChange={updateField("login")} />
+                    <FormField inputLabel={"Пароль"}
+                        inputIcon={<KeyRound size={20} />}
+                        inputPlaceholder={"Пароль"}
+                        inputType={"password"}
+                        isPassword={true}
+                        inputValue={values.password}
+                        name="password"
+                        autoComplete="new-password"
+                        error={errors.password}
+                        inputOnChange={updateField("password")} />
 
-                        <FormField inputLabel={"Электронная почта"}
-                            inputIcon={<MailOpen size={20} />}
-                            inputPlaceholder={"example@gmail.com"}
-                            inputValue={values.email}
-                            name="email"
-                            autoComplete="email"
-                            isDisabled={loginFilled}
-                            error={errors.email}
-                            hint={loginFilled ? "Недоступно, пока заполнен логин" : undefined}
-                            inputOnChange={updateField("email")} />
-                    </div>
+                    <FormField inputLabel={"Повторите пароль"}
+                        inputIcon={<Repeat size={20} />}
+                        inputPlaceholder={"Повторите пароль"}
+                        inputType={"password"}
+                        isPassword={true}
+                        inputValue={values.repeatPassword}
+                        name="repeatPassword"
+                        autoComplete="new-password"
+                        error={errors.repeatPassword}
+                        inputOnChange={updateField("repeatPassword")} />
 
-                    <FieldError message={errors.identifier} />
 
-                    <div className="registration-form-row">
-                        <FormField inputLabel={"Пароль"}
-                            inputIcon={<KeyRound size={20} />}
-                            inputType={"password"}
-                            isPassword={true}
-                            inputValue={values.password}
-                            name="password"
-                            autoComplete="new-password"
-                            error={errors.password}
-                            hint={PASSWORD_HINT}
-                            inputOnChange={updateField("password")} />
+                    <Checkbox checked={privacyAccepted}
+                        onChange={(e) => {
+                            setPrivacyAccepted(e.target.checked)
+                            clearErrors("privacyAccepted")
+                        }}
+                        label={<>
+                            Я согласен с{" "}
+                            <a
+                                href="/documents/privacy_profivector.docx"
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => e.stopPropagation()}>
+                                политикой конфиденциальности
+                            </a>
+                        </>} />
 
-                        <FormField inputLabel={"Повторите пароль"}
-                            inputIcon={<Repeat size={20} />}
-                            inputType={"password"}
-                            isPassword={true}
-                            inputValue={values.repeatPassword}
-                            name="repeatPassword"
-                            autoComplete="new-password"
-                            error={errors.repeatPassword}
-                            inputOnChange={updateField("repeatPassword")} />
-                    </div>
+                    <Checkbox checked={agreementAccepted}
+                        onChange={(e) => {
+                            setAgreementAccepted(e.target.checked)
+                            clearErrors("agreementAccepted")
+                        }}
+                        label={<>
+                            Я согласен с{" "}
+                            <a
+                                href="/documents/user_agreement_profivector.docx"
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => e.stopPropagation()}>
+                                пользовательским соглашением
+                            </a>
+                        </>} />
 
-                    <div className="registration-form-row">
-                        <div className="form-field">
-                            <Checkbox
-                                checked={privacyAccepted}
-                                onChange={(e) => {
-                                    setPrivacyAccepted(e.target.checked)
-                                    clearErrors("privacyAccepted")
-                                }}
-                                label={<>
-                                    Я согласен с{" "}
-                                    <a
-                                        href="/documents/privacy_profivector.docx"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        onClick={(e) => e.stopPropagation()}>
-                                        политикой конфиденциальности
-                                    </a>
-                                </>} />
-                            <FieldError message={errors.privacyAccepted} />
-                        </div>
-
-                        <div className="form-field">
-                            <Checkbox
-                                checked={agreementAccepted}
-                                onChange={(e) => {
-                                    setAgreementAccepted(e.target.checked)
-                                    clearErrors("agreementAccepted")
-                                }}
-                                label={<>
-                                    Я согласен с{" "}
-                                    <a
-                                        href="/documents/user_agreement_profivector.docx"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        onClick={(e) => e.stopPropagation()}>
-                                        пользовательским соглашением
-                                    </a>
-                                </>} />
-                            <FieldError message={errors.agreementAccepted} />
-                        </div>
-                    </div>
-
-                    <div className="registration-form-row">
+                    <div className="auth-actions">
                         <Button type="submit" disabled={isSubmitting} label={isSubmitting ? "Регистрируем…" : "Зарегистрироваться"} icon={<CheckCheck />} />
-                        <Button type="button" disabled={isSubmitting} label="Назад" variant="tertiary" onClick={handleBackToLoginPage} icon={<ArrowLeft />} />
+                        <div className="auth-regsiter"><span>Уже есть аккаунт?</span><Button type="button" disabled={isSubmitting} label="Войти" variant="tertiary" onClick={handleBackToLoginPage} /></div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     )
 }

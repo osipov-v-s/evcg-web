@@ -1,5 +1,3 @@
-import "./css/authStyle.css"
-
 import { ArrowLeft, GraduationCap } from "lucide-react"
 import { FC } from "react"
 import { useNavigate } from "react-router-dom"
@@ -34,25 +32,27 @@ export const RegisterTypePage: FC = () => {
     }
 
     return (
-        <div className="auth-container">
-            <div className="registration-container">
-                <div className="registration-header">
-                    <div className="registration-icon"><GraduationCap size={34} /></div>
-                    <h2>Добро пожаловать!</h2>
-                    <span>Выберите, кем вы являетесь</span>
+        <div className="auth">
+            <div className="auth-container">
+                <div className="auth-header">
+                    <div onClick={() => navigate("/")}>
+                        <h2>ПрофиВектор</h2>
+                        <span>Твой вектор в инженерное будущее</span>
+                    </div>
+                    <h2>Выберите, кем вы являетесь</h2>
                 </div>
 
-                <div className="registration-type-options">
+                <div className="auth-form-cols">
                     {USER_TYPE.map(({ id, title, description }) => (
-                        <button type="button" className="type-item" key={id} onClick={() => handleSelectType(id)}>
+                        <button type="button" className="auth-type-item" key={id} onClick={() => handleSelectType(id)}>
                             <p>{title}</p>
                             <span>{description}</span>
                         </button>
                     ))}
-                </div>
 
-                <div className="registration-form-row">
-                    <Button label="Уже есть аккаунт" variant="tertiary" onClick={handleBackToLoginPage} icon={<ArrowLeft />} />
+                    <div className="auth-actions">
+                        <div className="auth-regsiter"><span>Уже есть аккаунт?</span><Button type="button" label="Войти" variant="tertiary" onClick={handleBackToLoginPage} /></div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,3 +1,5 @@
+import "./css/auth.css"
+
 import { FC, FormEvent, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext"
@@ -6,7 +8,7 @@ import { authApi } from "../../services/api/authApi"
 import { parseApiError } from "../../utils/apiError"
 import { notifyError } from "../../utils/notify"
 import { Button } from "../ui/reusable/button"
-import { DoorOpen, GraduationCap, KeyRound, UserRound, UserRoundPlus } from "lucide-react"
+import { ChevronLeft, DoorOpen, GraduationCap, KeyRound, UserRound, UserRoundPlus } from "lucide-react"
 import { FormField } from "../ui/reusable/FormField"
 
 type LoginField = "identifier" | "password"
@@ -75,42 +77,40 @@ export const LoginPage: FC = () => {
     }
 
     return (
-        <div className="auth-container">
-            <div className="login-container">
-                <div className="login-header">
-                    <Button label="На главную" onClick={() => { navigate("/") }} className="back-btn" />
-                    <div className="login-icon"><GraduationCap size={34} /></div>
-                    <h2>Вход в систему</h2>
-                    <span>Система профориентации для школьников и специалистов</span>
+        <div className="auth">
+            <div className="auth-container">
+                <div className="auth-header">
+                    <div onClick={() => navigate("/")}>
+                        <h2>ПрофиВектор</h2>
+                        <span>Твой вектор в инженерное будущее</span>
+                    </div>
+                    <h2>Добро пожаловать!</h2>
                 </div>
 
-                <form className="login-form-cols" onSubmit={handleSubmit} noValidate>
-                    <div className="login-form-row">
-                        <FormField inputLabel={"Почта или логин"}
-                            inputIcon={<UserRound size={20} />}
-                            inputPlaceholder={"example@gmail.com или логин"}
-                            name="identifier"
-                            autoComplete="username"
-                            inputValue={formData.identifier}
-                            error={errors.identifier}
-                            inputOnChange={updateField("identifier")} />
-                    </div>
+                <form className="auth-form-cols" onSubmit={handleSubmit} noValidate>
+                    <FormField inputLabel={"Электронная почта или Логин"}
+                        inputIcon={<UserRound size={20} />}
+                        inputPlaceholder={"example@mail.ru или Логин"}
+                        name="identifier"
+                        autoComplete="username"
+                        inputValue={formData.identifier}
+                        error={errors.identifier}
+                        inputOnChange={updateField("identifier")} />
 
-                    <div className="login-form-row">
-                        <FormField inputLabel={"Пароль"}
-                            inputIcon={<KeyRound size={20} />}
-                            inputType={"password"}
-                            name="password"
-                            autoComplete="current-password"
-                            isPassword={true}
-                            inputValue={formData.password}
-                            error={errors.password}
-                            inputOnChange={updateField("password")} />
-                    </div>
+                    <FormField inputLabel={"Пароль"}
+                        inputIcon={<KeyRound size={20} />}
+                        inputPlaceholder={"Пароль"}
+                        inputType={"password"}
+                        name="password"
+                        autoComplete="current-password"
+                        isPassword={true}
+                        inputValue={formData.password}
+                        error={errors.password}
+                        inputOnChange={updateField("password")} />
 
-                    <div className="login-form-row">
+                    <div className="auth-actions">
                         <Button type="submit" disabled={isSubmitting} label={isSubmitting ? "Входим…" : "Войти"} icon={<DoorOpen />} />
-                        <Button type="button" variant="tertiary" label="Создать аккаунт" disabled={isSubmitting} onClick={handleBackToRegisterPage} icon={<UserRoundPlus />} />
+                        <div className="auth-regsiter"><span>Нет аккаунта?</span><Button type="button" variant="tertiary" label="Создать аккаунт" disabled={isSubmitting} onClick={handleBackToRegisterPage} icon={<UserRoundPlus />} /></div>
                     </div>
                 </form>
             </div>

@@ -24,37 +24,7 @@ const ACHIVEMETS_SLIDES = [
         title: "Внедрение в образовательных организациях",
         content: "Нашу систему используют в школах и учебных центрах",
         imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 5,
-        title: "Абоба",
-        content: "Абоба",
-        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 6,
-        title: "Абоба",
-        content: "Абоба",
-        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 7,
-        title: "Абоба",
-        content: "Абоба",
-        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 8,
-        title: "Абоба",
-        content: "Абоба",
-        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
-    },
-    {
-        id: 9,
-        title: "Абоба",
-        content: "Абоба",
-        imgUrl: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80",
-    },
+    }
 ]
 
 export const Achivements = () => {
