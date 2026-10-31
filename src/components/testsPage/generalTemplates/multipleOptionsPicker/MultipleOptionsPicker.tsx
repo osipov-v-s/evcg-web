@@ -137,13 +137,14 @@ export const MultipleOptionsPicker = ({
                                 onClick={() => handleOptionToggle(option.id)}
                                 className={`test-card-selectable checkbox ${option.isChecked ? "active" : ""}`}
                             >
+                                <span>{option.text}</span>
                                 <input
                                     type="checkbox"
                                     checked={!!option.isChecked}
                                     readOnly
                                     className="mr-2 pointer-events-none"
                                 />
-                                <span>{option.text}</span>
+                                
                             </div>
                         ))}
                     </div>
