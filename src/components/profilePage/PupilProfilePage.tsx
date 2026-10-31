@@ -19,7 +19,15 @@ import { School } from "../../types/education/education"
 import { NoResults } from "../ui/noResultComponent/NoResult"
 import { getApiErrorMessage } from "../../services/api/error"
 import { useInteractiveStore } from "../ui/menu/store"
-
+import {z} from "zod"
+const pupilProfileSchema = z.object({
+    name: z.string().trim().min(2, "Укажите имя"),
+    surname: z.string().trim().min(2, "Укажите фамилию"),
+    patronymic: z.string().trim().min(2, "Укажите отчество"),
+    school: z.string().trim().min(1, "Укажите школу"),
+    classNumber: z.number().int().gt(0, "Выберите номер класса"),
+    classLabel: z.string().trim().min(1, "Укажите букву класса")
+})
 export const PupilProfilePage: FC = () => {
     const { getToken, isFirstLogin } = useAuth()
 
@@ -85,6 +93,10 @@ export const PupilProfilePage: FC = () => {
         { value: 9, label: "9 класс" },
         { value: 10, label: "10 класс" },
         { value: 11, label: "11 класс" },
+        { value: 12, label: "1 курс"},
+        { value: 13, label: "2 курс"},
+        { value: 14, label: "3 курс"},
+        { value: 15, label: "4 курс"},
     ], []);
 
     const nationalityOptions = useMemo(() => [
@@ -114,7 +126,11 @@ export const PupilProfilePage: FC = () => {
 
     const handleSaveClick = async () => {
         if (isSaving) return
-
+        const parsed = pupilProfileSchema.safeParse(formData)
+        if (!parsed.success) {
+            toast.error(parsed.error.issues[0].message)
+            return
+        }
         try {
             setIsSaving(true)
             const token = getToken()
