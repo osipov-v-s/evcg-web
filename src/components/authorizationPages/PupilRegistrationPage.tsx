@@ -6,7 +6,9 @@ import { Specialist } from "../../types/specialist/specialist"
 import { RegistrationForm } from "./forms/RegistrationForm"
 import { useNavigate } from "react-router-dom"
 import { authApi } from "../../services/api/authApi"
+import { useAuth } from "../../contexts/AuthContext"
 export const PupilRegistrationPage = () => {
+    const {login, setRoles} = useAuth()
     const navigate = useNavigate()
     const [accountData, setAccountData] = useState<AccountForm>({email : "", password : "", repeatPassword : ""})
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -16,13 +18,22 @@ export const PupilRegistrationPage = () => {
             setIsSubmitting(true)
             await authApi.register(accountData.email, accountData.password)
             toast.success("Вы успешно зарегистрировались")
-            navigate("/login")
+            //trying to auth user after success registration
+            await authentificate()
+            navigate("/profile")
         } catch(err) {
             console.error(err)
             toast.error("Возникла ошибка при регистрации")
         } finally {
             setIsSubmitting(false)
         }
+    }
+    const authentificate = async () => {
+        if (!accountData) return
+        const token = await authApi.login(accountData.email, accountData.password)
+        const roles = await authApi.getRoles(token)
+        login(token)
+        setRoles(roles)
     }
 
     return (<>
