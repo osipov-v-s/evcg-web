@@ -209,7 +209,7 @@ export const PupilProfilePage: FC = () => {
 
                     {/* Row 3: Nationality + Birthday */}
                     <div className="profile-row row-2">
-                        <div className="profile-card">
+                        {/* <div className="profile-card">
                             <h4>Национальность</h4>
                             <Dropdown
                                 dropdownIcon={<PersonStanding size={20} />}
@@ -217,7 +217,7 @@ export const PupilProfilePage: FC = () => {
                                 dropdownSelected={formData.nationality}
                                 optionOnSelect={(opt) => updateField("nationality")(opt.value)}
                                 dropdownDirection="up" />
-                        </div>
+                        </div> */}
 
                         <div className="profile-card">
                             <h4>Дата рождения</h4>
