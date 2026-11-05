@@ -1,10 +1,7 @@
-import "./css/cardBase.css"
-import "./css/cardContent.css"
-import "./css/cardResult.css"
-
 import { FC, memo } from "react"
 import { TestItem } from "./TestsData"
-import { Timer, FileQuestion, ArrowRight, CheckCheck } from "lucide-react"
+import { Timer, FileQuestion, ArrowRight, CheckCheck, Check } from "lucide-react"
+import { Button } from "../ui/reusable/button"
 
 interface TestItemProps {
     item: TestItem
@@ -38,48 +35,46 @@ export const TestCard: FC<TestItemProps> = memo(({
     }
 
     return (
-        <div className="test-card-wrapper">
-            <button
-                type="button"
-                className={`test-selection-item ${!isAvailable ? "locked" : ""} ${isComplete ? "complete" : ""}`}
-                disabled={!isAvailable}
-                onClick={handleClick}
-                data-test-id={dataId}>
+        <div className={`test-grid-item ${!isAvailable ? "locked" : ""} ${isComplete ? "complete" : ""}`} onClick={handleClick} data-test-id={dataId}>
+            <div className="test-item-bg" />
 
-                <div className="hover-circle" />
-
-                <div className="test-selection-item-label">
-                    <div className="test-selection-item-name">
-                        <h4>{item.label}</h4>
-                        <span>{item.author}</span>
-                    </div>
+            <div className="test-item-content">
+                <div className="test-item-header">
+                    <h2 className="test-item-title">{item.label}</h2>
+                    <span className="test-item-author">{item.author}</span>
                 </div>
 
-                <div className="test-selection-item-info">
-                    <div className="test-selection-item-hint">
+                <div className="test-item-info">
+                    <div className="test-item-hint">
                         <Timer />
                         <span>{item.time} {getDeclension(item.time, ["минута", "минуты", "минут"])}</span>
                     </div>
 
-                    <div className="test-selection-item-hint">
+                    <div className="test-item-hint">
                         <FileQuestion />
                         <span>{item.questionscount} {getDeclension(item.questionscount, ["вопрос", "вопроса", "вопросов"])}</span>
                     </div>
                 </div>
 
-                <div className="test-selection-decal">
-                    {isComplete ? <CheckCheck /> : <ArrowRight />}
-                </div>
-            </button>
 
-            {isComplete && (
-                <button type="button" className="test-selection-result" onClick={() => resultOnClick(item)}>
-                    <h4>Результаты</h4>
-                    <div className="test-selection-decal">
+                {isComplete ?
+                    <div className="test-item-complition test-complete">
+                        <Check />
+                    </div> :
+                    <div className="test-item-complition test-not">
                         <ArrowRight />
+                    </div>}
+
+
+                {isComplete && (
+                    <div className="test-item-options">
+                        <Button label="Результаты теста" icon={<ArrowRight />} onClick={(e) => {
+                            e.stopPropagation()
+                            resultOnClick(item)
+                        }} />
                     </div>
-                </button>
-            )}
+                )}
+            </div>
         </div>
     )
 })

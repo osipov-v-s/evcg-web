@@ -1,3 +1,6 @@
+import { ArrowRight } from "lucide-react"
+import { Button } from "../ui/reusable/button"
+
 export const Crew = () => {
     return (
         <section>
@@ -74,26 +77,8 @@ export const Crew = () => {
                         </div>
                     </div>
 
-                    <div className="crew-item">
-                        <div className="crew-member-photo">
-                            <img />
-                        </div>
-                        <div className="crew-member-info">
-                            <h2>Т.А. Ершов</h2>
-                            <p>Инженер-программист</p>
-                            <span>placeholder@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div className="crew-item">
-                        <div className="crew-member-photo">
-                            <img />
-                        </div>
-                        <div className="crew-member-info">
-                            <h2>Е.М. Кузьмин</h2>
-                            <p>Соисполнитель</p>
-                            <span>placeholder@gmail.com</span>
-                        </div>
+                    <div className="crew-view-all">
+                        <Button label="Все участники" variant="tertiary" icon={<ArrowRight />} />
                     </div>
                 </div>
             </div>

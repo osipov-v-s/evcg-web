@@ -41,7 +41,7 @@ export const VrTestsPage = () => {
                         available: testsId.some(id => p.id === Number(id)),
                     }))
                 )
-                
+
                 if (cancelled) return
 
                 setAvailableProfessions(
@@ -65,6 +65,7 @@ export const VrTestsPage = () => {
             cancelled = true
         }
     }, [getToken])
+
     //Собираем наши карточки с путями и прочим
     const tiles: TestItem[] = useMemo(() => {
         return availableProfessions.map((prof) => ({
@@ -112,22 +113,16 @@ export const VrTestsPage = () => {
     }
 
     return (
-        <div className="test-grid">
+        <>
             {tiles.map((item, index) => (
-                <div key={item.id} className="test-grid-item show">
-                    <TestCard
-                        dataId={item.id}
-                        index={index}
-                        isAvailable={item.isAvailable}
-                        item={item}
-                        onClick={handleClick}
-                        resultOnClick={handleResultClick}
-                        isComplete={
-                            (completedByProfession[Number(item.id.replace("vr-", ""))] ?? 0) > 0
-                        }
-                    />
-                </div>
-            ))}
-        </div>
+                <TestCard
+                    dataId={item.id}
+                    index={index}
+                    isAvailable={item.isAvailable}
+                    item={item}
+                    onClick={handleClick}
+                    resultOnClick={handleResultClick}
+                    isComplete={(completedByProfession[Number(item.id.replace("vr-", ""))] ?? 0) > 0} />))}
+        </>
     )
 }

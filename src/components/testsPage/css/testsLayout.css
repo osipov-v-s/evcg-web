@@ -1,0 +1,127 @@
+.tests-type-switch {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+    gap: 20px;
+    z-index: 999;
+}
+
+.tests-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(270px, auto);
+    gap: 20px;
+    padding-bottom: 90px;
+}
+
+.test-grid-item {
+    width: 100%;
+    position: relative;
+    border-radius: 20px;
+    justify-content: start;
+    align-items: start;
+    padding: 30px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    border: 1px solid var(--text-disabled-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.test-grid-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
+.test-item-bg {
+    position: absolute;
+    inset: 0;
+    background-color: lightgray;
+}
+
+.test-item-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(100deg,
+            rgba(248, 250, 252, 1) 0%,
+            rgba(248, 250, 252, 0.9) 40%,
+            rgba(248, 250, 252, 0.4) 60%,
+            rgba(248, 250, 252, 0) 80%);
+}
+
+.test-item-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.test-item-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.test-item-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary-color);
+    letter-spacing: -0.02em;
+}
+
+.test-item-author {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary-color);
+}
+
+.test-item-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.test-item-hint {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary-color);
+    border: 1px solid var(--text-disabled-color);
+    padding: 8px 12px;
+    border-radius: 999px;
+}
+
+.test-item-hint svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5;
+}
+
+.test-item-complition {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.test-item-complition svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5;
+}
+
+.test-item-options {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

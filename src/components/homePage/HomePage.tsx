@@ -23,7 +23,7 @@ import { Footer } from "./Footer"
 
 export const HomePage: FC = ({ }) => {
     return (
-        <main>
+        <>
             <Banner />
             <Achivements />
             <Diagnostics />
@@ -33,6 +33,6 @@ export const HomePage: FC = ({ }) => {
             <Crew />
             <ScienceBase />
             <Footer />
-        </main>
+        </>
     )
 }

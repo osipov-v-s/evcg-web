@@ -1,6 +1,6 @@
-import "./css/layoutGrid.css"
+import "./css/testsLayout.css"
 
-import { FC, useCallback, useEffect, useMemo, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { TestItem, testsList } from "./TestsData"
 import { TestCard } from "./TestCard"
 import { useNavigate, useSearchParams } from "react-router-dom"
@@ -9,6 +9,7 @@ import { useAuth } from "../../contexts/AuthContext"
 import { TestResultResponse } from "../../types/testTypes"
 import toast from "react-hot-toast"
 import { VrTestsPage } from "./VRTests/VrTestsPage"
+import { Button } from "../ui/reusable/button"
 
 export const TestsPage: FC = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -56,42 +57,34 @@ export const TestsPage: FC = () => {
             toast.error("Ошибка при загрузке результатов")
         }
     }
+
     return (
-        <div className="test-container">
-            {/* Переключатель типов тестов */}
-            <div className="test-tabs">
-                <button
-                    className={`primary-action`}
-                    style={{backgroundColor: `${searchParams.get("view") !== "vr" ? "" : "white"}`, color: `${searchParams.get("view") !== "vr" ? "" : "black"}`}}
-                    onClick={() => setSearchParams({view: "common"})}
-                >
-                    Обычные тесты
-                </button>
-                <button
-                    className={`primary-action`}
-                    style={{backgroundColor: `${searchParams.get("view") === "vr" ? "" : "white"}`, color: `${searchParams.get("view") === "vr" ? "" : "black"}`}}
-                    onClick={() => setSearchParams({view: "vr"})}
-                >
-                    VR тесты
-                </button>
+        <>
+            <div className="tests-type-switch">
+                <Button label="Основные тесты" onClick={() => setSearchParams({ view: "common" })} />
+                <Button label="VR тесты" onClick={() => setSearchParams({ view: "vr" })} />
             </div>
-            {searchParams.get("view") === "vr" ? ( <VrTestsPage />) :
-            (
-            <div className="test-grid">
-                {testsList.map((item, index) => (
-                    <div key={item.id} className="test-grid-item show">
-                        <TestCard
-                            dataId={item.id}
-                            index={index}
-                            isAvailable={item.isAvailable}
-                            item={item}
-                            onClick={handleClick}
-                            resultOnClick={showResultClick}
-                            isComplete={recentTests ? recentTests[item.name] != null : false}
-                        />
-                    </div>
-                ))}
-            </div>) }
-        </div>
+            
+            <section className="tests">
+                <div className="tests-grid">
+                    {searchParams.get("view") === "vr" ?
+                        (<VrTestsPage />) :
+
+                        (<>
+                            {testsList.map((item, index) => (
+                                <TestCard
+                                    dataId={item.id}
+                                    index={index}
+                                    isAvailable={item.isAvailable}
+                                    item={item}
+                                    onClick={handleClick}
+                                    resultOnClick={showResultClick}
+                                    isComplete={recentTests ? recentTests[item.name] != null : false} />))}
+                        </>)}
+                </div>
+
+
+            </section>
+        </>
     )
 }

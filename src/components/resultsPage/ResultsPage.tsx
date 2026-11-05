@@ -57,7 +57,6 @@ export const ResultsPage: FC = () => {
 
 	return (
 		<div className="results-wrapper">
-			<PageHeader title="Результаты тестов" description="Выберите тест, чтобы открыть его специализированную расшифровку." />
 			<div className="tests-container">
 
 				{completedTests.map((test) => (
@@ -66,8 +65,6 @@ export const ResultsPage: FC = () => {
 						<div className="test-result-title">
 							<h3>{test.label}</h3>
 						</div>
-
-						<p>{test.description}</p>
 					</button>
 				))}
 			</div>

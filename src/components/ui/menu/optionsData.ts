@@ -33,7 +33,6 @@ export const menuButtons: MenuItemProps[] = [
         id: "tests",
         label: "Тесты",
         icon: FileCheckIcon,
-        className: "test",
         path: "/tests",
         order: 3,
         allowedRoles: CAREER_TEST_ROLES
@@ -42,7 +41,6 @@ export const menuButtons: MenuItemProps[] = [
         id: "predictions",
         label: "Подбор профессии",
         icon: Share2,
-        className: "predictions",
         path: "/predictions",
         order: 4,
         allowedRoles: [ROLES.PUPIL]

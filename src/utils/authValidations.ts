@@ -6,7 +6,7 @@ import { AuthCredentials, AuthMode } from "../types/account/authCredentials"
 export const EMAIL_MAX_LENGTH = 254
 export const LOGIN_MIN_LENGTH = 3
 export const LOGIN_MAX_LENGTH = 32
-export const PASSWORD_MIN_LENGTH = 8
+export const PASSWORD_MIN_LENGTH = 6
 export const PASSWORD_MAX_LENGTH = 64
 
 export const LOGIN_HINT = `От ${LOGIN_MIN_LENGTH} до ${LOGIN_MAX_LENGTH} символов: латиница, цифры, «.», «_», «-»`

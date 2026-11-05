@@ -115,6 +115,15 @@ body {
     transition: background-color .3s ease, color .3s ease;
 }
 
+main {
+    width: 100%;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 80px;
+}
+
 /* Списки */
 ul,
 ol {
