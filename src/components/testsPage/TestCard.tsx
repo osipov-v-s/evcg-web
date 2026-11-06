@@ -3,7 +3,7 @@ import "./css/cardContent.css"
 import "./css/cardResult.css"
 
 import { FC, memo } from "react"
-import { TestItem } from "./TestsData"
+import { Stage, TestItem } from "./TestsData"
 import { Timer, FileQuestion, ArrowRight, CheckCheck } from "lucide-react"
 
 interface TestItemProps {
@@ -14,6 +14,7 @@ interface TestItemProps {
     isComplete?: boolean
     onClick: (path: string) => void
     resultOnClick: (item: TestItem) => void
+    stage?: Stage
 }
 
 const getDeclension = (count: number, titles: [string, string, string]) => {
@@ -31,12 +32,52 @@ export const TestCard: FC<TestItemProps> = memo(({
     isComplete,
     onClick,
     resultOnClick,
+    stage
 }) => {
     const handleClick = () => {
         if (!isAvailable) return
         if (item.path) onClick(item.path)
     }
-
+    const renderButtons = () => {
+        //if test is not complete no need buttons, 
+        // also check if this VR it CAN be not completed but be at stage 1
+        if (!isComplete && stage !== 1) return null
+        // if test complete or stage 2 for VR legacy support
+        if (isComplete || stage === 2) {
+            return (
+                <button 
+                    type="button" 
+                    className="test-selection-result" 
+                    onClick = {() => resultOnClick(item)}>
+                    <h4>Результаты</h4>
+                    <div className="test-selection-decal">
+                        <ArrowRight/>
+                    </div>
+                </button>
+            )
+        }
+        // stage 0 or 1 (one of buttons is not active)
+        const isFirstStage = stage === 1
+        return (
+            <div className="flex flex-row gap-2">
+                <button
+                    type="button"
+                    disabled = {!isFirstStage}
+                    className="test-selection-result"
+                    onClick={() => resultOnClick(item)}> 
+                    До VR
+                </button>
+                <button
+                    type="button"
+                    disabled = {isFirstStage}
+                    className="test-selection-result"
+                    onClick={() => resultOnClick(item)}> 
+                    После VR
+                </button>
+            </div>
+        )
+    }
+    //console.log(stage)
     return (
         <div className="test-card-wrapper">
             <button
@@ -52,6 +93,7 @@ export const TestCard: FC<TestItemProps> = memo(({
                     <div className="test-selection-item-name">
                         <h4>{item.label}</h4>
                         <span>{item.author}</span>
+                        {item.stage !== undefined && <span>{`Выполнено ${item.stage} / 2`}</span>}
                     </div>
                 </div>
 
@@ -71,15 +113,9 @@ export const TestCard: FC<TestItemProps> = memo(({
                     {isComplete ? <CheckCheck /> : <ArrowRight />}
                 </div>
             </button>
-
-            {isComplete && (
-                <button type="button" className="test-selection-result" onClick={() => resultOnClick(item)}>
-                    <h4>Результаты</h4>
-                    <div className="test-selection-decal">
-                        <ArrowRight />
-                    </div>
-                </button>
-            )}
+            {/*+Легаси условия, stage для VR тестов с этапами, у них футер отличается в зависимости от этапа*/ }
+            
+            {renderButtons()}
         </div>
     )
 })

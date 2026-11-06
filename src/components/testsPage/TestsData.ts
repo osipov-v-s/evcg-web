@@ -10,7 +10,7 @@ import {
     Target,
     Anchor,
 } from "lucide-react"
-
+export type Stage = 0 | 1 | 2
 export interface TestItem {
     id: string
     author?: string
@@ -22,6 +22,7 @@ export interface TestItem {
     pathResults?: string
     isAvailable?: boolean
     name: string
+    stage?: Stage
 }
 
 export const testsList: TestItem[] = [
