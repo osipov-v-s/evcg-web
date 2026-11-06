@@ -148,6 +148,7 @@ export const VrTestResults = () => {
                     </div>
                 </section>
             ))}
+            <Button label="Назад" onClick={() => navigate('/tests?view=vr')}/>
         </div>
     )
 };
