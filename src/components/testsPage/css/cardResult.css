@@ -9,14 +9,19 @@
     align-items: center;
     border-radius: 15px;
     width: 100%;
-    max-height: 50px;
-    height: 100%;
+    min-height: 50px;
+    height: auto;
     padding: 0 30px;
     background-color: var(--scfly-color-300);
     box-sizing: border-box;
     cursor: pointer;
+    text-align: start;
 }
-
+.test-selection-result:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: var(--grey-color-400);
+}
 .test-selection-result h4 {
     color: var(--text-primary-color);
     font-weight: var(--font-weight-medium);

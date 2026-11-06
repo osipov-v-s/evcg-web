@@ -76,7 +76,11 @@ export const VrTestsPage = () => {
             path: `/tests/vr/${prof.id}/intro`,
             pathResults: `/tests/vr/${prof.id}/results`,
             isAvailable: true,
-            name: `vr-${prof.id}`
+            name: `vr-${prof.id}`,
+            // if test completed not even once then 0 or data not persists still 0,
+            // first stage then 1, second stage 2 (check test counter for that by profId in tests)
+            stage: completedByProfession[prof.id] == 0 || !completedByProfession[prof.id] ? 0 : completedByProfession[prof.id] == 2 ? 1 : 2 
+            
         }))
     }, [availableProfessions])
 
@@ -123,8 +127,9 @@ export const VrTestsPage = () => {
                         onClick={handleClick}
                         resultOnClick={handleResultClick}
                         isComplete={
-                            (completedByProfession[Number(item.id.replace("vr-", ""))] ?? 0) > 0
+                            item.stage === 2 ? true : false
                         }
+                        stage={item.stage}
                     />
                 </div>
             ))}
