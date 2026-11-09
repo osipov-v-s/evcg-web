@@ -39,9 +39,46 @@ export const TestCard: FC<TestItemProps> = memo(({
         if (item.path) onClick(item.path)
     }
     const renderButtons = () => {
+        if (stage === 0) {
+            return (
+            <div className="flex flex-row gap-2">
+                <button
+                    type="button"
+                    className="test-selection-result"
+                    style = {{background: "var(--accent-color-500)", color: "white"}}
+                    onClick={handleClick}>
+                    До VR Начать
+                </button>
+                <button
+                    type="button"
+                    className="test-selection-result"
+                    disabled={true}>
+                    После VR
+                </button>
+            </div>)
+        }
+        if (stage === 1) {
+            return (
+                <div className="flex flex-row gap-2">
+                    <button
+                        type="button"
+                        className="test-selection-result"
+                        onClick={() => resultOnClick(item)}>
+                        До VR Результаты
+                    </button>
+                    <button
+                        type="button"
+                        className="test-selection-result"
+                        style = {{background: "var(--accent-color-500)", color: "white"}}
+                        onClick={handleClick}>
+                        После VR Начать
+                    </button>
+                </div>
+            )
+        }
         //if test is not complete no need buttons, 
         // also check if this VR it CAN be not completed but be at stage 1
-        if (!isComplete && stage !== 1) return null
+        //if (!isComplete && stage !== 1) return null
         // if test complete or stage 2 for VR legacy support
         if (isComplete || stage === 2) {
             return (
@@ -56,28 +93,8 @@ export const TestCard: FC<TestItemProps> = memo(({
                 </button>
             )
         }
-        // stage 0 or 1 (one of buttons is not active)
-        const isFirstStage = stage === 1
-        return (
-            <div className="flex flex-row gap-2">
-                <button
-                    type="button"
-                    disabled = {!isFirstStage}
-                    className="test-selection-result"
-                    onClick={() => resultOnClick(item)}> 
-                    До VR
-                </button>
-                <button
-                    type="button"
-                    disabled = {isFirstStage}
-                    className="test-selection-result"
-                    onClick={() => resultOnClick(item)}> 
-                    После VR
-                </button>
-            </div>
-        )
     }
-    //console.log(stage)
+    
     return (
         <div className="test-card-wrapper">
             <button
